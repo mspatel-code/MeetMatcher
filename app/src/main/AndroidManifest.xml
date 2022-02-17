@@ -10,6 +10,15 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MeetMatcher">
         <activity
+            android:name=".TeamsPage"
+            android:exported="false" />
+        <activity
+            android:name=".Registration_Confirmation_Page"
+            android:exported="false" />
+        <activity
+            android:name=".RegistrationPage"
+            android:exported="false" />
+        <activity
             android:name=".MainActivity"
             android:exported="true">
             <intent-filter>

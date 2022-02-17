@@ -3,7 +3,10 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
-        <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_main.xml" value="0.264" />
+        <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_registration_confirmation_page.xml" value="0.2" />
+        <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_registration_page.xml" value="0.264" />
+        <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_teams_page.xml" value="0.176" />
       </map>
     </option>
   </component>
