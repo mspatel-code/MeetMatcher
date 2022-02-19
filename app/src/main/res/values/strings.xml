@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">Meet Matcher</string>
+    <string name="bottom_ic_home">Home</string>
+    <string name="bottom_ic_availability">Availability</string>
+    <string name="bottom_ic_profile">Profile</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
 </resources>
