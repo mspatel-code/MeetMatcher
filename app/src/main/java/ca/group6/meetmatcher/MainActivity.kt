@@ -18,7 +18,7 @@ class MainActivity : AppCompatActivity() {
         }
 
         Sign_In.setOnClickListener{
-            val intent2 = Intent(this, TeamsPage::class.java)
+            val intent2 = Intent(this, ToolbarActivity::class.java)
             startActivity(intent2)
         }
     }

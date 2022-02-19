@@ -10,7 +10,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.MeetMatcher">
         <activity
-            android:name=".TeamsPage"
+            android:name=".ToolbarActivity"
             android:exported="false" />
         <activity
             android:name=".Registration_Confirmation_Page"
