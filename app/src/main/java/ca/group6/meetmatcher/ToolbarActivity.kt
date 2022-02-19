@@ -7,6 +7,7 @@ import ca.group6.meetmatcher.fragments.AvailabilityFragment
 import ca.group6.meetmatcher.fragments.HomeFragment
 import ca.group6.meetmatcher.fragments.ProfileFragment
 import kotlinx.android.synthetic.main.activity_toolbar.*
+import kotlinx.android.synthetic.main.app_bar.*
 
 class ToolbarActivity : AppCompatActivity() {
     private val homeFragment = HomeFragment()

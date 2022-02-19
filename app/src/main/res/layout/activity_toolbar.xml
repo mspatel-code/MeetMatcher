@@ -18,48 +18,11 @@
         app:itemIconTint="@color/teal_700"
         app:itemTextColor="@color/teal_700"/>
 
-    <androidx.appcompat.widget.Toolbar
+    <include
         android:id="@+id/toolbar"
+        layout="@layout/app_bar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/teal_200"
-        android:minHeight="?attr/actionBarSize"
-        android:theme="?attr/actionBarTheme"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fragment_container">
-        <TextView
-            android:id="@+id/toolbar_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center"
-            android:text="@string/bottom_ic_home"
-            android:textColor="@color/teal_700"
-            android:textSize="20sp"/>
-        <ImageButton
-            android:id="@+id/refresh_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            android:backgroundTint="@color/teal_200"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_baseline_refresh_24"
-            app:tint="@color/teal_700"
-            tools:layout_editor_absoluteX="346dp"
-            tools:layout_editor_absoluteY="4dp" />
-        <ImageButton
-            android:id="@+id/back_button"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="start"
-            android:backgroundTint="@color/teal_200"
-            android:minHeight="48dp"
-            app:srcCompat="@drawable/ic_baseline_arrow_back_ios_24"
-            app:tint="@color/teal_700"
-            tools:layout_editor_absoluteX="346dp"
-            tools:layout_editor_absoluteY="4dp" />
-    </androidx.appcompat.widget.Toolbar>
+        android:layout_height="wrap_content"/>
 
     <FrameLayout
         android:id="@+id/fragment_container"
@@ -67,6 +30,6 @@
         android:layout_height="0dp"
         android:background="@color/teal_700"
         app:layout_constraintBottom_toTopOf="@+id/bottom_navigation"
-        app:layout_constraintTop_toBottomOf="@id/toolbar"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
