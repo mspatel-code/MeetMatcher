@@ -1,14 +1,350 @@
 <?xml version="1.0" encoding="utf-8"?>
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".fragments.AvailabilityFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <TextView
+
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
+
+        <Switch
+            android:id="@+id/switch15"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="32dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <Switch
+            android:id="@+id/switch16"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch8" />
+
+        <Switch
+            android:id="@+id/switch13"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch14" />
+
+        <Switch
+            android:id="@+id/switch14"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch15" />
+
+        <Switch
+            android:id="@+id/switch17"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch16" />
+
+        <Switch
+            android:id="@+id/switch18"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch17" />
+
+        <Switch
+            android:id="@+id/switch8"
+            android:layout_width="60dp"
+            android:layout_height="36dp"
+            android:layout_marginStart="246dp"
+            android:layout_marginTop="50dp"
+            android:layout_marginEnd="40dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/switch13" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="40dp"
+            android:text="Monday"
+            app:layout_constraintStart_toEndOf="@+id/switch15"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="68dp"
+            android:text="Tuesday"
+            app:layout_constraintStart_toEndOf="@+id/switch14"
+            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="88dp"
+            android:layout_height="24dp"
+            android:layout_marginTop="64dp"
+            android:text="Wednesday"
+            app:layout_constraintStart_toEndOf="@+id/switch13"
+            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+
+        <TextView
+            android:id="@+id/textView16"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="64dp"
+            android:text="Thurday"
+            app:layout_constraintStart_toEndOf="@+id/switch8"
+            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+
+        <TextView
+            android:id="@+id/textView17"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="64dp"
+            android:text="Friday"
+            app:layout_constraintStart_toEndOf="@+id/switch16"
+            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+
+        <TextView
+            android:id="@+id/textView18"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="68dp"
+            android:text="Saturday"
+            app:layout_constraintStart_toEndOf="@+id/switch17"
+            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+
+        <TextView
+            android:id="@+id/textView19"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="60dp"
+            android:text="Sunday"
+            app:layout_constraintStart_toEndOf="@+id/switch18"
+            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+
+        <EditText
+            android:id="@+id/editTextTime"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="Start Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTime3"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="Start Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+
+        <EditText
+            android:id="@+id/editTextTime4"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="Start Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime3" />
+
+        <EditText
+            android:id="@+id/editTextTime5"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="Start Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime4" />
+
+        <EditText
+            android:id="@+id/editTextTime6"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:ems="10"
+            android:hint="Start Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime5" />
+
+        <EditText
+            android:id="@+id/editTextTime7"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="Start Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime6" />
+
+        <EditText
+            android:id="@+id/editTextTime8"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:ems="10"
+            android:hint="Start Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime7" />
+
+        <EditText
+            android:id="@+id/editTextTime2"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="32dp"
+            android:ems="10"
+            android:hint="End Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/editTextTime"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <EditText
+            android:id="@+id/editTextTime9"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="12dp"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="End Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/editTextTime3"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime2" />
+
+        <EditText
+            android:id="@+id/editTextTime10"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="End Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/editTextTime4"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime9" />
+
+        <EditText
+            android:id="@+id/editTextTime11"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="End Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/editTextTime5"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime10" />
+
+        <EditText
+            android:id="@+id/editTextTime12"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:ems="10"
+            android:hint="End Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/editTextTime6"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime11" />
+
+        <EditText
+            android:id="@+id/editTextTime13"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="48dp"
+            android:ems="10"
+            android:hint="End Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/editTextTime7"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime12" />
+
+        <EditText
+            android:id="@+id/editTextTime14"
+            android:layout_width="104dp"
+            android:layout_height="37dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="52dp"
+            android:ems="10"
+            android:hint="End Time"
+            android:inputType="time"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/editTextTime8"
+            app:layout_constraintTop_toBottomOf="@+id/editTextTime13" />
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
 </FrameLayout>
