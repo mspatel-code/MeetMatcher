@@ -1,11 +1,13 @@
 package ca.group6.meetmatcher.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ca.group6.meetmatcher.R
+import ca.group6.meetmatcher.TeamPage
 import kotlinx.android.synthetic.main.fragment_team_list_page.*
 
 //import kotlinx.android.synthetic.main.fragment_home.*
@@ -29,6 +31,10 @@ class HomeFragment : Fragment() {
             transaction?.replace(R.id.fragment_container, AddTeamFragment())
             transaction?.disallowAddToBackStack()
             transaction?.commit()
+        }
+        buttonTeamPage.setOnClickListener {
+            val intent = Intent (activity, TeamPage::class.java)
+            activity?.startActivity(intent)
         }
     }
 }
