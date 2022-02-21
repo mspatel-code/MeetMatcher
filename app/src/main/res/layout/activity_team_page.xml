@@ -16,6 +16,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
-    <include android:id="toolbar" layout="@layout/app_toolbar"/>
+    <include layout="@layout/activity_toolbar"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
