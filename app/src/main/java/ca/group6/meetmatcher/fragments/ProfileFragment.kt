@@ -21,15 +21,15 @@ class ProfileFragment : Fragment() {
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        change_password.setOnClickListener {
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.fragment_profile, ChangePasswordFragment())
-            transaction?.commit()
-        }
-        change_nickname.setOnClickListener {
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.fragment_profile, ChangeNicknameFragment())
-            transaction?.commit()
-        }
+//        change_password.setOnClickListener {
+//            val transaction = activity?.supportFragmentManager?.beginTransaction()
+//            transaction?.replace(R.id.fragment_profile, ChangePasswordFragment())
+//            transaction?.commit()
+//        }
+//        change_nickname.setOnClickListener {
+//            val transaction = activity?.supportFragmentManager?.beginTransaction()
+//            transaction?.replace(R.id.fragment_profile, ChangeNicknameFragment())
+//            transaction?.commit()
+//        }
     }
 }

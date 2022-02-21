@@ -9,7 +9,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.MeetMatcher">
-
+        <activity
+            android:name=".AddTeamActivity"
+            android:exported="false" />
         <activity
             android:name=".ToolbarActivity"
             android:exported="false" />
