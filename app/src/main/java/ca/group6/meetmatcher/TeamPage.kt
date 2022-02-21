@@ -7,6 +7,7 @@ import androidx.fragment.app.Fragment
 import ca.group6.meetmatcher.fragments.AvailabilityFragment
 import ca.group6.meetmatcher.fragments.HomeFragment
 import ca.group6.meetmatcher.fragments.ProfileFragment
+import ca.group6.meetmatcher.fragments.SelectTime
 import kotlinx.android.synthetic.main.activity_team_page.*
 import kotlinx.android.synthetic.main.activity_toolbar.*
 import kotlinx.android.synthetic.main.app_bar.*
@@ -30,7 +31,12 @@ class TeamPage : AppCompatActivity() {
             builder.setTitle("Use current availability?")
 
             builder.setPositiveButton("YES") { dialog, _ ->
-
+                supportFragmentManager
+                    .beginTransaction()
+                    .add(R.id.fragment_container,
+                        SelectTime.newInstance(),
+                        "SelectTimeTag")
+                    .commit()
             }
             builder.setNegativeButton("EDIT") { dialog, _->
                 replaceFragment(availabilityFragment)
