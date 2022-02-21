@@ -3,6 +3,17 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/activity_main.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/activity_registration_confirmation_page.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/activity_registration_page.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/activity_team_page.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/activity_toolbar.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/app_bar.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/fragment_add_team.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/fragment_availability.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/fragment_home.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/fragment_profile.xml" value="0.25" />
+        <entry key="..\:/Users/cindy/AndroidStudioProjects/MeetMatcher/app/src/main/res/layout/fragment_team_list.xml" value="0.25" />
         <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_main.xml" value="0.2" />
         <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_registration_confirmation_page.xml" value="0.2" />
         <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_registration_page.xml" value="0.264" />
