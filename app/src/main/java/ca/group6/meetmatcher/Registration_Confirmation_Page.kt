@@ -3,15 +3,17 @@ package ca.group6.meetmatcher
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import kotlinx.android.synthetic.main.activity_registration_confirmation_page.*
-import kotlinx.android.synthetic.main.activity_registration_page.*
+import ca.group6.meetmatcher.databinding.ActivityRegistrationConfirmationPageBinding
 
 class Registration_Confirmation_Page : AppCompatActivity() {
+    private lateinit var binding: ActivityRegistrationConfirmationPageBinding
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_registration_confirmation_page)
+        binding = ActivityRegistrationConfirmationPageBinding.inflate(layoutInflater)
+        setContentView(binding.root)
 
-        Sign_In_3.setOnClickListener{
+        binding.SignIn3.setOnClickListener{
             val intent = Intent(this,MainActivity::class.java)
             startActivity(intent)
         }

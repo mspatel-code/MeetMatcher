@@ -5,21 +5,22 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/teal_700"
-    tools:context=".TeamPage">
+    tools:context=".fragments.HomeFragment">
 
     <TextView
         android:id="@+id/textView6"
         android:layout_width="316dp"
         android:layout_height="267dp"
+        android:layout_marginBottom="264dp"
         android:background="@color/teal_200"
         android:paddingLeft="20dp"
         android:paddingTop="20dp"
         android:text="Team A"
         android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.5"
-        app:layout_constraintStart_toStartOf="parent"
-        tools:layout_editor_absoluteY="181dp" />
+        app:layout_constraintHorizontal_bias="0.494"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
         android:id="@+id/textView3"
@@ -54,7 +55,7 @@
     </ScrollView>
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/add_team_buttonTeamPage"
         android:layout_width="131dp"
         android:layout_height="52dp"
         android:layout_marginBottom="176dp"
@@ -68,24 +69,27 @@
         app:layout_constraintVertical_bias="1.0" />
 
     <Button
-        android:id="@+id/button2"
+        android:id="@+id/buttonTeamSchedule"
         android:layout_width="139dp"
         android:layout_height="34dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="16dp"
         android:background="#FF5E5E"
         android:text="Team Schedule"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="256dp"
-        tools:layout_editor_absoluteY="198dp" />
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/textView6" />
 
     <Button
-        android:id="@+id/button4"
+        android:id="@+id/buttonTeamPage"
         android:layout_width="131dp"
         android:layout_height="42dp"
+        android:layout_marginTop="24dp"
         android:background="#29A0B1"
-        android:text="Chat"
+        android:text="Meetings"
         android:textColor="#FFFFFF"
-        tools:layout_editor_absoluteX="262dp"
-        tools:layout_editor_absoluteY="240dp" />
+        app:layout_constraintStart_toStartOf="@+id/buttonTeamSchedule"
+        app:layout_constraintTop_toBottomOf="@+id/buttonTeamSchedule" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 
