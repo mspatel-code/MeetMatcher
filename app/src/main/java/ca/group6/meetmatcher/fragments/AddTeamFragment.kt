@@ -6,12 +6,14 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ca.group6.meetmatcher.R
-import kotlinx.android.synthetic.main.fragment_add_team.*
-import kotlinx.android.synthetic.main.fragment_team_list_page.*
+import ca.group6.meetmatcher.databinding.FragmentAddTeamBinding
 
 //import kotlinx.android.synthetic.main.fragment_home.*
 
 class AddTeamFragment : Fragment() {
+    private var _binding: FragmentAddTeamBinding? = null
+    private val binding get() = _binding!!
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
     }
@@ -19,13 +21,15 @@ class AddTeamFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        return inflater.inflate(R.layout.fragment_add_team, container, false)
+    ): View {
+        _binding = FragmentAddTeamBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         // go back to home page (list of teams)
-        form_team.setOnClickListener {
+        binding.formTeam.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.fragment_container, HomeFragment())
             transaction?.disallowAddToBackStack()

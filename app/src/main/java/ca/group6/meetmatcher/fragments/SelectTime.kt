@@ -1,46 +1,71 @@
 package ca.group6.meetmatcher.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ca.group6.meetmatcher.R
-import ca.group6.meetmatcher.TeamPage
-import kotlinx.android.synthetic.main.fragment_select_time.*
-import kotlinx.android.synthetic.main.fragment_team_list_page.*
+import ca.group6.meetmatcher.databinding.FragmentSelectTimeBinding
+
+interface OnFinishSelectTimeListener
+{
+    fun OnFinishSelectTimeTapped(times: Array<String>?)
+}
 
 class SelectTime : Fragment() {
+    private var _binding: FragmentSelectTimeBinding? = null
+    private val binding get() = _binding!!
+    private var list_times : Array<String>? = null
+    private lateinit var caller_finishSelect: OnFinishSelectTimeListener
+
+    override fun onCreate(savedInstanceState: Bundle?) {
+        super.onCreate(savedInstanceState)
+        arguments?.let {
+            list_times = it.getStringArray("listTime")
+        }
+    }
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_select_time, container, false)
+    ): View {
+        _binding = FragmentSelectTimeBinding.inflate(inflater, container, false)
+        val view = binding.root
+        return view
     }
 
     companion object {
-        /**
-         * Use this factory method to create a new instance of
-         * this fragment using the provided parameters.
-         *
-         * @param param1 Parameter 1.
-         * @param param2 Parameter 2.
-         * @return A new instance of fragment SelectTime.
-         */
-        // TODO: Rename and change types and number of parameters
         @JvmStatic
-        fun newInstance() =
-            SelectTime().apply {}
+        fun newInstance(times : Array<String>) =
+            SelectTime().apply {
+                arguments = Bundle().apply {
+                    putStringArray("listTime", times)
+                }
+            }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnFinishSelectTimeListener) {
+            caller_finishSelect = context
+        }
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        selectTimeDone.setOnClickListener {
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.fragment_container, AddTeamFragment())
-            transaction?.disallowAddToBackStack()
-            transaction?.commit()
+        binding.selectTimeDone.setOnClickListener {
+//            val transaction = activity?.supportFragmentManager?.beginTransaction()
+//            transaction?.replace(R.id.fragment_container, TeamPage())
+//            transaction?.disallowAddToBackStack()
+//            transaction?.commit()
+            caller_finishSelect.OnFinishSelectTimeTapped(list_times)
         }
+        setUpCheckBoxes()
+    }
+
+    private fun setUpCheckBoxes() {
+        binding.checkBox1.text = list_times?.get(0)
+        binding.checkBox2.text = list_times?.get(1)
+        binding.checkBox3.text = list_times?.get(2)
     }
 }

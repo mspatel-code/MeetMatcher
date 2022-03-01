@@ -11,10 +11,6 @@
         android:theme="@style/Theme.MeetMatcher">
 
         <activity
-            android:name=".TeamPage"
-            android:exported="false" />
-
-        <activity
             android:name=".ToolbarActivity"
             android:exported="false" />
         <activity
