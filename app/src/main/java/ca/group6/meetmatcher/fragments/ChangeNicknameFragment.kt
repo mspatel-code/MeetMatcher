@@ -6,11 +6,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import ca.group6.meetmatcher.R
-import ca.group6.meetmatcher.databinding.FragmentProfileBinding
+import ca.group6.meetmatcher.databinding.FragmentChangeNicknameBinding
 
-
-class ProfileFragment : Fragment() {
-    private var _binding: FragmentProfileBinding? = null
+class ChangeNicknameFragment : Fragment() {
+    private var _binding: FragmentChangeNicknameBinding? = null
     private val binding get() = _binding!!
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -20,20 +19,14 @@ class ProfileFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
-        _binding = FragmentProfileBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        _binding = FragmentChangeNicknameBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        binding.changePassword.setOnClickListener {
+        binding.cancelChangeNickname.setOnClickListener {
             val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.fragment_profile, ChangePasswordFragment())
-            transaction?.commit()
-        }
-        binding.changeNickname.setOnClickListener {
-            val transaction = activity?.supportFragmentManager?.beginTransaction()
-            transaction?.replace(R.id.fragment_profile, ChangeNicknameFragment())
+            transaction?.remove(this)
             transaction?.commit()
         }
     }
