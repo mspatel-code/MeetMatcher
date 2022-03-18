@@ -55,7 +55,7 @@
         android:paddingHorizontal="10dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/Enter_Username" />
+        app:layout_constraintTop_toBottomOf="@+id/Enter_Email" />
 
     <EditText
         android:id="@+id/Confirm_Password"
@@ -72,15 +72,14 @@
         app:layout_constraintTop_toBottomOf="@+id/Enter_Password" />
 
     <EditText
-        android:id="@+id/Enter_Username"
+        android:id="@+id/Enter_Email"
         android:layout_width="291dp"
         android:layout_height="61dp"
         android:layout_marginTop="16dp"
         android:layout_marginEnd="8dp"
         android:background="@color/white"
         android:ems="10"
-        android:hint="Enter Username"
-        android:inputType="textPersonName"
+        android:hint="Enter Email"
         android:paddingLeft="10dp"
         android:paddingRight="10dp"
         app:layout_constraintEnd_toEndOf="parent"
