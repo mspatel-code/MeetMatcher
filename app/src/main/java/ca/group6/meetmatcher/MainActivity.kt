@@ -13,7 +13,6 @@ class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var userRef: DatabaseReference
 
     override fun onCreate(savedInstanceState: Bundle?)
     {
@@ -35,7 +34,7 @@ class MainActivity : AppCompatActivity() {
     }
 
     private fun userSingIn() {
-        val email: String = binding.username.text.toString()
+        val email: String = binding.email.text.toString()
         val password: String = binding.password.text.toString()
 
         var errorMsg = ""
