@@ -5,15 +5,17 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
 import ca.group6.meetmatcher.databinding.ActivityRegistrationPageBinding
+import ca.group6.meetmatcher.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.ktx.Firebase
 
 class RegistrationPage : AppCompatActivity() {
     private lateinit var binding: ActivityRegistrationPageBinding
 
     private lateinit var auth: FirebaseAuth
-    private lateinit var userRef: DatabaseReference
     private var userId: String = ""
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -56,17 +58,12 @@ class RegistrationPage : AppCompatActivity() {
                 .addOnCompleteListener { task ->
                 if (task.isSuccessful) {
                     userId = auth.currentUser!!.uid
-                    userRef = FirebaseDatabase.getInstance().reference.child(userId)
+                    val user = User(userId, email, "offline")
 
-                    val userHashMap = HashMap<String, Any>()
-                    userHashMap["uid"] = userId
-                    userHashMap["username"] = email
-                    userHashMap["image"] = R.drawable.ic_baseline_person_24
-                    userHashMap["status"] = "offline"
-
-                    userRef.updateChildren(userHashMap).addOnCompleteListener { dataTask ->
+                    FirebaseDatabase.getInstance().getReference("Users")
+                        .child(userId).setValue(user).addOnCompleteListener { dataTask ->
                         if (dataTask.isSuccessful) {
-                            val intent = Intent(this, Registration_Confirmation_Page::class.java)
+                            val intent = Intent(this, RegistrationConfirmationPage::class.java)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK or Intent.FLAG_ACTIVITY_NEW_TASK)
                             startActivity(intent)
                             finish()

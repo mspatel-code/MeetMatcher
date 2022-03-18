@@ -5,7 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import ca.group6.meetmatcher.databinding.ActivityRegistrationConfirmationPageBinding
 
-class Registration_Confirmation_Page : AppCompatActivity() {
+class RegistrationConfirmationPage : AppCompatActivity() {
     private lateinit var binding: ActivityRegistrationConfirmationPageBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {

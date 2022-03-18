@@ -14,7 +14,7 @@
             android:name=".ToolbarActivity"
             android:exported="false" />
         <activity
-            android:name=".Registration_Confirmation_Page"
+            android:name=".RegistrationConfirmationPage"
             android:exported="false" />
         <activity
             android:name=".RegistrationPage"
