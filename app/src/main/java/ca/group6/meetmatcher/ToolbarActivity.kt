@@ -52,10 +52,13 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
         replaceFragment(availabilityFragment, "availabilityTag")
     }
 
-    override fun OnFinishSelectTimeTapped(times: Array<String>?) {
+    //override fun OnFinishSelectTimeTapped(times: Array<String>?) {
+    override fun OnFinishSelectTimeTapped(meeting: Meeting) {
         // get first time for now
 //        var time: String = times[0]
 //        var meeting: Meeting = Meeting(time,"")
-        replaceFragment(TeamPage.newInstance("Feb. 15 19:00 - 20:00"), "teamPageTag")
+
+        replaceFragment(TeamPage.newInstance(meeting), "teamPageTag")
+        //replaceFragment(TeamPage.newInstance(times[0]), "teamPageTag")
     }
 }

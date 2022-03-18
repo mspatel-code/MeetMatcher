@@ -24,7 +24,7 @@ interface OnEditAvailabilityButtonTapListener
 
 class TeamPage : Fragment() {
 //    private var meeting: Meeting? = null
-    private var meeting: String? = null
+    private lateinit var meeting: Meeting
     private lateinit var caller_makeMeeting: OnMakeMeetingButtonTapListener
     private lateinit var caller_editAvailability: OnEditAvailabilityButtonTapListener
     private var _binding: FragmentTeamPageBinding? = null
@@ -48,13 +48,14 @@ class TeamPage : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         val groupName = "A Team"
         val listTimes = arrayOf("Feb. 15 19:00 - 20:00", "Feb. 20 17:00 - 18:00", "Feb. 21 9:00 - 10:00")
-//        arguments?.let {
-//            meeting = it.getParcelable("meetingTime")
-//            Log.i("meetingdets", meeting.toString())
-//        }
         arguments?.let {
-            meeting = it.getString("meetingTime")
+            meeting = it.getParcelable<Meeting>("meetingTime")!!
+            //meeting = it.getParcelable("meetingTime").toString()
+            Log.i("meetingdets", meeting.toString())
         }
+//        arguments?.let {
+//            meeting = it.getString("meetingTime")
+//        }
         displayMeetingDetails()
         setUpGenerateMeetingButton(groupName, listTimes)
     }
@@ -71,25 +72,25 @@ class TeamPage : Fragment() {
     }
     companion object {
         @JvmStatic
-//        fun newInstance(addMeeting: Meeting) =
-        fun newInstance(addMeeting: String) =
+        fun newInstance(addMeeting: Meeting) =
+        //fun newInstance(addMeeting: String) =
             TeamPage().apply {
                 arguments = Bundle().apply {
-                    putString("meetingTime", meeting)
-//                    putParcelable("meetingTime", meeting)
+                    //putString("meetingTime", addMeeting)
+                    putParcelable("meetingTime", addMeeting)
                 }
             }
     }
 
     private fun displayMeetingDetails() {
-        if (meeting == null) {
+        if (!this::meeting.isInitialized) {
             val meeting: TextView = binding.teamPageMeetingDetails
             meeting.text = "No meeting planned."
         } else {
 //            val details = meeting!!.date + "\n" + meeting!!.time
-            if (meeting != null) {
-                var details = meeting!!.subSequence(0, 7)
-                //details.
+            if (this::meeting.isInitialized) {
+                //var details = meeting!!.subSequence(0, 7)
+                var details = meeting.date + ": " + meeting.time
                 binding.teamPageMeetingDetails.text = details
             }
         }
