@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "534922264142",
+    "project_id": "meet-matcher-20cf3",
+    "storage_bucket": "meet-matcher-20cf3.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:534922264142:android:c52a32cd1ee1bc400e0d1f",
+        "android_client_info": {
+          "package_name": "ca.group6.meetmatcher"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "534922264142-5hj0hkc9i8tdb7oohq6afe3gq3fmhfoc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCBVisAv-q6hfA1r3JGBjT1-npOrUMm8w4"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "534922264142-5hj0hkc9i8tdb7oohq6afe3gq3fmhfoc.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
