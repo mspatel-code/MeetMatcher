@@ -37,6 +37,21 @@
         <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_registration_confirmation_page.xml" value="0.2" />
         <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_registration_page.xml" value="0.264" />
         <entry key="..\:/Users/moinp/AndroidStudioProjects/IAT 359/Meet Matcher/app/src/main/res/layout/activity_teams_page.xml" value="0.176" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/activity_main.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/activity_registration_confirmation_page.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/activity_registration_page.xml" value="0.18857142857142858" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/activity_toolbar.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/app_bar.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/fragment_add_team.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/fragment_availability.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/fragment_change_nickname.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/fragment_change_password.xml" value="0.1" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/fragment_profile.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/fragment_select_time.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/fragment_team_list.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/fragment_team_list_page.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/layout/fragment_team_page.xml" value="0.21693840579710144" />
+        <entry key="..\:/things/materials/IAT359/MeetMatcher/app/src/main/res/menu/menu.xml" value="0.21875" />
       </map>
     </option>
   </component>
