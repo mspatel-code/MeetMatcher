@@ -5,7 +5,7 @@ import kotlinx.parcelize.Parceler
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
-class Meeting(val date: String?, val time: String?, val location: String?): Parcelable {
+class Meeting(var date: String?, var time: String?, var location: String?): Parcelable {
 //    val date = inpDate
 //    val time = inpTime
 //    val location = inpLocation

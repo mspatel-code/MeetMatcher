@@ -6,7 +6,7 @@ import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.view.View.inflate
+import android.view.View.*
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.fragment.app.Fragment
@@ -58,6 +58,7 @@ class TeamPage : Fragment() {
 //        }
         displayMeetingDetails()
         setUpGenerateMeetingButton(groupName, listTimes)
+        setUpCancelButton()
     }
 
     override fun onAttach(context: Context)
@@ -89,9 +90,13 @@ class TeamPage : Fragment() {
         } else {
 //            val details = meeting!!.date + "\n" + meeting!!.time
             if (this::meeting.isInitialized) {
-                //var details = meeting!!.subSequence(0, 7)
-                var details = meeting.date + ": " + meeting.time
-                binding.teamPageMeetingDetails.text = details
+                if (meeting.date == "") {
+                    binding.teamPageMeetingDetails.text = "No meeting planned."
+                } else {
+                    //var details = meeting!!.subSequence(0, 7)
+                    var details = meeting.date + ": " + meeting.time
+                    binding.teamPageMeetingDetails.text = details
+                }
             }
         }
     }
@@ -114,11 +119,41 @@ class TeamPage : Fragment() {
         }
     }
 
-//    private fun replaceFragment(fragment: Fragment) {
-//        val transaction = fragmentManager?.beginTransaction()
-//        transaction.replace(R.id.fragment_container, fragment)
-//        transaction.commit()
-//    }
+    private fun setUpCancelButton() {
+        if (!this::meeting.isInitialized) {
+            binding.FABcancel.visibility = GONE
+        } else {
+//            val details = meeting!!.date + "\n" + meeting!!.time
+            if (this::meeting.isInitialized) {
+                if (meeting.date == "") {
+                    binding.buttonAddLocation.visibility = GONE
+                } else {
+                    binding.buttonAddLocation.visibility = VISIBLE
+                    binding.buttonAddLocation.setOnClickListener {
+                        meeting.date = ""
+                    }
+                }
+            }
+        }
+    }
+
+    private fun setUpAddLocationButton() {
+        if (!this::meeting.isInitialized) {
+            binding.buttonAddLocation.visibility = GONE
+        } else {
+//            val details = meeting!!.date + "\n" + meeting!!.time
+            if (this::meeting.isInitialized) {
+                if (meeting.date == "") {
+                    binding.buttonAddLocation.visibility = GONE
+                } else {
+                    binding.buttonAddLocation.visibility = VISIBLE
+                    binding.buttonAddLocation.setOnClickListener {
+                        Log.i("Location", "Add location button clicked")
+                    }
+                }
+            }
+        }
+    }
 
     override fun onDestroyView() {
         super.onDestroyView()
