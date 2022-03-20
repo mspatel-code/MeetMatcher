@@ -37,7 +37,7 @@ class HomeFragment : Fragment() {
 
         //Arraylist
         memberList = arrayListOf("Member A", "Member B,", "Member C", "Member D")
-        println(memberList)
+
 
         binding.myRv.layoutManager = LinearLayoutManager (activity as Context)
         binding.myRv.adapter = MyAdapter(memberList)

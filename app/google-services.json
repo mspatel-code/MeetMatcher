@@ -2,6 +2,7 @@
   "project_info": {
     "project_number": "534922264142",
     "project_id": "meet-matcher-20cf3",
+    "firebase_url": "https://meet-matcher-20cf3-default-rtdb.firebaseio.com",
     "storage_bucket": "meet-matcher-20cf3.appspot.com"
   },
   "client": [
