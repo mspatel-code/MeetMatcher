@@ -1,4 +1,4 @@
-package ca.group6.meetmatcher
+package ca.group6.meetmatcher.model
 import android.os.Parcel
 import android.os.Parcelable
 import kotlinx.parcelize.Parceler

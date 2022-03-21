@@ -2,19 +2,10 @@ package ca.group6.meetmatcher
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.widget.Button
-import android.widget.ImageButton
-import android.widget.Toast
-import android.widget.Toolbar
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
-import androidx.navigation.NavController
-import androidx.navigation.findNavController
 import ca.group6.meetmatcher.databinding.ActivityToolbarBinding
 import ca.group6.meetmatcher.fragments.*
-import kotlinx.coroutines.internal.artificialFrame
+import ca.group6.meetmatcher.model.Meeting
 
 class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnEditAvailabilityButtonTapListener, OnFinishSelectTimeListener {
     private lateinit var binding: ActivityToolbarBinding
