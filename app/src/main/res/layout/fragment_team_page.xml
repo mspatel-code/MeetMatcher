@@ -11,8 +11,8 @@
         android:id="@+id/teamPageMeetingDetails"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="16dp"
-        android:layout_marginTop="204dp"
+        android:layout_marginStart="24dp"
+        android:layout_marginTop="108dp"
         android:textColor="#000000"
         android:textSize="60sp"
         android:textStyle="bold"
@@ -39,10 +39,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
+        android:layout_marginBottom="88dp"
+        android:backgroundTint="@color/mint"
         android:clickable="true"
         android:src="@android:drawable/ic_delete"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/FABmeeting" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button_addLocation"

@@ -9,6 +9,7 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import ca.group6.meetmatcher.databinding.FragmentTeamPageBinding
 
@@ -59,6 +60,7 @@ class TeamPage : Fragment() {
         displayMeetingDetails()
         setUpGenerateMeetingButton(groupName, listTimes)
         setUpCancelButton()
+        setUpAddLocationButton()
     }
 
     override fun onAttach(context: Context)
@@ -102,6 +104,11 @@ class TeamPage : Fragment() {
     }
 
     private fun setUpGenerateMeetingButton(groupName : String, times : Array<String>) {
+        if (this::meeting.isInitialized) {
+            if (meeting.date != "") {
+                binding.FABmeeting.visibility = GONE
+            }
+        }
         binding.FABmeeting.setOnClickListener {
             Log.i("onclicksetup", "HJDKFJA;LFJISE;FA")
             val builder = activity.let { it1 -> AlertDialog.Builder(it1) }
@@ -123,16 +130,9 @@ class TeamPage : Fragment() {
         if (!this::meeting.isInitialized) {
             binding.FABcancel.visibility = GONE
         } else {
-//            val details = meeting!!.date + "\n" + meeting!!.time
-            if (this::meeting.isInitialized) {
-                if (meeting.date == "") {
-                    binding.buttonAddLocation.visibility = GONE
-                } else {
-                    binding.buttonAddLocation.visibility = VISIBLE
-                    binding.buttonAddLocation.setOnClickListener {
-                        meeting.date = ""
-                    }
-                }
+            binding.FABcancel.visibility = VISIBLE
+            binding.FABcancel.setOnClickListener {
+                meeting.date = ""
             }
         }
     }

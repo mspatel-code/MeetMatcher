@@ -78,8 +78,8 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
 //        var time: String = times[0]
 //        var meeting: Meeting = Meeting(time,"")
 
-        replaceFragment(TeamPage.newInstance(meeting), "teamPageTag")
+        replaceFragment(TeamPage.newInstance(meeting), "Team Page")
         //replaceFragment(TeamPage.newInstance(times[0]), "teamPageTag")
-        replaceFragment(TeamPage.newInstance("Feb. 15 19:00 - 20:00"), "Team Page")
+        //replaceFragment(TeamPage.newInstance("Feb. 15 19:00 - 20:00"), "Team Page")
     }
 }
