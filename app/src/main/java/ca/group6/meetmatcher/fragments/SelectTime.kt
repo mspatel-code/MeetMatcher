@@ -1,17 +1,18 @@
 package ca.group6.meetmatcher.fragments
 
 import android.content.Context
-import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import ca.group6.meetmatcher.model.Meeting
 import ca.group6.meetmatcher.databinding.FragmentSelectTimeBinding
 
 interface OnFinishSelectTimeListener
 {
-    fun OnFinishSelectTimeTapped(times: Array<String>?)
+    //fun OnFinishSelectTimeTapped(times: Array<String>?)
+    fun OnFinishSelectTimeTapped(confirmMeetng: Meeting)
 }
 
 class SelectTime : Fragment() {
@@ -58,7 +59,8 @@ class SelectTime : Fragment() {
 //            transaction?.replace(R.id.fragment_container, TeamPage())
 //            transaction?.disallowAddToBackStack()
 //            transaction?.commit()
-            caller_finishSelect.OnFinishSelectTimeTapped(list_times)
+            var meeting: Meeting = Meeting("Feb 15", "8:00", "")
+            caller_finishSelect.OnFinishSelectTimeTapped(meeting)
         }
         setUpCheckBoxes()
     }
