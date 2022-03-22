@@ -18,10 +18,12 @@ import ca.group6.meetmatcher.databinding.FragmentTeamListPageBinding
 
 //import kotlinx.android.synthetic.main.fragment_home.*
 
+
 class HomeFragment : Fragment() {
+
     private var _binding: FragmentTeamListPageBinding? = null
     private val binding get() = _binding!!
-    var memberList = ArrayList<String>()
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -59,6 +61,8 @@ class HomeFragment : Fragment() {
         }
     }
 
+
+
     class MyViewHolder(inflater: LayoutInflater, parent: ViewGroup) :
         RecyclerView.ViewHolder(inflater.inflate(R.layout.fragment_team_list, parent, false))
 
@@ -77,5 +81,8 @@ class HomeFragment : Fragment() {
 
         override fun getItemCount() = array.size
 
+    }
+    companion object {
+        var memberList = ArrayList<String>()
     }
 }
