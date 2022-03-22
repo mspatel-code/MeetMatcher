@@ -1,7 +1,9 @@
 package ca.group6.meetmatcher
 
 import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Context
+import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -9,8 +11,12 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.Fragment
+import ca.group6.meetmatcher.databinding.ChooseLocationCityBinding
 import ca.group6.meetmatcher.databinding.FragmentTeamPageBinding
+import ca.group6.meetmatcher.dialogs.ChooseLocationCityDialog
+import ca.group6.meetmatcher.dialogs.SelectedCity
 import ca.group6.meetmatcher.model.Meeting
 
 interface OnMakeMeetingButtonTapListener
@@ -23,13 +29,15 @@ interface OnEditAvailabilityButtonTapListener
     fun OnEditAvailabilityButtonTapped()
 }
 
-class TeamPage : Fragment() {
+class TeamPage : Fragment(), SelectedCity {
 //    private var meeting: Meeting? = null
     private lateinit var meeting: Meeting
     private lateinit var caller_makeMeeting: OnMakeMeetingButtonTapListener
     private lateinit var caller_editAvailability: OnEditAvailabilityButtonTapListener
     private var _binding: FragmentTeamPageBinding? = null
     private val binding get() = _binding!!
+
+    public lateinit var city: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -126,16 +134,6 @@ class TeamPage : Fragment() {
         }
     }
 
-    private fun setUpCancelButton() {
-        if (!this::meeting.isInitialized) {
-            binding.FABcancel.visibility = GONE
-        } else {
-            binding.FABcancel.visibility = VISIBLE
-            binding.FABcancel.setOnClickListener {
-                meeting.date = ""
-            }
-        }
-    }
 
     private fun setUpAddLocationButton() {
         if (!this::meeting.isInitialized) {
@@ -148,9 +146,20 @@ class TeamPage : Fragment() {
                 } else {
                     binding.buttonAddLocation.visibility = VISIBLE
                     binding.buttonAddLocation.setOnClickListener {
-                        Log.i("Location", "Add location button clicked")
+                        activity?.let { it1 -> ChooseLocationCityDialog().show(it1.supportFragmentManager, "ChooseCityFragment") }
                     }
                 }
+            }
+        }
+    }
+
+    private fun setUpCancelButton() {
+        if (!this::meeting.isInitialized) {
+            binding.FABcancel.visibility = GONE
+        } else {
+            binding.FABcancel.visibility = VISIBLE
+            binding.FABcancel.setOnClickListener {
+                meeting.date = ""
             }
         }
     }
@@ -158,5 +167,10 @@ class TeamPage : Fragment() {
     override fun onDestroyView() {
         super.onDestroyView()
         _binding = null
+    }
+
+    override fun onSelectedCity(city: String) {
+        this.city = city
+        Log.i("Selected city", city)
     }
 }

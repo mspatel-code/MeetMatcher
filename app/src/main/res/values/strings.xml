@@ -3,7 +3,13 @@
     <string name="bottom_ic_home">Home</string>
     <string name="bottom_ic_availability">Availability</string>
     <string name="bottom_ic_profile">Profile</string>
-    <!-- TODO: Remove or change this placeholder text -->
+
+<!--    Choose City Dialog-->
+    <string name="Vancouver">Vancouver</string>
+    <string name="Burnaby">Burnaby</string>
+    <string name="Richmond">Richmond</string>
+    <string name="chooseCity">Select a city</string>
+
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="my_teams">My Teams</string>
     <string name="add_team_button">+ Add Team</string>
@@ -21,6 +27,7 @@
     <string name="second_fragment_label">Second Fragment</string>
     <string name="next">Next</string>
     <string name="previous">Previous</string>
+    <string name="done">Done</string>
 
     <string name="hello_first_fragment">Hello first fragment</string>
     <string name="hello_second_fragment">Hello second fragment. Arg: %1$s</string>

@@ -46,7 +46,7 @@ class AddTeamFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentAddTeamBinding.inflate(inflater, container, false)
         val view = binding.root
 
