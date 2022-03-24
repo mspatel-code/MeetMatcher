@@ -9,12 +9,18 @@ import ca.group6.meetmatcher.databinding.FragmentAvailabilityBinding
 import android.app.TimePickerDialog
 import java.text.SimpleDateFormat
 import java.util.*
+import android.widget.ListView
+import android.widget.ArrayAdapter
+import android.widget.Button
+import android.widget.EditText
+import ca.group6.meetmatcher.R
+
+import java.util.ArrayList
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
 private const val ARG_PARAM1 = "param1"
 private const val ARG_PARAM2 = "param2"
-
 /**
  * A simple [Fragment] subclass.
  * Use the [AvailabilityFragment.newInstance] factory method to
@@ -24,16 +30,13 @@ class AvailabilityFragment : Fragment() {
     // TODO: Rename and change types of parameters
     private var _binding: FragmentAvailabilityBinding? = null
     private val binding get() = _binding!!
-    private var param1: String? = null
-    private var param2: String? = null
+    lateinit var editText: EditText
+    lateinit var button: Button
+    lateinit var listView: ListView
+    var list:ArrayList<String> = ArrayList()
 
-    override fun onCreate(savedInstanceState: Bundle?) {
-        super.onCreate(savedInstanceState)
-        arguments?.let {
-            param1 = it.getString(ARG_PARAM1)
-            param2 = it.getString(ARG_PARAM2)
-        }
-    }
+    lateinit var arrayAdapter: ArrayAdapter<String>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,7 +44,6 @@ class AvailabilityFragment : Fragment() {
     ): View {
         // Inflate the layout for this fragment
         _binding = FragmentAvailabilityBinding.inflate(inflater, container, false)
-
         //------------------------------------------------------------
         // MONDAY: START-TIME
         //-----------------------------------------------------------
@@ -50,7 +52,8 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenerS1 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calS1.set(Calendar.HOUR_OF_DAY,hour)
                 calS1.set(Calendar.MINUTE,minute)
-                binding.startTime1.text = SimpleDateFormat("hh:mm aa").format(calS1.time)
+                val mondayST = SimpleDateFormat("hh:mm aa").format(calS1.time)
+                binding.startTime1.text = mondayST
             }
             TimePickerDialog(requireContext(),timeSetListenerS1,calS1.get(Calendar.HOUR_OF_DAY), calS1.get(Calendar.MINUTE),false).show()
         }
@@ -63,7 +66,8 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenerS2 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calS2.set(Calendar.HOUR_OF_DAY,hour)
                 calS2.set(Calendar.MINUTE,minute)
-                binding.startTime2.text = SimpleDateFormat("hh:mm aa").format(calS2.time)
+                val tuesdayST = SimpleDateFormat("hh:mm aa").format(calS2.time)
+                binding.startTime2.text = tuesdayST
 
             }
             TimePickerDialog(requireContext(),timeSetListenerS2,calS2.get(Calendar.HOUR_OF_DAY), calS2.get(Calendar.MINUTE),false).show()
@@ -77,7 +81,8 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenerS3 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calS3.set(Calendar.HOUR_OF_DAY,hour)
                 calS3.set(Calendar.MINUTE,minute)
-                binding.startTime3.text = SimpleDateFormat("hh:mm aa").format(calS3.time)
+                val wednesdayST = SimpleDateFormat("hh:mm aa").format(calS3.time)
+                binding.startTime3.text = wednesdayST
 
             }
             TimePickerDialog(requireContext(),timeSetListenerS3,calS3.get(Calendar.HOUR_OF_DAY), calS3.get(Calendar.MINUTE),false).show()
@@ -91,8 +96,8 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenerS4 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calS4.set(Calendar.HOUR_OF_DAY,hour)
                 calS4.set(Calendar.MINUTE,minute)
-                binding.startTime4.text = SimpleDateFormat("hh:mm aa").format(calS4.time)
-
+                val thursdayST = SimpleDateFormat("hh:mm aa").format(calS4.time)
+                binding.startTime4.text = thursdayST
             }
             TimePickerDialog(requireContext(),timeSetListenerS4,calS4.get(Calendar.HOUR_OF_DAY), calS4.get(Calendar.MINUTE),false).show()
         }
@@ -105,7 +110,8 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenerS5 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calS5.set(Calendar.HOUR_OF_DAY,hour)
                 calS5.set(Calendar.MINUTE,minute)
-                binding.startTime5.text = SimpleDateFormat("hh:mm aa").format(calS5.time)
+                val fridayST = SimpleDateFormat("hh:mm aa").format(calS5.time)
+                binding.startTime5.text = fridayST
 
             }
             TimePickerDialog(requireContext(),timeSetListenerS5,calS5.get(Calendar.HOUR_OF_DAY), calS5.get(Calendar.MINUTE),false).show()
@@ -119,7 +125,9 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenerS6 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calS6.set(Calendar.HOUR_OF_DAY,hour)
                 calS6.set(Calendar.MINUTE,minute)
-                binding.startTime6.text = SimpleDateFormat("hh:mm aa").format(calS6.time)
+
+                val saturdayST = SimpleDateFormat("hh:mm aa").format(calS6.time)
+                binding.startTime6.text = saturdayST
 
             }
             TimePickerDialog(requireContext(),timeSetListenerS6,calS6.get(Calendar.HOUR_OF_DAY), calS6.get(Calendar.MINUTE),false).show()
@@ -133,7 +141,9 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenerS7 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calS7.set(Calendar.HOUR_OF_DAY,hour)
                 calS7.set(Calendar.MINUTE,minute)
-                binding.startTime7.text = SimpleDateFormat("hh:mm aa").format(calS7.time)
+
+                val sundayST = SimpleDateFormat("hh:mm aa").format(calS7.time)
+                binding.startTime7.text = sundayST
 
             }
             TimePickerDialog(requireContext(),timeSetListenerS7,calS7.get(Calendar.HOUR_OF_DAY), calS7.get(Calendar.MINUTE),false).show()
@@ -147,7 +157,9 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenerE1 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calE1.set(Calendar.HOUR_OF_DAY,hour)
                 calE1.set(Calendar.MINUTE,minute)
-                binding.endTime1.text = SimpleDateFormat("hh:mm aa").format(calE1.time)
+
+                val mondayET = SimpleDateFormat("hh:mm aa").format(calE1.time)
+                binding.endTime1.text = mondayET
 
             }
             TimePickerDialog(requireContext(),timeSetListenerE1,calE1.get(Calendar.HOUR_OF_DAY), calE1.get(Calendar.MINUTE),false).show()
@@ -161,7 +173,9 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenereE2 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calE2.set(Calendar.HOUR_OF_DAY,hour)
                 calE2.set(Calendar.MINUTE,minute)
-                binding.endTime2.text = SimpleDateFormat("hh:mm aa").format(calE2.time)
+
+                val tuesdayET = SimpleDateFormat("hh:mm aa").format(calE2.time)
+                binding.endTime2.text = tuesdayET
 
             }
             TimePickerDialog(requireContext(),timeSetListenereE2,calE2.get(Calendar.HOUR_OF_DAY), calE2.get(Calendar.MINUTE),false).show()
@@ -175,7 +189,9 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenereE3 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calE3.set(Calendar.HOUR_OF_DAY,hour)
                 calE3.set(Calendar.MINUTE,minute)
-                binding.endTime3.text = SimpleDateFormat("hh:mm aa").format(calE3.time)
+
+                val wednesdayET = SimpleDateFormat("hh:mm aa").format(calE3.time)
+                binding.endTime3.text = wednesdayET
 
             }
             TimePickerDialog(requireContext(),timeSetListenereE3,calE3.get(Calendar.HOUR_OF_DAY), calE3.get(Calendar.MINUTE),false).show()
@@ -189,7 +205,9 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenereE4 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calE4.set(Calendar.HOUR_OF_DAY,hour)
                 calE4.set(Calendar.MINUTE,minute)
-                binding.endTime4.text = SimpleDateFormat("hh:mm aa").format(calE4.time)
+
+                val thursdayET = SimpleDateFormat("hh:mm aa").format(calE4.time)
+                binding.endTime4.text = thursdayET
 
             }
             TimePickerDialog(requireContext(),timeSetListenereE4,calE4.get(Calendar.HOUR_OF_DAY), calE4.get(Calendar.MINUTE),false).show()
@@ -203,7 +221,9 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenereE5 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calE5.set(Calendar.HOUR_OF_DAY,hour)
                 calE5.set(Calendar.MINUTE,minute)
-                binding.endTime5.text = SimpleDateFormat("hh:mm aa").format(calE5.time)
+
+                val fridayET = SimpleDateFormat("hh:mm aa").format(calE5.time)
+                binding.endTime5.text = fridayET
 
             }
             TimePickerDialog(requireContext(),timeSetListenereE5,calE5.get(Calendar.HOUR_OF_DAY), calE5.get(Calendar.MINUTE),false).show()
@@ -217,7 +237,9 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenereE6 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calE6.set(Calendar.HOUR_OF_DAY,hour)
                 calE6.set(Calendar.MINUTE,minute)
-                binding.endTime6.text = SimpleDateFormat("hh:mm aa").format(calE6.time)
+
+                val saturdayET = SimpleDateFormat("hh:mm aa").format(calE6.time)
+                binding.endTime6.text = saturdayET
 
             }
             TimePickerDialog(requireContext(),timeSetListenereE6,calE6.get(Calendar.HOUR_OF_DAY), calE6.get(Calendar.MINUTE),false).show()
@@ -231,11 +253,27 @@ class AvailabilityFragment : Fragment() {
             val timeSetListenereE7 = TimePickerDialog.OnTimeSetListener{timePicker, hour, minute ->
                 calE7.set(Calendar.HOUR_OF_DAY,hour)
                 calE7.set(Calendar.MINUTE,minute)
-                binding.endTime7.text = SimpleDateFormat("hh:mm aa").format(calE7.time)
+                val sundayET = SimpleDateFormat("hh:mm aa").format(calE7.time)
+                binding.endTime7.text = sundayET
+
 
             }
             TimePickerDialog(requireContext(),timeSetListenereE7,calE7.get(Calendar.HOUR_OF_DAY), calE7.get(Calendar.MINUTE),false).show()
         }
+
+        //listView = binding.root.findViewById(R.id.MondayLV)
+        //editText = binding.root.findViewById(R.id.xyz)
+       //mo button = binding.root.findViewById(R.id.testB)
+
+        //arrayAdapter = ArrayAdapter(requireContext(),android.R.layout.simple_list_item_1,list)
+
+      //  button.setOnClickListener{
+        //    list.add(editText.text.toString())
+         //   editText.setText("")
+          //  arrayAdapter.notifyDataSetChanged()
+         //   listView.adapter = arrayAdapter
+      //  }
+
 
 
         return binding.root
