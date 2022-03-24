@@ -5,7 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import ca.group6.meetmatcher.R
+import ca.group6.meetmatcher.databinding.FragmentAvailabilityBinding
 
 // TODO: Rename parameter arguments, choose names that match
 // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -19,6 +19,8 @@ private const val ARG_PARAM2 = "param2"
  */
 class AvailabilityFragment : Fragment() {
     // TODO: Rename and change types of parameters
+    private var _binding: FragmentAvailabilityBinding? = null
+    private val binding get() = _binding!!
     private var param1: String? = null
     private var param2: String? = null
 
@@ -33,9 +35,10 @@ class AvailabilityFragment : Fragment() {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_availability, container, false)
+        _binding = FragmentAvailabilityBinding.inflate(inflater, container, false)
+        return binding.root
     }
 
     companion object {
