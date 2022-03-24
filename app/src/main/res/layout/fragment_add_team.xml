@@ -5,9 +5,8 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
+    android:padding="30dp"
     tools:context=".fragments.AddTeamFragment">
-
-
 
 
         <TextView
@@ -23,9 +22,9 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:ems="10"
+            android:hint="Enter Team Name"
             android:inputType="textPersonName"
-            android:minHeight="48dp"
-            android:text="Enter Team Name" />
+            android:minHeight="48dp" />
 
         <TextView
             android:id="@+id/add_team_member"
@@ -45,11 +44,12 @@
             android:id="@+id/enter_member_id"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+
             android:layout_marginTop="30dp"
             android:ems="10"
             android:inputType="textPersonName"
             android:minHeight="48dp"
-            android:text="Enter Member Id" />
+            android:hint="Search Users Here" />
 
         <Button
             android:id="@+id/form_team"
@@ -71,4 +71,4 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/form_team" />
 
-    </LinearLayout>
+</LinearLayout>
