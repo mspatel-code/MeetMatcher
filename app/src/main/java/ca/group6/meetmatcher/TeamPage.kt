@@ -15,7 +15,7 @@ import ca.group6.meetmatcher.model.Meeting
 
 interface OnMakeMeetingButtonTapListener
 {
-    fun OnMakeMeetingButtonTapped(times: Array<String>)
+    fun OnMakeMeetingButtonTapped(times: ArrayList<Meeting>)
 }
 
 interface OnEditAvailabilityButtonTapListener
@@ -25,7 +25,7 @@ interface OnEditAvailabilityButtonTapListener
 
 class TeamPage : Fragment() {
 //    private var meeting: Meeting? = null
-    private lateinit var meeting: Meeting
+    private lateinit var meeting: ArrayList<Meeting>
     private lateinit var caller_makeMeeting: OnMakeMeetingButtonTapListener
     private lateinit var caller_editAvailability: OnEditAvailabilityButtonTapListener
     private var _binding: FragmentTeamPageBinding? = null
@@ -48,9 +48,13 @@ class TeamPage : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         val groupName = "A Team"
-        val listTimes = arrayOf("Feb. 15 19:00 - 20:00", "Feb. 20 17:00 - 18:00", "Feb. 21 9:00 - 10:00")
+        //val listTimes = arrayOf("Feb. 15 19:00 - 20:00", "Feb. 20 17:00 - 18:00", "Feb. 21 9:00 - 10:00")
+        var meeting1 = Meeting("Feb. 15", "19:00 - 20:00", "")
+        var meeting2 = Meeting("Feb. 20", "17:00 - 18:00", "")
+        var meeting3 = Meeting("Feb. 21", "9:00 - 10:00", "")
+        val listTimes = arrayListOf<Meeting>(meeting1, meeting2, meeting3)
         arguments?.let {
-            meeting = it.getParcelable<Meeting>("meetingTime")!!
+            meeting = it.getParcelableArrayList<Meeting>("meetingTime")!!
             //meeting = it.getParcelable("meetingTime").toString()
             Log.i("meetingdets", meeting.toString())
         }
@@ -75,12 +79,12 @@ class TeamPage : Fragment() {
     }
     companion object {
         @JvmStatic
-        fun newInstance(addMeeting: Meeting) =
+        fun newInstance(addMeeting: ArrayList<Meeting>) =
         //fun newInstance(addMeeting: String) =
             TeamPage().apply {
                 arguments = Bundle().apply {
                     //putString("meetingTime", addMeeting)
-                    putParcelable("meetingTime", addMeeting)
+                    putParcelableArrayList("meetingTime", addMeeting)
                 }
             }
     }
@@ -92,20 +96,20 @@ class TeamPage : Fragment() {
         } else {
 //            val details = meeting!!.date + "\n" + meeting!!.time
             if (this::meeting.isInitialized) {
-                if (meeting.date == "") {
+                if (meeting[0].date == "") {
                     binding.teamPageMeetingDetails.text = "No meeting planned."
                 } else {
                     //var details = meeting!!.subSequence(0, 7)
-                    var details = meeting.date + ": " + meeting.time
+                    val details = meeting[0].date + ": " + meeting[0].time
                     binding.teamPageMeetingDetails.text = details
                 }
             }
         }
     }
 
-    private fun setUpGenerateMeetingButton(groupName : String, times : Array<String>) {
+    private fun setUpGenerateMeetingButton(groupName : String, times : ArrayList<Meeting>) {
         if (this::meeting.isInitialized) {
-            if (meeting.date != "") {
+            if (meeting[0].date != "") {
                 binding.FABmeeting.visibility = GONE
             }
         }
@@ -122,7 +126,6 @@ class TeamPage : Fragment() {
             }
 
             builder.create().show()
-            Log.i("FABCLICKED", "CLICKED----------")
         }
     }
 
@@ -132,7 +135,7 @@ class TeamPage : Fragment() {
         } else {
             binding.FABcancel.visibility = VISIBLE
             binding.FABcancel.setOnClickListener {
-                meeting.date = ""
+                meeting[0].date = ""
             }
         }
     }
@@ -143,7 +146,7 @@ class TeamPage : Fragment() {
         } else {
 //            val details = meeting!!.date + "\n" + meeting!!.time
             if (this::meeting.isInitialized) {
-                if (meeting.date == "") {
+                if (meeting[0].date == "") {
                     binding.buttonAddLocation.visibility = GONE
                 } else {
                     binding.buttonAddLocation.visibility = VISIBLE

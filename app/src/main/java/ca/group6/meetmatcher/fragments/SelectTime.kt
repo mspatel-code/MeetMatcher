@@ -12,19 +12,21 @@ import ca.group6.meetmatcher.databinding.FragmentSelectTimeBinding
 interface OnFinishSelectTimeListener
 {
     //fun OnFinishSelectTimeTapped(times: Array<String>?)
-    fun OnFinishSelectTimeTapped(confirmMeetng: Meeting)
+    //fun OnFinishSelectTimeTapped(confirmMeetng: Meeting)
+    fun OnFinishSelectTimeTapped(confirmMeetng: ArrayList<Meeting>)
 }
 
 class SelectTime : Fragment() {
     private var _binding: FragmentSelectTimeBinding? = null
     private val binding get() = _binding!!
-    private var list_times : Array<String>? = null
+    private lateinit var list_times : ArrayList<Meeting>
     private lateinit var caller_finishSelect: OnFinishSelectTimeListener
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         arguments?.let {
-            list_times = it.getStringArray("listTime")
+            list_times = it.getParcelableArrayList("listTime")!!
+            //list_times = it.getStringArray("listTime")
         }
     }
     override fun onCreateView(
@@ -32,16 +34,15 @@ class SelectTime : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         _binding = FragmentSelectTimeBinding.inflate(inflater, container, false)
-        val view = binding.root
-        return view
+        return binding.root
     }
 
     companion object {
         @JvmStatic
-        fun newInstance(times : Array<String>) =
+        fun newInstance(times : ArrayList<Meeting>) =
             SelectTime().apply {
                 arguments = Bundle().apply {
-                    putStringArray("listTime", times)
+                    putParcelableArrayList("listTime", times)
                 }
             }
     }
@@ -59,15 +60,25 @@ class SelectTime : Fragment() {
 //            transaction?.replace(R.id.fragment_container, TeamPage())
 //            transaction?.disallowAddToBackStack()
 //            transaction?.commit()
-            var meeting: Meeting = Meeting("Feb 15", "8:00", "")
-            caller_finishSelect.OnFinishSelectTimeTapped(meeting)
+            val selectedList: ArrayList<Meeting> = arrayListOf()
+            if (binding.checkBox1.isChecked) {
+                selectedList.add(list_times[0])
+            }
+            if (binding.checkBox2.isChecked) {
+                selectedList.add(list_times[1])
+            }
+            if (binding.checkBox3.isChecked) {
+                selectedList.add(list_times[2])
+            }
+            //var meeting: Meeting = Meeting("Feb 15", "8:00", "")
+            caller_finishSelect.OnFinishSelectTimeTapped(selectedList)
         }
         setUpCheckBoxes()
     }
 
     private fun setUpCheckBoxes() {
-        binding.checkBox1.text = list_times?.get(0)
-        binding.checkBox2.text = list_times?.get(1)
-        binding.checkBox3.text = list_times?.get(2)
+        binding.checkBox1.text = list_times[0].toString()
+        binding.checkBox2.text = list_times[1].toString()
+        binding.checkBox3.text = list_times[2].toString()
     }
 }

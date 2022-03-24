@@ -25,4 +25,8 @@ class Meeting(var date: String?, var time: String?, var location: String?): Parc
 
         override fun create(parcel: Parcel): Meeting = Meeting(parcel.readString(), parcel.readString(), parcel.readString())
     }
+
+    override fun toString(): String {
+        return "$date: $time "
+    }
 }
