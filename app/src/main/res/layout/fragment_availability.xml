@@ -12,339 +12,432 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
+        <Button
+            android:id="@+id/endTime5"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="120dp"
+            android:text="End"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/endTime4"
+            app:layout_constraintVertical_bias="0.179" />
+
+        <Button
+            android:id="@+id/endTime6"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="120dp"
+            android:text="End"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/endTime5"
+            app:layout_constraintVertical_bias="0.278" />
+
+        <Button
+            android:id="@+id/endTime7"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="120dp"
+            android:text="End"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/endTime6" />
+
         <Switch
             android:id="@+id/switch15"
             android:layout_width="60dp"
             android:layout_height="36dp"
             android:layout_marginStart="246dp"
-            android:layout_marginTop="32dp"
             android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.076"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.051" />
 
         <Switch
             android:id="@+id/switch16"
             android:layout_width="60dp"
             android:layout_height="36dp"
             android:layout_marginStart="246dp"
-            android:layout_marginTop="50dp"
             android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch8" />
+            app:layout_constraintTop_toBottomOf="@+id/switch8"
+            app:layout_constraintVertical_bias="0.187" />
 
         <Switch
             android:id="@+id/switch13"
             android:layout_width="60dp"
             android:layout_height="36dp"
             android:layout_marginStart="246dp"
-            android:layout_marginTop="50dp"
             android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch14" />
+            app:layout_constraintTop_toBottomOf="@+id/switch14"
+            app:layout_constraintVertical_bias="0.119" />
 
         <Switch
             android:id="@+id/switch14"
             android:layout_width="60dp"
             android:layout_height="36dp"
             android:layout_marginStart="246dp"
-            android:layout_marginTop="50dp"
             android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch15" />
+            app:layout_constraintTop_toBottomOf="@+id/switch15"
+            app:layout_constraintVertical_bias="0.08" />
 
         <Switch
             android:id="@+id/switch17"
             android:layout_width="60dp"
             android:layout_height="36dp"
             android:layout_marginStart="246dp"
-            android:layout_marginTop="50dp"
             android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch16" />
+            app:layout_constraintTop_toBottomOf="@+id/switch16"
+            app:layout_constraintVertical_bias="0.299" />
 
         <Switch
             android:id="@+id/switch18"
             android:layout_width="60dp"
             android:layout_height="36dp"
             android:layout_marginStart="246dp"
-            android:layout_marginTop="50dp"
             android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch17" />
+            app:layout_constraintTop_toBottomOf="@+id/switch17"
+            app:layout_constraintVertical_bias="0.492" />
 
         <Switch
             android:id="@+id/switch8"
             android:layout_width="60dp"
             android:layout_height="36dp"
             android:layout_marginStart="246dp"
-            android:layout_marginTop="50dp"
             android:layout_marginEnd="40dp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/switch13" />
+            app:layout_constraintTop_toBottomOf="@+id/switch13"
+            app:layout_constraintVertical_bias="0.148" />
 
         <TextView
-            android:id="@+id/textView13"
+            android:id="@+id/mondayTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="40dp"
-            android:text="Monday"
+            android:text="MONDAY"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/switch15"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.06" />
 
         <TextView
-            android:id="@+id/textView14"
+            android:id="@+id/tuesdayTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="68dp"
-            android:text="Tuesday"
+            android:layout_marginStart="4dp"
+            android:text="TUESDAY"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/switch14"
-            app:layout_constraintTop_toBottomOf="@+id/textView13" />
+            app:layout_constraintTop_toBottomOf="@+id/mondayTv"
+            app:layout_constraintVertical_bias="0.114" />
 
         <TextView
-            android:id="@+id/textView15"
+            android:id="@+id/wednesdayTv"
             android:layout_width="88dp"
             android:layout_height="24dp"
-            android:layout_marginTop="64dp"
-            android:text="Wednesday"
+            android:layout_marginStart="4dp"
+            android:text="WEDNESDAY"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/switch13"
-            app:layout_constraintTop_toBottomOf="@+id/textView14" />
+            app:layout_constraintTop_toBottomOf="@+id/tuesdayTv"
+            app:layout_constraintVertical_bias="0.146" />
 
         <TextView
-            android:id="@+id/textView16"
+            android:id="@+id/thursdayTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="64dp"
-            android:text="Thurday"
+            android:text="THURSDAY"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/switch8"
-            app:layout_constraintTop_toBottomOf="@+id/textView15" />
+            app:layout_constraintTop_toBottomOf="@+id/wednesdayTv"
+            app:layout_constraintVertical_bias="0.18" />
 
         <TextView
-            android:id="@+id/textView17"
+            android:id="@+id/fridayTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="4dp"
-            android:layout_marginTop="64dp"
-            android:text="Friday"
+            android:layout_marginStart="8dp"
+            android:text="FRIDAY"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/switch16"
-            app:layout_constraintTop_toBottomOf="@+id/textView16" />
+            app:layout_constraintTop_toBottomOf="@+id/thursdayTv"
+            app:layout_constraintVertical_bias="0.226" />
+
 
         <TextView
-            android:id="@+id/textView18"
+            android:id="@+id/saturdayTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="68dp"
-            android:text="Saturday"
+            android:text="SATURDAY"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/switch17"
-            app:layout_constraintTop_toBottomOf="@+id/textView17" />
+            app:layout_constraintTop_toBottomOf="@+id/fridayTv"
+            app:layout_constraintVertical_bias="0.346" />
 
         <TextView
-            android:id="@+id/textView19"
+            android:id="@+id/sundayTv"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="4dp"
-            android:layout_marginTop="60dp"
-            android:text="Sunday"
+            android:text="SUNDAY"
+            android:textSize="12sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toEndOf="@+id/switch18"
-            app:layout_constraintTop_toBottomOf="@+id/textView18" />
+            app:layout_constraintTop_toBottomOf="@+id/saturdayTv"
+            app:layout_constraintVertical_bias="0.541" />
 
-        <EditText
-            android:id="@+id/editTextTime"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
+        <Button
+            android:id="@+id/startTime1"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="Start Time"
-            android:inputType="time"
-            android:textSize="14sp"
+            android:text="Start"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.045" />
 
-        <EditText
-            android:id="@+id/editTextTime3"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
+        <Button
+            android:id="@+id/startTime2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:ems="10"
-            android:hint="Start Time"
-            android:inputType="time"
-            android:textSize="14sp"
+            android:text="Start"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime" />
+            app:layout_constraintTop_toBottomOf="@+id/startTime1"
+            app:layout_constraintVertical_bias="0.08" />
 
-        <EditText
-            android:id="@+id/editTextTime4"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
+        <Button
+            android:id="@+id/startTime3"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:ems="10"
-            android:hint="Start Time"
-            android:inputType="time"
-            android:textSize="14sp"
+            android:text="Start"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime3" />
+            app:layout_constraintTop_toBottomOf="@+id/startTime2"
+            app:layout_constraintVertical_bias="0.116" />
 
-        <EditText
-            android:id="@+id/editTextTime5"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
+        <Button
+            android:id="@+id/startTime4"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:ems="10"
-            android:hint="Start Time"
-            android:inputType="time"
-            android:textSize="14sp"
+            android:text="Start"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime4" />
+            app:layout_constraintTop_toBottomOf="@+id/startTime3"
+            app:layout_constraintVertical_bias="0.142" />
 
-        <EditText
-            android:id="@+id/editTextTime6"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
+        <Button
+            android:id="@+id/startTime5"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:ems="10"
-            android:hint="Start Time"
-            android:inputType="time"
-            android:textSize="14sp"
+            android:text="Start"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime5" />
+            app:layout_constraintTop_toBottomOf="@+id/startTime4"
+            app:layout_constraintVertical_bias="0.179" />
 
-        <EditText
-            android:id="@+id/editTextTime7"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
+        <Button
+            android:id="@+id/startTime6"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:ems="10"
-            android:hint="Start Time"
-            android:inputType="time"
-            android:textSize="14sp"
+            android:text="Start"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime6" />
+            app:layout_constraintTop_toBottomOf="@+id/startTime5"
+            app:layout_constraintVertical_bias="0.275" />
 
-        <EditText
-            android:id="@+id/editTextTime8"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
+        <Button
+            android:id="@+id/startTime7"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
             android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:ems="10"
-            android:hint="Start Time"
-            android:inputType="time"
-            android:textSize="14sp"
+            android:text="Start"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime7" />
+            app:layout_constraintTop_toBottomOf="@+id/startTime6"
+            app:layout_constraintVertical_bias="0.492" />
 
-        <EditText
-            android:id="@+id/editTextTime2"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="32dp"
-            android:ems="10"
-            android:hint="End Time"
-            android:inputType="time"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/editTextTime"
-            app:layout_constraintTop_toTopOf="parent" />
+        <Button
+            android:id="@+id/endTime1"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="120dp"
+            android:text="End"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.046" />
 
-        <EditText
-            android:id="@+id/editTextTime9"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="12dp"
-            android:layout_marginTop="48dp"
-            android:ems="10"
-            android:hint="End Time"
-            android:inputType="time"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/editTextTime3"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime2" />
+        <Button
+            android:id="@+id/endTime2"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="120dp"
+            android:text="End"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/endTime1"
+            app:layout_constraintVertical_bias="0.079" />
 
-        <EditText
-            android:id="@+id/editTextTime10"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:ems="10"
-            android:hint="End Time"
-            android:inputType="time"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/editTextTime4"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime9" />
+        <Button
+            android:id="@+id/endTime3"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="120dp"
+            android:text="End"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/endTime2"
+            app:layout_constraintVertical_bias="0.115" />
 
-        <EditText
-            android:id="@+id/editTextTime11"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:ems="10"
-            android:hint="End Time"
-            android:inputType="time"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/editTextTime5"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime10" />
+        <Button
+            android:id="@+id/endTime4"
+            android:layout_width="80dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="120dp"
+            android:text="End"
+            android:textSize="11sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/endTime3"
+            app:layout_constraintVertical_bias="0.142" />
 
-        <EditText
-            android:id="@+id/editTextTime12"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:ems="10"
-            android:hint="End Time"
-            android:inputType="time"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/editTextTime6"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime11" />
+        <TextView
+            android:id="@+id/startTime1Tv"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/endTime1"
+            app:layout_constraintStart_toEndOf="@+id/startTime1"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.056" />
 
-        <EditText
-            android:id="@+id/editTextTime13"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="48dp"
-            android:ems="10"
-            android:hint="End Time"
-            android:inputType="time"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/editTextTime7"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime12" />
+        <TextView
+            android:id="@+id/startTime1Tv2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="6dp"
+            android:text="to"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/endTime2"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/startTime2"
+            app:layout_constraintTop_toBottomOf="@+id/startTime1Tv"
+            app:layout_constraintVertical_bias="0.11" />
 
-        <EditText
-            android:id="@+id/editTextTime14"
-            android:layout_width="104dp"
-            android:layout_height="37dp"
-            android:layout_marginStart="16dp"
-            android:layout_marginTop="52dp"
-            android:ems="10"
-            android:hint="End Time"
-            android:inputType="time"
-            android:textSize="14sp"
-            app:layout_constraintStart_toEndOf="@+id/editTextTime8"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTime13" />
+        <TextView
+            android:id="@+id/startTime1Tv3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/endTime3"
+            app:layout_constraintHorizontal_bias="0.545"
+            app:layout_constraintStart_toEndOf="@+id/startTime3"
+            app:layout_constraintTop_toBottomOf="@+id/startTime1Tv2"
+            app:layout_constraintVertical_bias="0.158" />
+
+        <TextView
+            android:id="@+id/startTime1Tv4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/endTime4"
+            app:layout_constraintStart_toEndOf="@+id/startTime4"
+            app:layout_constraintTop_toBottomOf="@+id/startTime1Tv3"
+            app:layout_constraintVertical_bias="0.174" />
+
+        <TextView
+            android:id="@+id/startTime1Tv5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/endTime5"
+            app:layout_constraintStart_toEndOf="@+id/startTime5"
+            app:layout_constraintTop_toBottomOf="@+id/startTime1Tv4"
+            app:layout_constraintVertical_bias="0.219" />
+
+        <TextView
+            android:id="@+id/startTime1Tv6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/endTime6"
+            app:layout_constraintStart_toEndOf="@+id/startTime6"
+            app:layout_constraintTop_toBottomOf="@+id/startTime1Tv5"
+            app:layout_constraintVertical_bias="0.33" />
+
+        <TextView
+            android:id="@+id/startTime1Tv8"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="to"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/endTime7"
+            app:layout_constraintStart_toEndOf="@+id/startTime7"
+            app:layout_constraintTop_toBottomOf="@+id/startTime1Tv6"
+            app:layout_constraintVertical_bias="0.528" />
+
+
 
     </androidx.constraintlayout.widget.ConstraintLayout>
+
+
 
 </FrameLayout>

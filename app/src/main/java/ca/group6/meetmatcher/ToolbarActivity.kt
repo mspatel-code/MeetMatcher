@@ -55,7 +55,7 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
         binding.toolbarLayout.toolbarTitle.text = title
     }
 
-    override fun OnMakeMeetingButtonTapped(times: Array<String>) {
+    override fun OnMakeMeetingButtonTapped(times: ArrayList<Meeting>) {
         replaceFragment(SelectTime.newInstance(times), "Select Time")
     }
 
@@ -64,12 +64,12 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
     }
 
     //override fun OnFinishSelectTimeTapped(times: Array<String>?) {
-    override fun OnFinishSelectTimeTapped(meeting: Meeting) {
+    override fun OnFinishSelectTimeTapped(confirmMeetng: ArrayList<Meeting>) {
         // get first time for now
 //        var time: String = times[0]
 //        var meeting: Meeting = Meeting(time,"")
 
-        replaceFragment(TeamPage.newInstance(meeting), "Team Page")
+        replaceFragment(TeamPage.newInstance(confirmMeetng), "Team Page")
         //replaceFragment(TeamPage.newInstance(times[0]), "teamPageTag")
         //replaceFragment(TeamPage.newInstance("Feb. 15 19:00 - 20:00"), "Team Page")
     }
