@@ -1,7 +1,5 @@
 package ca.group6.meetmatcher.fragments
 
-import android.app.Activity
-import android.content.Context
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -11,15 +9,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
-import android.widget.LinearLayout
-import android.widget.TextView
-import android.widget.Toast
 import androidx.recyclerview.widget.LinearLayoutManager
-import androidx.recyclerview.widget.RecyclerView
-import ca.group6.meetmatcher.AdapterClasses.UserAdapter
+import ca.group6.meetmatcher.adapterClasses.UserAdapter
 import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.databinding.FragmentAddTeamBinding
-import ca.group6.meetmatcher.model.Team
 import ca.group6.meetmatcher.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*

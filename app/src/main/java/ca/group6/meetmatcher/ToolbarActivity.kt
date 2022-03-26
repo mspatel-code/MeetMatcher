@@ -10,7 +10,7 @@ import ca.group6.meetmatcher.model.Meeting
 class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnEditAvailabilityButtonTapListener, OnFinishSelectTimeListener {
     private lateinit var binding: ActivityToolbarBinding
     private val homeFragment = HomeFragment()
-    private val availabilityFragment = AvailabilityFragment()
+    private val availabilityFragment = AvalFragment()
     private val profileFragment = ProfileFragment()
     //private val selectTimeFragment = SelectTime()
 
