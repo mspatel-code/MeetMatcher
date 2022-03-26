@@ -35,11 +35,15 @@ class EventAdapter(private val events: ArrayList<Event>):
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.startTime.text = events[position].getStartTime()
-        holder.endTime.text = events[position].getEndTime()
+        var event = events[position]
+        holder.startTime.text = getTime(event.getStartTime().hours, event.getStartTime().minutes)
+        holder.endTime.text = getTime(event.getEndTime().hours, event.getStartTime().minutes)
         holder.eventDetail.text = events[position].getEventDetail()
     }
 
+    fun getTime (hour: Int, minute: Int): String {
+        return "$hour:$minute"
+    }
     override fun getItemCount(): Int {
         return events.size
     }

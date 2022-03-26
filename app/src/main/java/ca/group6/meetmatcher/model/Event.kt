@@ -1,25 +1,35 @@
 package ca.group6.meetmatcher.model
 
-class Event (start: String, end: String, detail: String) {
-    private var startTime: String = "00:00"
-    private var endTime: String = "00:00"
-    private var eventDetail: String = ""
+import java.util.*
 
-    init {
-        this.startTime = start
-        this.endTime = end
-        this.eventDetail = detail
-    }
+class Event (start: Date, end: Date, detail: String) {
+    private var startTime: Date = start
+    private var endTime: Date = end
+    private var eventDetail: String = detail
 
-    fun getStartTime(): String {
+    constructor() : this(Date(), Date(), "")
+
+    fun getStartTime(): Date {
         return this.startTime
     }
 
-    fun getEndTime(): String {
+    fun setStartTime(newStart: Date) {
+        this.startTime = newStart
+    }
+
+    fun getEndTime(): Date {
         return this.endTime
+    }
+
+    fun setEndTime(newEnd: Date) {
+        this.endTime = newEnd
     }
 
     fun getEventDetail(): String {
         return this.eventDetail
+    }
+
+    fun setEventDetail(newDetail: String) {
+        this.eventDetail = newDetail
     }
 }
