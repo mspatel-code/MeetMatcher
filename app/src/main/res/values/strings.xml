@@ -42,4 +42,8 @@
     <string name="confirm_password">Confirm Password</string>
     <string name="enter_password">Enter Password</string>
     <string name="register">Register</string>
+    <string name="init_time">00:00</string>
+    <string name="start_time">Start Time</string>
+    <string name="end_time">End Time</string>
+    <string name="event_detail">Event Detail</string>
 </resources>

@@ -14,7 +14,7 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
     SelectedCity, OnAddLocationButtonTapListener {
     private lateinit var binding: ActivityToolbarBinding
     private val homeFragment = HomeFragment()
-    private val availabilityFragment = AvailabilityFragment()
+    private val availabilityFragment = AvalFragment()
     private val profileFragment = ProfileFragment()
     //private val selectTimeFragment = SelectTime()
     private lateinit var teamPage: TeamPage
