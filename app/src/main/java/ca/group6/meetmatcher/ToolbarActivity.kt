@@ -2,17 +2,22 @@ package ca.group6.meetmatcher
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import ca.group6.meetmatcher.databinding.ActivityToolbarBinding
+import ca.group6.meetmatcher.dialogs.ChooseLocationCityDialog
+import ca.group6.meetmatcher.dialogs.SelectedCity
 import ca.group6.meetmatcher.fragments.*
 import ca.group6.meetmatcher.model.Meeting
 
-class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnEditAvailabilityButtonTapListener, OnFinishSelectTimeListener {
+class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnEditAvailabilityButtonTapListener, OnFinishSelectTimeListener,
+    SelectedCity, OnAddLocationButtonTapListener {
     private lateinit var binding: ActivityToolbarBinding
     private val homeFragment = HomeFragment()
     private val availabilityFragment = AvailabilityFragment()
     private val profileFragment = ProfileFragment()
     //private val selectTimeFragment = SelectTime()
+    private lateinit var teamPage: TeamPage
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -68,9 +73,21 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
         // get first time for now
 //        var time: String = times[0]
 //        var meeting: Meeting = Meeting(time,"")
-
-        replaceFragment(TeamPage.newInstance(confirmMeetng), "Team Page")
+        teamPage = TeamPage.newInstance(confirmMeetng)
+        replaceFragment(teamPage, "Team Page")
         //replaceFragment(TeamPage.newInstance(times[0]), "teamPageTag")
         //replaceFragment(TeamPage.newInstance("Feb. 15 19:00 - 20:00"), "Team Page")
+    }
+
+    override fun onSelectedCity(city: String) {
+        if (this::teamPage.isInitialized) {
+            Log.i("DIALOGtoolbar", "$city WAS SELECTED----------")
+            teamPage.city = city
+            teamPage.updateLocationTextView()
+        }
+    }
+
+    override fun OnAddLocationButtonTapped() {
+        ChooseLocationCityDialog().show(supportFragmentManager, "ChooseCityFragment")
     }
 }

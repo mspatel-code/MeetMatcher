@@ -10,6 +10,7 @@ import android.widget.RadioButton
 import androidx.fragment.app.DialogFragment
 import ca.group6.meetmatcher.TeamPage
 import ca.group6.meetmatcher.databinding.ChooseLocationCityBinding
+import ca.group6.meetmatcher.model.Meeting
 
 interface SelectedCity {
     fun onSelectedCity(city: String);
@@ -20,6 +21,7 @@ class ChooseLocationCityDialog: DialogFragment() {
     private var _binding: ChooseLocationCityBinding? = null
     private val binding get() = _binding!!
     private lateinit var caller_selectedCity: SelectedCity
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -33,6 +35,7 @@ class ChooseLocationCityDialog: DialogFragment() {
         super.onAttach(context)
         if (context is SelectedCity) {
             caller_selectedCity = context
+            Log.i("DIALOG", context.toString())
         }
     }
 

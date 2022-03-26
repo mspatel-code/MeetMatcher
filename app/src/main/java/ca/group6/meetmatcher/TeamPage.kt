@@ -1,9 +1,7 @@
 package ca.group6.meetmatcher
 
 import android.app.AlertDialog
-import android.app.Dialog
 import android.content.Context
-import android.content.DialogInterface
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -11,11 +9,8 @@ import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
 import android.widget.TextView
-import android.widget.*
 import androidx.fragment.app.Fragment
-import ca.group6.meetmatcher.databinding.ChooseLocationCityBinding
 import ca.group6.meetmatcher.databinding.FragmentTeamPageBinding
-import ca.group6.meetmatcher.dialogs.ChooseLocationCityDialog
 import ca.group6.meetmatcher.dialogs.SelectedCity
 import ca.group6.meetmatcher.model.Meeting
 
@@ -29,11 +24,17 @@ interface OnEditAvailabilityButtonTapListener
     fun OnEditAvailabilityButtonTapped()
 }
 
+interface OnAddLocationButtonTapListener
+{
+    fun OnAddLocationButtonTapped()
+}
+
 class TeamPage : Fragment(), SelectedCity {
-//    private var meeting: Meeting? = null
-    private lateinit var meeting: ArrayList<Meeting>
+    private lateinit var meeting: Meeting
+    private lateinit var meetings: ArrayList<Meeting>
     private lateinit var caller_makeMeeting: OnMakeMeetingButtonTapListener
     private lateinit var caller_editAvailability: OnEditAvailabilityButtonTapListener
+    private lateinit var caller_addLocation: OnAddLocationButtonTapListener
     private var _binding: FragmentTeamPageBinding? = null
     private val binding get() = _binding!!
 
@@ -62,9 +63,9 @@ class TeamPage : Fragment(), SelectedCity {
         var meeting3 = Meeting("Feb. 21", "9:00 - 10:00", "")
         val listTimes = arrayListOf<Meeting>(meeting1, meeting2, meeting3)
         arguments?.let {
-            meeting = it.getParcelableArrayList<Meeting>("meetingTime")!!
+            meetings = it.getParcelableArrayList<Meeting>("meetingTime")!!
             //meeting = it.getParcelable("meetingTime").toString()
-            Log.i("meetingdets", meeting.toString())
+            Log.i("meetingdets", meetings.toString())
         }
 //        arguments?.let {
 //            meeting = it.getString("meetingTime")
@@ -84,6 +85,9 @@ class TeamPage : Fragment(), SelectedCity {
         if (context is OnEditAvailabilityButtonTapListener) {
             caller_editAvailability = context
         }
+        if (context is OnAddLocationButtonTapListener) {
+            caller_addLocation = context
+        }
     }
     companion object {
         @JvmStatic
@@ -97,18 +101,24 @@ class TeamPage : Fragment(), SelectedCity {
             }
     }
 
+    fun updateLocationTextView() {
+        binding.cityChoice.text = city
+
+    }
+
     private fun displayMeetingDetails() {
-        if (!this::meeting.isInitialized) {
+        if (!this::meetings.isInitialized) {
             val meeting: TextView = binding.teamPageMeetingDetails
             meeting.text = "No meeting planned."
         } else {
 //            val details = meeting!!.date + "\n" + meeting!!.time
-            if (this::meeting.isInitialized) {
-                if (meeting[0].date == "") {
+            if (this::meetings.isInitialized) {
+                meeting = meetings[0]
+                if (meeting.date == "") {
                     binding.teamPageMeetingDetails.text = "No meeting planned."
                 } else {
                     //var details = meeting!!.subSequence(0, 7)
-                    val details = meeting[0].date + ": " + meeting[0].time
+                    val details = meeting.date + ": " + meeting.time
                     binding.teamPageMeetingDetails.text = details
                 }
             }
@@ -116,8 +126,8 @@ class TeamPage : Fragment(), SelectedCity {
     }
 
     private fun setUpGenerateMeetingButton(groupName : String, times : ArrayList<Meeting>) {
-        if (this::meeting.isInitialized) {
-            if (meeting[0].date != "") {
+        if (this::meetings.isInitialized) {
+            if (meetings[0].date != "") {
                 binding.FABmeeting.visibility = GONE
             }
         }
@@ -138,41 +148,31 @@ class TeamPage : Fragment(), SelectedCity {
     }
 
     private fun setUpCancelButton() {
-        if (!this::meeting.isInitialized) {
+        if (!this::meetings.isInitialized) {
             binding.FABcancel.visibility = GONE
         } else {
             binding.FABcancel.visibility = VISIBLE
             binding.FABcancel.setOnClickListener {
-                meeting[0].date = ""
+                meetings[0].date = ""
             }
         }
     }
 
     private fun setUpAddLocationButton() {
-        if (!this::meeting.isInitialized) {
+        if (!this::meetings.isInitialized) {
             binding.buttonAddLocation.visibility = GONE
         } else {
 //            val details = meeting!!.date + "\n" + meeting!!.time
-            if (this::meeting.isInitialized) {
-                if (meeting[0].date == "") {
+            if (this::meetings.isInitialized) {
+                if (meetings[0].date == "") {
                     binding.buttonAddLocation.visibility = GONE
                 } else {
                     binding.buttonAddLocation.visibility = VISIBLE
                     binding.buttonAddLocation.setOnClickListener {
-                        activity?.let { it1 -> ChooseLocationCityDialog().show(it1.supportFragmentManager, "ChooseCityFragment") }
+//                        activity?.let { it1 -> ChooseLocationCityDialog().show(it1.supportFragmentManager, "ChooseCityFragment") }
+                        caller_addLocation.OnAddLocationButtonTapped()
                     }
                 }
-            }
-        }
-    }
-
-    private fun setUpCancelButton() {
-        if (!this::meeting.isInitialized) {
-            binding.FABcancel.visibility = GONE
-        } else {
-            binding.FABcancel.visibility = VISIBLE
-            binding.FABcancel.setOnClickListener {
-                meeting.date = ""
             }
         }
     }
