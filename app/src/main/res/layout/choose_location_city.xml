@@ -39,6 +39,14 @@
             android:minHeight="48dp"
             android:text="@string/Vancouver"
             android:textSize="16sp" />
+
+        <RadioButton
+            android:id="@+id/radioButton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="48dp"
+            android:text="@string/Remote"
+            android:textSize="16sp" />
     </RadioGroup>
 
     <TextView

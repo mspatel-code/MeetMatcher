@@ -8,6 +8,7 @@
     <string name="Vancouver">Vancouver</string>
     <string name="Burnaby">Burnaby</string>
     <string name="Richmond">Richmond</string>
+    <string name="Remote">Remote</string>
     <string name="chooseCity">Select a city</string>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
