@@ -1,5 +1,6 @@
 package ca.group6.meetmatcher.fragments
 
+
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -10,6 +11,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.adapterClasses.UserAdapter
 import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.databinding.FragmentAddTeamBinding
@@ -19,12 +21,13 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
+
 class AddTeamFragment : Fragment() {
     private var _binding: FragmentAddTeamBinding? = null
     private val binding get() = _binding!!
     private var userAdapter : UserAdapter? = null
     private var myUsers : List<User>? = null
-    //private var recyclerView : RecyclerView? = null
+    private var recyclerView : RecyclerView? = null
     private var enterMemberId : EditText? = null
 
     companion object {
@@ -49,19 +52,22 @@ class AddTeamFragment : Fragment() {
         _binding = FragmentAddTeamBinding.inflate(inflater, container, false)
         val view = binding.root
 
-//        Log.i("TAG", "Layout manager")
-        binding.memberList!!.layoutManager = LinearLayoutManager(context)
-//        Log.i("TAG", "Before useradapter")
-//        binding.memberList!!.adapter = UserAdapter(view.context,myUsers!!, false)
-//        Log.i("TAG", "after adapter = useradapter")
-        binding.memberList!!.setHasFixedSize(true)
-//        Log.i("TAG", "list has fixed size")
-
-
         enterMemberId = view.findViewById(R.id.enter_member_id)
 
         myUsers = ArrayList()
         retrieveAllUsers()
+
+        recyclerView = binding.memberList
+        recyclerView!!.setHasFixedSize(true)
+        recyclerView!!.layoutManager = LinearLayoutManager(context)
+//        Log.i("TAG", "Layout manager")
+//        binding.memberList!!.layoutManager = LinearLayoutManager(context)
+//        Log.i("TAG", "Before useradapter")
+//        binding.memberList!!.adapter = UserAdapter(requireContext(),myUsers!!)
+//        Log.i("TAG", "after adapter = useradapter")
+//        binding.memberList!!.setHasFixedSize(true)
+//        Log.i("TAG", "list has fixed size")
+        binding.memberList.visibility = View.GONE
 
             binding.enterMemberId!!.addTextChangedListener(object  : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -69,7 +75,11 @@ class AddTeamFragment : Fragment() {
                 }
 
                 override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
                     searchForUsers(cs.toString())
+                    recyclerView!!.visibility = View.VISIBLE
+
+
                 }
 
                 override fun afterTextChanged(p0: Editable?) {
@@ -94,13 +104,12 @@ class AddTeamFragment : Fragment() {
     }
 
     fun writeTeamName() {
-//        val team = Team(list)
-//        team.myList = list
+
 
         var teamName : String = binding.enterTeamName.text.toString()
         database.getReference("Teams").child(teamName)
             .setValue(teamName)
-            //team.addTeam()
+
         //Log.i("TAG", "Hi")
 
     }
@@ -114,9 +123,11 @@ class AddTeamFragment : Fragment() {
         refUsers.addValueEventListener(object: ValueEventListener {
 
             override fun onDataChange(p0: DataSnapshot) {
+
                 (myUsers as ArrayList<User>).clear()
 
-                //if (enterMemberId!!.text.toString() == "") {
+
+                if (enterMemberId!!.text.toString() == "") {
 
                     for (snapshot in p0.children) {
 
@@ -125,19 +136,19 @@ class AddTeamFragment : Fragment() {
                         val status = snapshot.child("status").getValue(String::class.java)
                         val user : User? = User(username.toString(), uid.toString(), status.toString())
 
-                        Log.i("TAG", "get snapshot and make a user")
+                        Log.i("refUsers", "get snapshot and make a user")
                         //Add all users from firebase except your own
                         if (!(user!!.getUid()).equals(firebaseUserID)) {
                             (myUsers as ArrayList<User>).add(user)
-                            Log.i("TAG", "add myUsers in arraylist")
+                            Log.i("refUsers", "add myUsers in arraylist")
                         }
                     }
-//
-                    //recyclerView!!.adapter = userAdapter
-                //}
-                userAdapter = UserAdapter(context!!, myUsers!!, false)
-                    binding.memberList!!.adapter = userAdapter
-                Log.i("TAG", "Adapter added")
+                    userAdapter = UserAdapter(context!!, myUsers!!)
+                    recyclerView!!.adapter = userAdapter
+
+                    Log.i("refUsers", "Adapter added")
+                }
+
             }
 
 
@@ -167,7 +178,7 @@ class AddTeamFragment : Fragment() {
                         (myUsers as ArrayList<User>).add(user)
                     }
                 }
-                userAdapter = UserAdapter(context!!, myUsers!!, false)
+                userAdapter = UserAdapter(context!!, myUsers!!)
                 binding.memberList!!.adapter = userAdapter
                 //recyclerView!!.adapter = userAdapter
             }

@@ -1,9 +1,12 @@
 package ca.group6.meetmatcher.adapterClasses
 
 import android.content.Context
+import android.graphics.Color
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.CheckBox
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
@@ -11,17 +14,17 @@ import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.model.User
 
 class UserAdapter(myContext : Context,
-                  myUsers: List<User>, isChecked : Boolean)
+                  myUsers: List<User>)
     : RecyclerView.Adapter<UserAdapter.ViewHolder?>(){
 
     private val myContext : Context
     private val myUsers : List<User>
-    private var isChecked : Boolean
+
 
     init {
         this.myContext = myContext
         this.myUsers = myUsers
-        this.isChecked = isChecked
+
     }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): ViewHolder {
@@ -35,10 +38,20 @@ class UserAdapter(myContext : Context,
         val user : User? = myUsers[position]
         holder.usernameText.text = user!!.getUsername()
 
+        holder.itemView.setOnClickListener {
+            holder.usernameText.isChecked = !holder.usernameText.isChecked
+            Log.i("Tag", "Checked")
+            holder.itemView.setBackgroundColor(Color.argb(255, 255, 0, 0))
+//            if (holder.usernameText.isChecked) {
+//
+//            }
+        }
+
+
     }
 
         class ViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
-            var usernameText : TextView
+            var usernameText : CheckBox
             var onlineStatus : ImageView
             var offlineStatus : ImageView
 
