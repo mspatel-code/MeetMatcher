@@ -7,7 +7,6 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -38,7 +37,7 @@ class HomeFragment : Fragment() {
         val view = binding.root
 
         //Arraylist
-        memberList = arrayListOf("Member A", "Member B,", "Member C", "Member D")
+        memberList = arrayListOf("Member A", "Member B", "Member C", "Member D")
 
 
         binding.myRv.layoutManager = LinearLayoutManager (activity as Context)

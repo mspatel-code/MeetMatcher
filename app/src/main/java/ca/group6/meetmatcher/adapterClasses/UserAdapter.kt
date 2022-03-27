@@ -44,6 +44,7 @@ class UserAdapter(myContext : Context,
             if (holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(20, 202, 184))
                 user.isSelected(true)
+
             }
             else if (!holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(3, 218, 197))

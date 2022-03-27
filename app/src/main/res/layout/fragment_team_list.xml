@@ -10,22 +10,37 @@
 
 
         <ImageView
-            android:id="@+id/online_status"
-            android:contentDescription="available status"
+            android:id="@+id/status_online"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_baseline_icon_online"
+            android:visibility="gone">
+
+        </ImageView>
+
+        <ImageView
+            android:id="@+id/status_offline"
+            android:layout_width="19dp"
+            android:layout_height="19dp"
+            android:layout_gravity="center"
+            android:layout_marginStart="10dp"
+            android:src="@drawable/ic_baseline_icon_offline"
+            android:visibility="visible">
+
+        </ImageView>
+
+        <TextView
+            android:id="@+id/teamName"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
-            android:src="@drawable/ic_baseline_icon_online" />
-
-        <TextView
-            android:id="@+id/teamName"
-            android:layout_width="match_parent"
-            android:layout_height="53dp"
-            android:layout_gravity="center"
-            android:layout_marginStart="10dp"
-            android:paddingTop="10dp"
             android:text="Team Name"
-            android:textSize="18sp" />
+            android:maxLines="1"
+            android:padding="6dp"
+            android:textColor="#000000"
+            android:textSize="19sp" />
 
 </LinearLayout>
