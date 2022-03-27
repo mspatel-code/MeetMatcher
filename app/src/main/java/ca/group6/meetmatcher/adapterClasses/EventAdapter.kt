@@ -8,16 +8,24 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.model.Event
+import java.text.SimpleDateFormat
+import java.time.format.DateTimeFormatter
+import java.util.*
+import kotlin.collections.ArrayList
 
 class EventAdapter(private val events: ArrayList<Event>):
     RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        var startTime: TextView = view.findViewById(R.id.start_time)
-        var endTime: TextView = view.findViewById(R.id.end_time)
-        var eventDetail: TextView = view.findViewById(R.id.event_detail)
+        var eventStartTime: TextView
+        var eventEndTime: TextView
+        var eventDetail: TextView
 
         init {
+            eventStartTime = view.findViewById(R.id.event_start_time)
+            eventEndTime = view.findViewById(R.id.event_end_time)
+            eventDetail = view.findViewById(R.id.event_detail)
+
             view.setOnClickListener {
             }
         }
@@ -32,19 +40,15 @@ class EventAdapter(private val events: ArrayList<Event>):
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val event = events[position]
-        holder.startTime.text = getStartTime1(event.getStartTime().hours, event.getStartTime().minutes)
-        holder.endTime.text = getEndTime1(event.getEndTime().hours, event.getEndTime().minutes)
+        holder.eventStartTime.text = getTime(event.getStartTime())
+        holder.eventEndTime.text = getTime(event.getEndTime())
         holder.eventDetail.text = events[position].getEventDetail()
     }
 
-    private fun getStartTime1 (hour: Int, minute: Int): String {
-        return "Start Time-$hour:$minute"
+    @SuppressLint("SimpleDateFormat")
+    private fun getTime (date: Date): String {
+        return SimpleDateFormat("HH:mm").format(date)
     }
-
-    private fun getEndTime1 (hour: Int, minute: Int): String {
-        return "End Time-$hour:$minute"
-    }
-
     override fun getItemCount(): Int {
         return events.size
     }

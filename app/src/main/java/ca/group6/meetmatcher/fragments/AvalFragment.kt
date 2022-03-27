@@ -23,7 +23,6 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
-import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -33,6 +32,9 @@ class AvalFragment : Fragment() {
 
     private var events = EventSchedule()
     private var calendar = Calendar.getInstance()
+    private var y = 0
+    private var m = 0
+    private var d = 0
     private var currentTime = ""
 
     private lateinit var database: DatabaseReference
@@ -52,24 +54,30 @@ class AvalFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         database = Firebase.database.reference
 
-        val y = calendar.get(Calendar.YEAR)
-        val m = calendar.get(Calendar.MONTH)
-        val d = calendar.get(Calendar.DAY_OF_MONTH)
-        events.setEventDate(getDate(y, m, d))
-        currentTime = "$y-$m-$d"
+        y = calendar.get(Calendar.YEAR)
+        m = calendar.get(Calendar.MONTH)+1
+        d = calendar.get(Calendar.DAY_OF_MONTH)
+        resetDate()
         readSchedule()
         setRecyclerList()
 
         val calendar = binding.calendarView
-        calendar.setOnDateChangeListener { c, y, m, d ->
-            events.setEventDate(getDate(y, m, d))
-            currentTime = "$y-$m-$d"
+        calendar.setOnDateChangeListener { c, year, month, day ->
+            y = year
+            m = month+1
+            d = day
+            resetDate()
 
             readSchedule()
         }
         binding.addEvent.setOnClickListener {
             addEvent()
         }
+    }
+
+    private fun resetDate() {
+        events.setEventDate(Date(y, m, d))
+        currentTime = "$y-$m-$d"
     }
 
     private fun readSchedule() {
@@ -117,24 +125,21 @@ class AvalFragment : Fragment() {
         val dialog = dialogBuilder.create()
         dialog.show()
 
-        val startTime = events.getEventDate()
+        val startTime = Date(y, m, d)
         start.setOnClickListener{
             val startTimeSetListener = TimePickerDialog.OnTimeSetListener{ timePicker, hour, minute ->
                 startTime.hours = hour
                 startTime.minutes = minute
-                start.text = SimpleDateFormat("hh:mm aa").format(startTime)
             }
             TimePickerDialog(requireContext(),startTimeSetListener,
                 startTime.hours, startTime.minutes,true).show()
         }
 
-        val endTime = events.getEventDate()
+        val endTime = Date(y, m, d)
         end.setOnClickListener{
-            val endTimeSetListener = TimePickerDialog.OnTimeSetListener{ timePicker, hour, minute ->
-                endTime.hours = hour
-                endTime.minutes = minute
-                val et =SimpleDateFormat("hh:mm aa").format(endTime)
-                end.text = et
+            val endTimeSetListener = TimePickerDialog.OnTimeSetListener{ t, h, m ->
+                endTime.hours = h
+                endTime.minutes = m
             }
             TimePickerDialog(requireContext(),endTimeSetListener,
                 endTime.hours, endTime.minutes,true).show()
@@ -144,6 +149,7 @@ class AvalFragment : Fragment() {
             val newEvent = Event(startTime, endTime, detail.text.toString())
             events.addNewEvent(newEvent)
             writeSchedule()
+
             dialog.dismiss()
         }
 
@@ -156,9 +162,5 @@ class AvalFragment : Fragment() {
         database.child("Schedules")
             .child(FirebaseAuth.getInstance().currentUser!!.uid)
             .child(currentTime).setValue(events)
-    }
-
-    private fun getDate(y: Int, m:Int, d:Int): Date {
-        return Date(y, m+1, d)
     }
 }
