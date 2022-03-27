@@ -132,7 +132,7 @@ class AvalFragment : Fragment() {
                 startTime.minutes = minute
             }
             TimePickerDialog(requireContext(),startTimeSetListener,
-                startTime.hours, startTime.minutes,false).show()
+                startTime.hours, startTime.minutes,true).show()
         }
 
         val endTime = Date(y, m, d)
@@ -142,7 +142,7 @@ class AvalFragment : Fragment() {
                 endTime.minutes = m
             }
             TimePickerDialog(requireContext(),endTimeSetListener,
-                endTime.hours, endTime.minutes,false).show()
+                endTime.hours, endTime.minutes,true).show()
         }
 
         save.setOnClickListener {
