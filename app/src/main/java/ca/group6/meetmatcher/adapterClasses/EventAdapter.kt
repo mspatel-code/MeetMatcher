@@ -13,15 +13,11 @@ class EventAdapter(private val events: ArrayList<Event>):
     RecyclerView.Adapter<EventAdapter.ViewHolder>() {
 
     class ViewHolder(view: View): RecyclerView.ViewHolder(view) {
-        var startTime: TextView
-        var endTime: TextView
-        var eventDetail: TextView
+        var startTime: TextView = view.findViewById(R.id.start_time)
+        var endTime: TextView = view.findViewById(R.id.end_time)
+        var eventDetail: TextView = view.findViewById(R.id.event_detail)
 
         init {
-            startTime = view.findViewById(R.id.start_time)
-            endTime = view.findViewById(R.id.end_time)
-            eventDetail = view.findViewById(R.id.event_detail)
-
             view.setOnClickListener {
             }
         }
@@ -35,15 +31,20 @@ class EventAdapter(private val events: ArrayList<Event>):
 
     @SuppressLint("SetTextI18n")
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        var event = events[position]
-        holder.startTime.text = getTime(event.getStartTime().hours, event.getStartTime().minutes)
-        holder.endTime.text = getTime(event.getEndTime().hours, event.getStartTime().minutes)
+        val event = events[position]
+        holder.startTime.text = getStartTime1(event.getStartTime().hours, event.getStartTime().minutes)
+        holder.endTime.text = getEndTime1(event.getEndTime().hours, event.getEndTime().minutes)
         holder.eventDetail.text = events[position].getEventDetail()
     }
 
-    fun getTime (hour: Int, minute: Int): String {
-        return "$hour:$minute"
+    private fun getStartTime1 (hour: Int, minute: Int): String {
+        return "Start Time-$hour:$minute"
     }
+
+    private fun getEndTime1 (hour: Int, minute: Int): String {
+        return "End Time-$hour:$minute"
+    }
+
     override fun getItemCount(): Int {
         return events.size
     }

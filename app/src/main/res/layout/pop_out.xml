@@ -21,8 +21,10 @@
             android:textSize="11sp"
             app:layout_constraintBottom_toBottomOf="@+id/end_time"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toEndOf="@+id/end_time"
-            app:layout_constraintTop_toTopOf="@+id/end_time" />
+            app:layout_constraintTop_toTopOf="@+id/end_time"
+            app:layout_constraintVertical_bias="1.0" />
 
         <Button
             android:id="@+id/end_time"

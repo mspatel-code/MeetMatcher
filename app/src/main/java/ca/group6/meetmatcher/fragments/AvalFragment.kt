@@ -23,6 +23,7 @@ import com.google.firebase.database.*
 import com.google.firebase.database.ktx.database
 import com.google.firebase.database.ktx.getValue
 import com.google.firebase.ktx.Firebase
+import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -121,9 +122,10 @@ class AvalFragment : Fragment() {
             val startTimeSetListener = TimePickerDialog.OnTimeSetListener{ timePicker, hour, minute ->
                 startTime.hours = hour
                 startTime.minutes = minute
+                start.text = SimpleDateFormat("hh:mm aa").format(startTime)
             }
             TimePickerDialog(requireContext(),startTimeSetListener,
-                startTime.hours, startTime.minutes,false).show()
+                startTime.hours, startTime.minutes,true).show()
         }
 
         val endTime = events.getEventDate()
@@ -131,16 +133,17 @@ class AvalFragment : Fragment() {
             val endTimeSetListener = TimePickerDialog.OnTimeSetListener{ timePicker, hour, minute ->
                 endTime.hours = hour
                 endTime.minutes = minute
+                val et =SimpleDateFormat("hh:mm aa").format(endTime)
+                end.text = et
             }
             TimePickerDialog(requireContext(),endTimeSetListener,
-                endTime.hours, endTime.minutes,false).show()
+                endTime.hours, endTime.minutes,true).show()
         }
 
         save.setOnClickListener {
             val newEvent = Event(startTime, endTime, detail.text.toString())
             events.addNewEvent(newEvent)
             writeSchedule()
-
             dialog.dismiss()
         }
 
