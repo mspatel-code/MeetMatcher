@@ -6,6 +6,7 @@ class User(uid: String, username: String, status: String) {
     private var uid: String? = uid
     private var username: String? = username
     private var status: String? = status
+    var selected : Boolean = false
 
     constructor() : this("", "", "")
 
@@ -19,5 +20,13 @@ class User(uid: String, username: String, status: String) {
 
     fun getStatus (): String? {
         return status
+    }
+
+    fun isSelected(b : Boolean) {
+        selected = b
+    }
+
+    fun checkSelected() : Boolean {
+        return selected
     }
 }

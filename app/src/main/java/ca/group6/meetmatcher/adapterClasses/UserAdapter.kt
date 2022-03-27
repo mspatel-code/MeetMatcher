@@ -2,6 +2,7 @@ package ca.group6.meetmatcher.adapterClasses
 
 import android.content.Context
 import android.graphics.Color
+import android.graphics.Color.rgb
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -37,14 +38,19 @@ class UserAdapter(myContext : Context,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user : User? = myUsers[position]
         holder.usernameText.text = user!!.getUsername()
+        holder.usernameText.isChecked = user!!.checkSelected()
+        Log.i("onBindViewHolder", holder.usernameText.toString() + holder.usernameText.isChecked)
 
-        holder.itemView.setOnClickListener {
-            holder.usernameText.isChecked = !holder.usernameText.isChecked
-            Log.i("Tag", "Checked")
-            holder.itemView.setBackgroundColor(Color.argb(255, 255, 0, 0))
-//            if (holder.usernameText.isChecked) {
-//
-//            }
+        holder.usernameText.setOnCheckedChangeListener { _, b ->
+            if (holder.usernameText.isChecked) {
+                holder.itemView.setBackgroundColor(rgb(20, 202, 184))
+                user.isSelected(true)
+            }
+            else if (!holder.usernameText.isChecked) {
+                holder.itemView.setBackgroundColor(rgb(3, 218, 197))
+                user.isSelected(false)
+            }
+
         }
 
 
