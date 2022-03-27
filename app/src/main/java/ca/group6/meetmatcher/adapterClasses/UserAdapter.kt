@@ -39,7 +39,6 @@ class UserAdapter(myContext : Context,
         val user : User? = myUsers[position]
         holder.usernameText.text = user!!.getUsername()
         holder.usernameText.isChecked = user!!.checkSelected()
-        Log.i("onBindViewHolder", holder.usernameText.toString() + holder.usernameText.isChecked)
 
         holder.usernameText.setOnCheckedChangeListener { _, b ->
             if (holder.usernameText.isChecked) {

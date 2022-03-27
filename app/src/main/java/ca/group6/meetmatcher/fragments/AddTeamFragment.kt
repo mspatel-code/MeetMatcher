@@ -27,7 +27,7 @@ class AddTeamFragment : Fragment() {
     private val binding get() = _binding!!
     private var userAdapter : UserAdapter? = null
     private var myUsers : List<User>? = null
-    private var recyclerView : RecyclerView? = null
+    private lateinit var recyclerView : RecyclerView
     private var enterMemberId : EditText? = null
 
     companion object {
@@ -43,6 +43,7 @@ class AddTeamFragment : Fragment() {
         auth = FirebaseAuth.getInstance()
 
 
+
     }
 
     override fun onCreateView(
@@ -55,11 +56,17 @@ class AddTeamFragment : Fragment() {
         enterMemberId = view.findViewById(R.id.enter_member_id)
 
         myUsers = ArrayList()
-        retrieveAllUsers()
+
 
         recyclerView = binding.memberList
         recyclerView!!.setHasFixedSize(true)
+        Log.i("TAG", "Layout manager")
         recyclerView!!.layoutManager = LinearLayoutManager(context)
+        Log.i("TAG", "Before instantiating useradapter")
+        userAdapter = UserAdapter(requireContext(), myUsers!!)
+        Log.i("TAG", "before recyclerview adapter = userAdapter")
+        recyclerView!!.adapter = userAdapter
+        Log.i("TAG", "after adapter = useradapter")
 //        Log.i("TAG", "Layout manager")
 //        binding.memberList!!.layoutManager = LinearLayoutManager(context)
 //        Log.i("TAG", "Before useradapter")
@@ -68,6 +75,7 @@ class AddTeamFragment : Fragment() {
 //        binding.memberList!!.setHasFixedSize(true)
 //        Log.i("TAG", "list has fixed size")
         binding.memberList.visibility = View.GONE
+        retrieveAllUsers()
 
             binding.enterMemberId!!.addTextChangedListener(object  : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -77,6 +85,7 @@ class AddTeamFragment : Fragment() {
                 override fun onTextChanged(cs: CharSequence?, p1: Int, p2: Int, p3: Int) {
 
                     searchForUsers(cs.toString())
+                    Log.i("TAG", "recyclerView is visible")
                     recyclerView!!.visibility = View.VISIBLE
 
 
@@ -105,10 +114,21 @@ class AddTeamFragment : Fragment() {
 
     fun writeTeamName() {
 
-
+        var firebaseUserID = FirebaseAuth.getInstance().currentUser!!.uid
         var teamName : String = binding.enterTeamName.text.toString()
-        database.getReference("Teams").child(teamName)
+        database.getReference("Teams").child(firebaseUserID).child(teamName)
             .setValue(teamName)
+
+
+        for (i in myUsers!!.indices) {
+            Log.i("log", myUsers!![i].toString())
+            var u = myUsers!!.get(i)
+            if (u.checkSelected()) {
+                var name = u.getUsername().toString()
+                database.getReference("Teams").child(firebaseUserID).child(teamName).child(u.getUid().toString())
+            .setValue(u)
+            }
+        }
 
         //Log.i("TAG", "Hi")
 
