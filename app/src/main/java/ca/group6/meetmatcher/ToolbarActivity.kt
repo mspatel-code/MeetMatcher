@@ -11,13 +11,14 @@ import ca.group6.meetmatcher.fragments.*
 import ca.group6.meetmatcher.model.Meeting
 
 class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnEditAvailabilityButtonTapListener, OnFinishSelectTimeListener,
-    SelectedCity, OnAddLocationButtonTapListener {
+    SelectedCity, OnAddLocationButtonTapListener, OnAddLocationPlaceButtonTapListener {
     private lateinit var binding: ActivityToolbarBinding
     private val homeFragment = HomeFragment()
     private val availabilityFragment = AvalFragment()
     private val profileFragment = ProfileFragment()
     //private val selectTimeFragment = SelectTime()
     private lateinit var teamPage: TeamPage
+    private lateinit var chooseLocationPlace: ChooseLocationPlace
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -81,7 +82,6 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
 
     override fun onSelectedCity(city: String) {
         if (this::teamPage.isInitialized) {
-            Log.i("DIALOGtoolbar", "$city WAS SELECTED----------")
             teamPage.city = city
             teamPage.updateLocationTextView()
         }
@@ -89,5 +89,10 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
 
     override fun OnAddLocationButtonTapped() {
         ChooseLocationCityDialog().show(supportFragmentManager, "ChooseCityFragment")
+    }
+
+    override fun OnAddLocationPlaceButtonTapListener() {
+        chooseLocationPlace = ChooseLocationPlace.newInstance()
+        replaceFragment(chooseLocationPlace, "ChooseLocationPlaceFragment")
     }
 }

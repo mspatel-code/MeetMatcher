@@ -4,6 +4,7 @@ import android.annotation.SuppressLint
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.R
@@ -20,14 +21,18 @@ class EventAdapter(private val events: ArrayList<Event>):
         var eventStartTime: TextView
         var eventEndTime: TextView
         var eventDetail: TextView
+        //lateinit var deleteImage: ImageView
 
         init {
             eventStartTime = view.findViewById(R.id.event_start_time)
             eventEndTime = view.findViewById(R.id.event_end_time)
             eventDetail = view.findViewById(R.id.event_detail)
+            //deleteImage = view.findViewById(R.id.image_delete)
 
             view.setOnClickListener {
             }
+
+
         }
     }
 
@@ -44,10 +49,9 @@ class EventAdapter(private val events: ArrayList<Event>):
         holder.eventEndTime.text = getTime(event.getEndTime())
         holder.eventDetail.text = events[position].getEventDetail()
     }
-
     @SuppressLint("SimpleDateFormat")
     private fun getTime (date: Date): String {
-        return SimpleDateFormat("HH:mm").format(date)
+        return SimpleDateFormat("HH:mm aa").format(date)
     }
     override fun getItemCount(): Int {
         return events.size

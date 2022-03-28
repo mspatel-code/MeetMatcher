@@ -29,12 +29,18 @@ interface OnAddLocationButtonTapListener
     fun OnAddLocationButtonTapped()
 }
 
+interface OnAddLocationPlaceButtonTapListener
+{
+    fun OnAddLocationPlaceButtonTapListener()
+}
+
 class TeamPage : Fragment(), SelectedCity {
     private lateinit var meeting: Meeting
     private lateinit var meetings: ArrayList<Meeting>
     private lateinit var caller_makeMeeting: OnMakeMeetingButtonTapListener
     private lateinit var caller_editAvailability: OnEditAvailabilityButtonTapListener
     private lateinit var caller_addLocation: OnAddLocationButtonTapListener
+    private lateinit var caller_addLocationPlace: OnAddLocationPlaceButtonTapListener
     private var _binding: FragmentTeamPageBinding? = null
     private val binding get() = _binding!!
 
@@ -48,10 +54,9 @@ class TeamPage : Fragment(), SelectedCity {
         inflater: LayoutInflater,
         container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         _binding = FragmentTeamPageBinding.inflate(inflater, container, false)
         return binding.root
-        //return inflater.inflate(R.layout.activity_team_page, container, false).rootView
     }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -88,6 +93,9 @@ class TeamPage : Fragment(), SelectedCity {
         if (context is OnAddLocationButtonTapListener) {
             caller_addLocation = context
         }
+        if (context is OnAddLocationPlaceButtonTapListener) {
+            caller_addLocationPlace = context
+        }
     }
     companion object {
         @JvmStatic
@@ -103,7 +111,11 @@ class TeamPage : Fragment(), SelectedCity {
 
     fun updateLocationTextView() {
         binding.cityChoice.text = city
-
+        if (city != "Remote") {
+            binding.buttonAddLocation.text = getString(R.string.PickLocation)
+        } else {
+            binding.buttonAddLocation.visibility = GONE
+        }
     }
 
     private fun displayMeetingDetails() {
@@ -170,7 +182,12 @@ class TeamPage : Fragment(), SelectedCity {
                     binding.buttonAddLocation.visibility = VISIBLE
                     binding.buttonAddLocation.setOnClickListener {
 //                        activity?.let { it1 -> ChooseLocationCityDialog().show(it1.supportFragmentManager, "ChooseCityFragment") }
-                        caller_addLocation.OnAddLocationButtonTapped()
+                        if (binding.buttonAddLocation.text == getString(R.string.PickLocation)) {
+                            Log.i("LOCATION", "clicking for location type")
+                            caller_addLocationPlace.OnAddLocationPlaceButtonTapListener()
+                        } else {
+                            caller_addLocation.OnAddLocationButtonTapped()
+                        }
                     }
                 }
             }
