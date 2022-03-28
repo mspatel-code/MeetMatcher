@@ -15,6 +15,7 @@ import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.adapterClasses.UserAdapter
 import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.databinding.FragmentAddTeamBinding
+import ca.group6.meetmatcher.model.Team
 import ca.group6.meetmatcher.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
@@ -27,12 +28,12 @@ class AddTeamFragment : Fragment() {
     private val binding get() = _binding!!
     private var userAdapter : UserAdapter? = null
     private var myUsers : List<User>? = null
+
     private lateinit var recyclerView : RecyclerView
     private var enterMemberId : EditText? = null
 
     companion object {
         lateinit var auth: FirebaseAuth
-        //lateinit var list : ArrayList<User>
         val database = Firebase.database
     }
 
@@ -56,6 +57,7 @@ class AddTeamFragment : Fragment() {
         enterMemberId = view.findViewById(R.id.enter_member_id)
 
         myUsers = ArrayList()
+
 
 
         recyclerView = binding.memberList
@@ -116,21 +118,38 @@ class AddTeamFragment : Fragment() {
 
         var firebaseUserID = FirebaseAuth.getInstance().currentUser!!.uid
         var teamName : String = binding.enterTeamName.text.toString()
-        database.getReference("Teams").child(firebaseUserID).child(teamName)
-            .setValue(teamName)
+        var teamList : ArrayList<User> = ArrayList()
+        HomeFragment.myTeams.add(teamName)
 
+        Log.i("writeTeamName", "Before For loop")
+        for (each in myUsers!!.indices) {
 
-        for (i in myUsers!!.indices) {
-            Log.i("log", myUsers!![i].toString())
-            var u = myUsers!!.get(i)
+            var u = myUsers!!.get(each)
             if (u.checkSelected()) {
-                var name = u.getUsername().toString()
-                database.getReference("Teams").child(firebaseUserID).child(teamName).child(u.getUid().toString())
-            .setValue(u)
+                teamList.add(u)
+
+                Log.i("writeTeamName", "added to myTeams")
+
             }
         }
 
-        //Log.i("TAG", "Hi")
+        for (each in teamList) {
+            Log.i("writeTeamName", "Teamlist for loop")
+            var teamMap = mapOf("username" to each.getUsername().toString(),
+                                "status" to each.getStatus().toString(),
+                                )
+            Log.i("writeTeamName", "team map")
+
+            var childUpdate = HashMap<String, Any>()
+            Log.i("writeTeamName", "before childUpdate")
+            childUpdate["/Teams/$firebaseUserID/${teamName}/${each.getUid()}"] = teamMap
+            Log.i("writeTeamName", "before database reference")
+            database.reference.updateChildren(childUpdate)
+            Log.i("writeTeamName", "after database reference")
+        }
+
+
+
 
     }
 
@@ -155,6 +174,7 @@ class AddTeamFragment : Fragment() {
                         val uid = snapshot.child("uid").getValue(String::class.java)
                         val status = snapshot.child("status").getValue(String::class.java)
                         val user : User? = User(username.toString(), uid.toString(), status.toString())
+                        //val user: User? = snapshot.getValue(User::class.java)
 
                         Log.i("refUsers", "get snapshot and make a user")
                         //Add all users from firebase except your own
