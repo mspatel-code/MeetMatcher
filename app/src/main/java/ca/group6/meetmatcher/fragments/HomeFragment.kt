@@ -82,14 +82,18 @@ class HomeFragment : Fragment() {
     }
 
     fun retrieveTeam() {
-        myTeams.add("Team B")
+        //myTeams.add("Team B")
 
-        for (each in myTeams) {
-            database.reference.child(myUid).child("Teams").child(myUid)
+            database.reference.child(myUid).child("Team").child(myUid).child("Team A")
                 .addListenerForSingleValueEvent(object : ValueEventListener {
-                    override fun onDataChange(snapshot: DataSnapshot) {
+                    override fun onDataChange(p0: DataSnapshot) {
+                        Log.i("retrieveTeam", p0.key.toString())
+                        Log.i("retrieveTeamUsername", p0.child("username").getValue(String::class.java).toString())
+                        for (snapshot in p0.children) {
 
-                        Log.i("retrieveTeam", snapshot.getValue().toString())
+                            Log.i("inLoop", snapshot.child("username").getValue(String::class.java).toString())
+                        }
+
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -97,7 +101,7 @@ class HomeFragment : Fragment() {
                     }
 
                 })
-        }
+
 
     }
 
