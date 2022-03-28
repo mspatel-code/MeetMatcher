@@ -84,15 +84,31 @@ class HomeFragment : Fragment() {
     fun retrieveTeam() {
         //myTeams.add("Team B")
 
-            database.reference.child(myUid).child("Team").child(myUid).child("Team A")
+            database.reference.child("Teams").child(myUid)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
                     override fun onDataChange(p0: DataSnapshot) {
-                        Log.i("retrieveTeam", p0.key.toString())
-                        Log.i("retrieveTeamUsername", p0.child("username").getValue(String::class.java).toString())
-                        for (snapshot in p0.children) {
+                       // val myMap = p0.value as HashMap<String, String>
 
-                            Log.i("inLoop", snapshot.child("username").getValue(String::class.java).toString())
-                        }
+//                        val myMap = p0.value as HashMap<String, String>
+//                        val myKey = myMap.keys.first()
+
+                        //Get the values from p0 into a hashmap
+                        val HashMapOfAllThings = p0.value as HashMap<String, Any>
+
+                        //For each key in the hashmap
+                        for (anyKey in HashMapOfAllThings.keys) {
+
+                        //Retrieve team name
+                        Log.i("retrieveTeam", anyKey)
+
+                        val one = HashMapOfAllThings[anyKey] as HashMap<String, Any>
+                        Log.i("printHashMap", one["username"].toString())
+                    }
+//                        Log.i("retrieveTeamUsername", p0.child("username").getValue(String::class.java).toString())
+//                        for (snapshot in p0.children) {
+//
+//                            Log.i("inLoop", snapshot.child("username").getValue(String::class.java).toString())
+//                        }
 
                     }
 
