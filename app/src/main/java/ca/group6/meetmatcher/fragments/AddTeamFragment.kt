@@ -56,8 +56,9 @@ class AddTeamFragment : Fragment() {
 
         enterMemberId = view.findViewById(R.id.enter_member_id)
 
+        retrieveAllUsers()
         myUsers = ArrayList()
-
+        Log.i("TAG", myUsers.toString())
 
 
         recyclerView = binding.memberList
@@ -76,8 +77,8 @@ class AddTeamFragment : Fragment() {
 //        Log.i("TAG", "after adapter = useradapter")
 //        binding.memberList!!.setHasFixedSize(true)
 //        Log.i("TAG", "list has fixed size")
-        binding.memberList.visibility = View.GONE
-        retrieveAllUsers()
+        binding.memberList.visibility = View.VISIBLE
+
 
             binding.enterMemberId!!.addTextChangedListener(object  : TextWatcher {
                 override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
@@ -88,7 +89,7 @@ class AddTeamFragment : Fragment() {
 
                     searchForUsers(cs.toString())
                     Log.i("TAG", "recyclerView is visible")
-                    recyclerView!!.visibility = View.VISIBLE
+                    //recyclerView!!.visibility = View.VISIBLE
 
 
                 }
@@ -123,14 +124,25 @@ class AddTeamFragment : Fragment() {
 
         Log.i("writeTeamName", "Before For loop")
         for (each in myUsers!!.indices) {
-
+            Log.i("writeTeamName", "myUsers loop")
             var u = myUsers!!.get(each)
-            if (u.checkSelected()) {
-                teamList.add(u)
 
-                Log.i("writeTeamName", "added to myTeams")
-
+            for (i in userAdapter!!.checkedList().indices) {
+                Log.i("writeTeamName", "checkedList loop")
+                var checked = userAdapter!!.checkedList().get(i)
+                Log.i("writeTeamName", "checkedList loop")
+                if (u == checked) {
+                    teamList.add(u)
+                }
             }
+
+
+//            if (u.checkSelected()) {
+//                teamList.add(u)
+//
+//                Log.i("writeTeamName", "added to myTeams")
+//
+//            }
         }
 
         for (each in teamList) {
@@ -170,18 +182,12 @@ class AddTeamFragment : Fragment() {
 
                     for (snapshot in p0.children) {
 
-                        val username : String? = snapshot.child("username").getValue(String::class.java)
-                        val uid = snapshot.child("uid").getValue(String::class.java)
-                        val status = snapshot.child("status").getValue(String::class.java)
-                        val user : User? = User(username.toString(), uid.toString(), status.toString())
-                        //val user: User? = snapshot.getValue(User::class.java)
+                        val user: User? = snapshot.getValue(User::class.java)
 
-                        Log.i("refUsers", "get snapshot and make a user")
-                        //Add all users from firebase except your own
-                        if (!(user!!.getUid()).equals(firebaseUserID)) {
-                            (myUsers as ArrayList<User>).add(user)
-                            Log.i("refUsers", "add myUsers in arraylist")
-                        }
+                    //Add all users from firebase except your own
+                    if (!(user!!.getUid()).equals(firebaseUserID)) {
+                        (myUsers as ArrayList<User>).add(user)
+                    }
                     }
                     userAdapter = UserAdapter(context!!, myUsers!!)
                     recyclerView!!.adapter = userAdapter

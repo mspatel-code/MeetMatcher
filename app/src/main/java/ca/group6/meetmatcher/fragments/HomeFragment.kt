@@ -94,15 +94,21 @@ class HomeFragment : Fragment() {
 
                         //Get the values from p0 into a hashmap
                         val HashMapOfAllThings = p0.value as HashMap<String, Any>
-
+                        //Log.i("retrieveTeam", HashMapOfAllThings.values.toString())
                         //For each key in the hashmap
                         for (anyKey in HashMapOfAllThings.keys) {
 
                         //Retrieve team name
                         Log.i("retrieveTeam", anyKey)
 
-                        val one = HashMapOfAllThings[anyKey] as HashMap<String, Any>
-                        Log.i("printHashMap", one["username"].toString())
+                        val one = HashMapOfAllThings.get(anyKey) as HashMap<String, Any>
+                            Log.i("printHashMap", one.toString())
+
+                            for (keys in one.keys) {
+                                val two = one.get(keys) as HashMap<String, Any>
+                                Log.i("Two", two["username"].toString())
+                            }
+                        //Log.i("printHashMap", one["username"].toString())
                     }
 //                        Log.i("retrieveTeamUsername", p0.child("username").getValue(String::class.java).toString())
 //                        for (snapshot in p0.children) {
