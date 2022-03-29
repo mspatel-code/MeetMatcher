@@ -11,7 +11,8 @@ import ca.group6.meetmatcher.fragments.*
 import ca.group6.meetmatcher.model.Meeting
 
 class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnEditAvailabilityButtonTapListener, OnFinishSelectTimeListener,
-    SelectedCity, OnAddLocationButtonTapListener, OnAddLocationPlaceButtonTapListener {
+    SelectedCity, OnAddLocationButtonTapListener, OnAddLocationPlaceButtonTapListener,
+    OnPlaceDoneButtonListener {
     private lateinit var binding: ActivityToolbarBinding
     private val homeFragment = HomeFragment()
     private val availabilityFragment = AvalFragment()
@@ -69,21 +70,15 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
         replaceFragment(availabilityFragment, "Availability")
     }
 
-    //override fun OnFinishSelectTimeTapped(times: Array<String>?) {
     override fun OnFinishSelectTimeTapped(confirmMeetng: ArrayList<Meeting>) {
         // get first time for now
-//        var time: String = times[0]
-//        var meeting: Meeting = Meeting(time,"")
         teamPage = TeamPage.newInstance(confirmMeetng)
         replaceFragment(teamPage, "Team Page")
-        //replaceFragment(TeamPage.newInstance(times[0]), "teamPageTag")
-        //replaceFragment(TeamPage.newInstance("Feb. 15 19:00 - 20:00"), "Team Page")
     }
 
     override fun onSelectedCity(city: String) {
         if (this::teamPage.isInitialized) {
-            teamPage.city = city
-            teamPage.updateLocationTextView()
+            teamPage.updateLocationTextView(city)
         }
     }
 
@@ -91,8 +86,17 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
         ChooseLocationCityDialog().show(supportFragmentManager, "ChooseCityFragment")
     }
 
-    override fun OnAddLocationPlaceButtonTapListener() {
-        chooseLocationPlace = ChooseLocationPlace.newInstance()
-        replaceFragment(chooseLocationPlace, "ChooseLocationPlaceFragment")
+    override fun OnAddLocationPlaceButtonTapped(city: String) {
+        chooseLocationPlace = ChooseLocationPlace.newInstance(city)
+        Log.i("LocationPlace", "clicked")
+        replaceFragment(chooseLocationPlace, "Pick Location")
+    }
+
+    override fun OnPlaceDoneButtonTapped(places: ArrayList<String>, city: String) {
+        if (this::teamPage.isInitialized) {
+            supportFragmentManager.popBackStack()
+            replaceFragment(teamPage,"Team Page")
+            teamPage.updateMeetingPlace(places)
+        }
     }
 }
