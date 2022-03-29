@@ -1,5 +1,6 @@
 package ca.group6.meetmatcher.fragments
 
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +9,6 @@ import android.view.View
 import android.view.View.GONE
 import android.view.View.VISIBLE
 import android.view.ViewGroup
-import android.widget.CheckBox
 import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -16,20 +16,16 @@ import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.MapsActivity
 import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.databinding.FragmentChooseLocationPlaceBinding
-import ca.group6.meetmatcher.databinding.FragmentTeamPageBinding
 import ca.group6.meetmatcher.databinding.RowLocationplaceBinding
 
-// TODO: Rename parameter arguments, choose names that match
-// the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-private const val ARG_PARAM1 = "param1"
-private const val ARG_PARAM2 = "param2"
+interface OnPlaceDoneButtonListener {
+    fun OnPlaceDoneButtonTapped(places: ArrayList<String>)
+}
 
-/**
- * A simple ChooseLocationPlace subclass.
- * Use the [ChooseLocationPlace.newInstance] factory method to
- * create an instance of this fragment.
- */
+
 class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
+    private lateinit var caller_onPlaceDone: OnPlaceDoneButtonListener
+
     private var _binding: FragmentChooseLocationPlaceBinding? = null
     private val binding get() = _binding!!
     private var listCafe_Van: Array<String> = arrayOf()
@@ -37,8 +33,6 @@ class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
     private lateinit var cafeAdapter: LocationPlaceAdapter
     private lateinit var  libraryAdapter: LocationPlaceAdapter
     private var checkedPlaces: ArrayList<Boolean> = ArrayList()
-//    private var param1: String? = null
-//    private var param2: String? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,7 +45,7 @@ class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
-    ): View? {
+    ): View {
         // Inflate the layout for this fragment
         _binding = FragmentChooseLocationPlaceBinding.inflate(inflater, container, false)
         return binding.root
@@ -72,6 +66,26 @@ class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
         libraryAdapter = LocationPlaceAdapter(listLib_Van)
 
         recyclerView.visibility = GONE
+
+        binding.buttonPlaceDone.setOnClickListener {
+            val typeSelected = view.findViewById<RadioButton>(binding.locationTypes.checkedRadioButtonId)
+            val placesSelected: ArrayList<String> = ArrayList()
+            if (typeSelected.text == getString(R.string.cafe)) {
+                for (i in 0..checkedPlaces.size) {
+                    if (checkedPlaces[i]) {
+                        placesSelected.add(listCafe_Van[i])
+                    }
+                }
+            } else {
+                for (i in 0..checkedPlaces.size) {
+                    if (checkedPlaces[i]) {
+                        placesSelected.add(listLib_Van[i])
+                    }
+                }
+            }
+            caller_onPlaceDone.OnPlaceDoneButtonTapped(placesSelected)
+            activity?.supportFragmentManager?.popBackStack()
+        }
     }
 
     companion object {
@@ -83,6 +97,13 @@ class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
 //                    putString(ARG_PARAM2, param2)
                 }
             }
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        if (context is OnPlaceDoneButtonListener) {
+            caller_onPlaceDone = context
+        }
     }
 
     class MyViewHolder(val itemBinding: RowLocationplaceBinding) :
@@ -102,11 +123,14 @@ class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
                 val placeName = array[position]
                 itemBinding.placeName.text = placeName
                 itemBinding.FABMap.setOnClickListener {
-                    val intent: Intent = Intent(activity,MapsActivity::class.java)
+                    val intent = Intent(activity,MapsActivity::class.java)
                     intent.putExtra("placeName", placeName)
                     intent.putExtra("placeLat", 49.27574947559409)
                     intent.putExtra("placeLong", -123.12371080205423)
                     activity?.startActivity(intent)
+                }
+                itemBinding.placeName.setOnClickListener {
+                    checkedPlaces[position] = !checkedPlaces[position]
                 }
             }
         }

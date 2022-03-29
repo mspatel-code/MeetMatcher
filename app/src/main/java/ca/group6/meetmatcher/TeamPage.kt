@@ -31,7 +31,7 @@ interface OnAddLocationButtonTapListener
 
 interface OnAddLocationPlaceButtonTapListener
 {
-    fun OnAddLocationPlaceButtonTapListener()
+    fun OnAddLocationPlaceButtonTapped()
 }
 
 class TeamPage : Fragment(), SelectedCity {
@@ -44,7 +44,7 @@ class TeamPage : Fragment(), SelectedCity {
     private var _binding: FragmentTeamPageBinding? = null
     private val binding get() = _binding!!
 
-    public lateinit var city: String
+    private lateinit var city: String
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -63,9 +63,9 @@ class TeamPage : Fragment(), SelectedCity {
         super.onViewCreated(view, savedInstanceState)
         val groupName = "A Team"
         //val listTimes = arrayOf("Feb. 15 19:00 - 20:00", "Feb. 20 17:00 - 18:00", "Feb. 21 9:00 - 10:00")
-        var meeting1 = Meeting("Feb. 15", "19:00 - 20:00", "")
-        var meeting2 = Meeting("Feb. 20", "17:00 - 18:00", "")
-        var meeting3 = Meeting("Feb. 21", "9:00 - 10:00", "")
+        val meeting1 = Meeting("Feb. 15", "19:00 - 20:00", "")
+        val meeting2 = Meeting("Feb. 20", "17:00 - 18:00", "")
+        val meeting3 = Meeting("Feb. 21", "9:00 - 10:00", "")
         val listTimes = arrayListOf<Meeting>(meeting1, meeting2, meeting3)
         arguments?.let {
             meetings = it.getParcelableArrayList<Meeting>("meetingTime")!!
@@ -109,13 +109,21 @@ class TeamPage : Fragment(), SelectedCity {
             }
     }
 
-    fun updateLocationTextView() {
-        binding.cityChoice.text = city
+    fun updateLocationTextView(chosenCity: String) {
+        binding.cityChoice.text = chosenCity
+        city = chosenCity
         if (city != "Remote") {
             binding.buttonAddLocation.text = getString(R.string.PickLocation)
         } else {
             binding.buttonAddLocation.visibility = GONE
         }
+    }
+
+    fun updateMeetingPlace(places: ArrayList<String>) {
+        var tempLocation = places[0]
+        meeting.location = tempLocation
+        val location = "$city: $tempLocation"
+        binding.cityChoice.text = location
     }
 
     private fun displayMeetingDetails() {
@@ -174,17 +182,14 @@ class TeamPage : Fragment(), SelectedCity {
         if (!this::meetings.isInitialized) {
             binding.buttonAddLocation.visibility = GONE
         } else {
-//            val details = meeting!!.date + "\n" + meeting!!.time
             if (this::meetings.isInitialized) {
                 if (meetings[0].date == "") {
                     binding.buttonAddLocation.visibility = GONE
                 } else {
                     binding.buttonAddLocation.visibility = VISIBLE
                     binding.buttonAddLocation.setOnClickListener {
-//                        activity?.let { it1 -> ChooseLocationCityDialog().show(it1.supportFragmentManager, "ChooseCityFragment") }
                         if (binding.buttonAddLocation.text == getString(R.string.PickLocation)) {
-                            Log.i("LOCATION", "clicking for location type")
-                            caller_addLocationPlace.OnAddLocationPlaceButtonTapListener()
+                            caller_addLocationPlace.OnAddLocationPlaceButtonTapped()
                         } else {
                             caller_addLocation.OnAddLocationButtonTapped()
                         }
