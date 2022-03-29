@@ -24,8 +24,8 @@ class UserAdapter(myContext : Context,
     private val myContext : Context
     private val myUsers : List<User>
     private val checkedUsers : ArrayList<User> = ArrayList()
-//    var auth: FirebaseAuth = FirebaseAuth.getInstance()
-//    val database = Firebase.database
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    val database = Firebase.database
 
 
     init {
@@ -44,12 +44,15 @@ class UserAdapter(myContext : Context,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user : User? = myUsers[position]
         holder.usernameText.text = user!!.getUsername()
-        if (checkedList().contains(user)) {
-            holder.usernameText.isChecked
-        }
-        else {
-            !holder.usernameText.isChecked
-        }
+        holder.usernameText.isChecked = user!!.checkSelected()
+
+        //Using arrayList to check
+//        if (checkedList().contains(user)) {
+//            holder.usernameText.isChecked
+//        }
+//        else {
+//            !holder.usernameText.isChecked
+//        }
 
         //list of users who's been checked, and check if current user is in that list
 
@@ -57,8 +60,8 @@ class UserAdapter(myContext : Context,
             if (holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(20, 202, 184))
                 user.isSelected(true)
-//                database.reference.child("Users").child(user.getUid().toString()).child("selected")
-//                    .setValue(true)
+                database.reference.child("Users").child(user.getUid().toString()).child("selected")
+                    .setValue(true)
 
                 checkedUsers.add(user)
                 Log.i("onBindViewHolder", "added checkedUsers")
@@ -67,8 +70,8 @@ class UserAdapter(myContext : Context,
             else if (!holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(3, 218, 197))
                 user.isSelected(false)
-//                database.reference.child("Users").child(user.getUid().toString()).child("selected")
-//                    .setValue(false)
+                database.reference.child("Users").child(user.getUid().toString()).child("selected")
+                    .setValue(false)
 
                 if (checkedList().contains(user)) {
                     checkedUsers.remove(user)

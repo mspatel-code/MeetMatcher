@@ -77,7 +77,7 @@ class AddTeamFragment : Fragment() {
 //        Log.i("TAG", "after adapter = useradapter")
 //        binding.memberList!!.setHasFixedSize(true)
 //        Log.i("TAG", "list has fixed size")
-        binding.memberList.visibility = View.VISIBLE
+        binding.memberList.visibility = View.GONE
 
 
             binding.enterMemberId!!.addTextChangedListener(object  : TextWatcher {
@@ -89,7 +89,7 @@ class AddTeamFragment : Fragment() {
 
                     searchForUsers(cs.toString())
                     Log.i("TAG", "recyclerView is visible")
-                    //recyclerView!!.visibility = View.VISIBLE
+                    recyclerView!!.visibility = View.VISIBLE
 
 
                 }
@@ -191,7 +191,11 @@ class AddTeamFragment : Fragment() {
 
                     for (snapshot in p0.children) {
 
-                        val user: User? = snapshot.getValue(User::class.java)
+                        val username : String? = snapshot.child("username").getValue(String::class.java)
+                        val uid = snapshot.child("uid").getValue(String::class.java)
+                        val status = snapshot.child("status").getValue(String::class.java)
+                        val user : User? = User(username.toString(), uid.toString(), status.toString())
+                        //val user: User? = snapshot.getValue(User::class.java)
 
                     //Add all users from firebase except your own
                     if (!(user!!.getUid()).equals(firebaseUserID)) {

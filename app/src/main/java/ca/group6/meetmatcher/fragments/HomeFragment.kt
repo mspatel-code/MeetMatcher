@@ -56,9 +56,9 @@ class HomeFragment : Fragment() {
         val view = binding.root
 
         //Arraylist
-        retrieveTeam()
+        //retrieveTeam()
         Log.i("Home", "Retrieved team")
-        //memberList = arrayListOf("Member A", "Member B", "Member C", "Member D")
+        memberList = arrayListOf("Member A", "Member B", "Member C", "Member D")
 
 
         binding.myRv.layoutManager = LinearLayoutManager (activity as Context)
