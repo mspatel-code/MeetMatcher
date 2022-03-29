@@ -69,12 +69,8 @@ class TeamPage : Fragment(), SelectedCity {
         val listTimes = arrayListOf<Meeting>(meeting1, meeting2, meeting3)
         arguments?.let {
             meetings = it.getParcelableArrayList<Meeting>("meetingTime")!!
-            //meeting = it.getParcelable("meetingTime").toString()
             Log.i("meetingdets", meetings.toString())
         }
-//        arguments?.let {
-//            meeting = it.getString("meetingTime")
-//        }
         displayMeetingDetails()
         setUpGenerateMeetingButton(groupName, listTimes)
         setUpCancelButton()
@@ -100,10 +96,8 @@ class TeamPage : Fragment(), SelectedCity {
     companion object {
         @JvmStatic
         fun newInstance(addMeeting: ArrayList<Meeting>) =
-        //fun newInstance(addMeeting: String) =
             TeamPage().apply {
                 arguments = Bundle().apply {
-                    //putString("meetingTime", addMeeting)
                     putParcelableArrayList("meetingTime", addMeeting)
                 }
             }
@@ -131,13 +125,11 @@ class TeamPage : Fragment(), SelectedCity {
             val meeting: TextView = binding.teamPageMeetingDetails
             meeting.text = "No meeting planned."
         } else {
-//            val details = meeting!!.date + "\n" + meeting!!.time
             if (this::meetings.isInitialized) {
                 meeting = meetings[0]
                 if (meeting.date == "") {
                     binding.teamPageMeetingDetails.text = "No meeting planned."
                 } else {
-                    //var details = meeting!!.subSequence(0, 7)
                     val details = meeting.date + ": " + meeting.time
                     binding.teamPageMeetingDetails.text = details
                 }
@@ -152,7 +144,6 @@ class TeamPage : Fragment(), SelectedCity {
             }
         }
         binding.FABmeeting.setOnClickListener {
-            Log.i("onclicksetup", "HJDKFJA;LFJISE;FA")
             val builder = activity.let { it1 -> AlertDialog.Builder(it1) }
             builder.setTitle("Use current availability?")
 
