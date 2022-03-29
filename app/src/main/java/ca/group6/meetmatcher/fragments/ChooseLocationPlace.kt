@@ -1,5 +1,6 @@
 package ca.group6.meetmatcher.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -12,6 +13,7 @@ import android.widget.RadioButton
 import android.widget.RadioGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
+import ca.group6.meetmatcher.MapsActivity
 import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.databinding.FragmentChooseLocationPlaceBinding
 import ca.group6.meetmatcher.databinding.FragmentTeamPageBinding
@@ -97,7 +99,15 @@ class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
         override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
 //            (holder.itemView as CheckBox).text = array[position]
             with(holder) {
-                itemBinding.placeName.text = array[position]
+                val placeName = array[position]
+                itemBinding.placeName.text = placeName
+                itemBinding.FABMap.setOnClickListener {
+                    val intent: Intent = Intent(activity,MapsActivity::class.java)
+                    intent.putExtra("placeName", placeName)
+                    intent.putExtra("placeLat", 49.27574947559409)
+                    intent.putExtra("placeLong", -123.12371080205423)
+                    activity?.startActivity(intent)
+                }
             }
         }
 

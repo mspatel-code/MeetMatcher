@@ -3,6 +3,7 @@ plugins {
     id 'org.jetbrains.kotlin.android'
     id 'kotlin-android'
     id 'kotlin-parcelize'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -50,6 +51,7 @@ dependencies {
     implementation 'com.google.android.material:material:1.2.1'
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.2'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
+    implementation 'com.google.android.gms:play-services-maps:18.0.2'
 
     //implementation 'com.google.firebase:firebase-core:20.1.1'
     //implementation 'com.google.firebase:firebase-auth:21.0.2'
