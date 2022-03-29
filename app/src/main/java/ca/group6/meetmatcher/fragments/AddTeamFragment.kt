@@ -122,27 +122,36 @@ class AddTeamFragment : Fragment() {
         var teamList : ArrayList<User> = ArrayList()
         HomeFragment.myTeams.add(teamName)
 
+
         Log.i("writeTeamName", "Before For loop")
         for (each in myUsers!!.indices) {
             Log.i("writeTeamName", "myUsers loop")
             var u = myUsers!!.get(each)
 
-            for (i in userAdapter!!.checkedList().indices) {
-                Log.i("writeTeamName", "checkedList loop")
-                var checked = userAdapter!!.checkedList().get(i)
-                Log.i("writeTeamName", "checkedList loop")
-                if (u == checked) {
-                    teamList.add(u)
-                }
-            }
-
-
-//            if (u.checkSelected()) {
-//                teamList.add(u)
-//
-//                Log.i("writeTeamName", "added to myTeams")
-//
+//Add teams by comparing Arraylist of users with ArrayList of checked users
+//            for (i in userAdapter!!.checkedList().indices) {
+//                Log.i("writeTeamName", "checkedList loop")
+//                var checked = userAdapter!!.checkedList().get(i)
+//                Log.i("writeTeamName", "checkedList loop")
+//                if (u == checked) {
+//                    teamList.add(u)
+//                }
 //            }
+
+
+            if (u.checkSelected()) {
+                teamList.add(u)
+
+                Log.i("writeTeamName", "added to myTeams")
+
+            }
+            else  {
+                //remove user
+                if (!u.checkSelected() && teamList.contains(u)) {
+                    teamList.remove(u)
+                }
+
+            }
         }
 
         for (each in teamList) {

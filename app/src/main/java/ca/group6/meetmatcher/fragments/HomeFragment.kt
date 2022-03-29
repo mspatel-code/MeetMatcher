@@ -16,6 +16,7 @@ import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.TeamPage
 import ca.group6.meetmatcher.databinding.FragmentTeamListPageBinding
 import ca.group6.meetmatcher.model.Team
+import ca.group6.meetmatcher.model.User
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
@@ -57,7 +58,7 @@ class HomeFragment : Fragment() {
         //Arraylist
         retrieveTeam()
         Log.i("Home", "Retrieved team")
-        memberList = arrayListOf("Member A", "Member B", "Member C", "Member D")
+        //memberList = arrayListOf("Member A", "Member B", "Member C", "Member D")
 
 
         binding.myRv.layoutManager = LinearLayoutManager (activity as Context)
@@ -86,7 +87,9 @@ class HomeFragment : Fragment() {
 
             database.reference.child("Teams").child(myUid)
                 .addListenerForSingleValueEvent(object : ValueEventListener {
+
                     override fun onDataChange(p0: DataSnapshot) {
+                        memberList.clear()
                        // val myMap = p0.value as HashMap<String, String>
 
 //                        val myMap = p0.value as HashMap<String, String>
@@ -100,13 +103,16 @@ class HomeFragment : Fragment() {
 
                         //Retrieve team name
                         Log.i("retrieveTeam", anyKey)
+                            binding.teamTitle.text = anyKey
 
                         val one = HashMapOfAllThings.get(anyKey) as HashMap<String, Any>
-                            Log.i("printHashMap", one.toString())
+                            //Log.i("printHashMap", one.toString())
 
                             for (keys in one.keys) {
                                 val two = one.get(keys) as HashMap<String, Any>
                                 Log.i("Two", two["username"].toString())
+                                memberList.add(two["username"].toString())
+                                binding.myRv.adapter!!.notifyDataSetChanged()
                             }
                         //Log.i("printHashMap", one["username"].toString())
                     }
