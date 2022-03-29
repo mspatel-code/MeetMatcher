@@ -74,8 +74,6 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
         // get first time for now
         teamPage = TeamPage.newInstance(confirmMeetng)
         replaceFragment(teamPage, "Team Page")
-        //replaceFragment(TeamPage.newInstance(times[0]), "teamPageTag")
-        //replaceFragment(TeamPage.newInstance("Feb. 15 19:00 - 20:00"), "Team Page")
     }
 
     override fun onSelectedCity(city: String) {
@@ -88,13 +86,16 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
         ChooseLocationCityDialog().show(supportFragmentManager, "ChooseCityFragment")
     }
 
-    override fun OnAddLocationPlaceButtonTapped() {
-        chooseLocationPlace = ChooseLocationPlace.newInstance()
-        replaceFragment(chooseLocationPlace, "ChooseLocationPlaceFragment")
+    override fun OnAddLocationPlaceButtonTapped(city: String) {
+        chooseLocationPlace = ChooseLocationPlace.newInstance(city)
+        Log.i("LocationPlace", "clicked")
+        replaceFragment(chooseLocationPlace, "Pick Location")
     }
 
-    override fun OnPlaceDoneButtonTapped(places: ArrayList<String>) {
+    override fun OnPlaceDoneButtonTapped(places: ArrayList<String>, city: String) {
         if (this::teamPage.isInitialized) {
+            supportFragmentManager.popBackStack()
+            replaceFragment(teamPage,"Team Page")
             teamPage.updateMeetingPlace(places)
         }
     }

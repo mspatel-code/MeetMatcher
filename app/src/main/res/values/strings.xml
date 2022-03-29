@@ -21,9 +21,9 @@
         <item>Roots Cafe</item>
     </string-array>
     <string-array name="library_Van">
-        <item>Central Branch</item>
-        <item>Fraserview Branch</item>
-        <item>Champlain Branch</item>
+        <item>VPL Central Branch</item>
+        <item>VPL Fraserview Branch</item>
+        <item>VPL Champlain Branch</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>

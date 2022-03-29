@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import ca.group6.meetmatcher.databinding.FragmentTeamPageBinding
 import ca.group6.meetmatcher.dialogs.SelectedCity
 import ca.group6.meetmatcher.model.Meeting
+import org.w3c.dom.Text
 
 interface OnMakeMeetingButtonTapListener
 {
@@ -31,7 +32,7 @@ interface OnAddLocationButtonTapListener
 
 interface OnAddLocationPlaceButtonTapListener
 {
-    fun OnAddLocationPlaceButtonTapped()
+    fun OnAddLocationPlaceButtonTapped(city: String)
 }
 
 class TeamPage : Fragment(), SelectedCity {
@@ -117,7 +118,7 @@ class TeamPage : Fragment(), SelectedCity {
         var tempLocation = places[0]
         meeting.location = tempLocation
         val location = "$city: $tempLocation"
-        binding.cityChoice.text = location
+        view?.findViewById<TextView>(R.id.cityChoice)?.text = location
     }
 
     private fun displayMeetingDetails() {
@@ -180,7 +181,7 @@ class TeamPage : Fragment(), SelectedCity {
                     binding.buttonAddLocation.visibility = VISIBLE
                     binding.buttonAddLocation.setOnClickListener {
                         if (binding.buttonAddLocation.text == getString(R.string.PickLocation)) {
-                            caller_addLocationPlace.OnAddLocationPlaceButtonTapped()
+                            caller_addLocationPlace.OnAddLocationPlaceButtonTapped(city)
                         } else {
                             caller_addLocation.OnAddLocationButtonTapped()
                         }
