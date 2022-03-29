@@ -13,6 +13,9 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.model.User
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.ktx.database
+import com.google.firebase.ktx.Firebase
 
 class UserAdapter(myContext : Context,
                   myUsers: List<User>)
@@ -20,6 +23,9 @@ class UserAdapter(myContext : Context,
 
     private val myContext : Context
     private val myUsers : List<User>
+    private val checkedUsers : ArrayList<User> = ArrayList()
+//    var auth: FirebaseAuth = FirebaseAuth.getInstance()
+//    val database = Firebase.database
 
 
     init {
@@ -38,21 +44,43 @@ class UserAdapter(myContext : Context,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user : User? = myUsers[position]
         holder.usernameText.text = user!!.getUsername()
-        holder.usernameText.isChecked = user!!.checkSelected()
+        if (checkedList().contains(user)) {
+            holder.usernameText.isChecked
+        }
+        else {
+            !holder.usernameText.isChecked
+        }
+
+        //list of users who's been checked, and check if current user is in that list
 
         holder.usernameText.setOnCheckedChangeListener { _, b ->
             if (holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(20, 202, 184))
                 user.isSelected(true)
+//                database.reference.child("Users").child(user.getUid().toString()).child("selected")
+//                    .setValue(true)
+
+                checkedUsers.add(user)
+                Log.i("onBindViewHolder", "added checkedUsers")
+
             }
             else if (!holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(3, 218, 197))
                 user.isSelected(false)
+//                database.reference.child("Users").child(user.getUid().toString()).child("selected")
+//                    .setValue(false)
+
+                if (checkedList().contains(user)) {
+                    checkedUsers.remove(user)
+                }
             }
 
         }
 
 
+    }
+    fun checkedList() :ArrayList<User> {
+        return checkedUsers
     }
 
         class ViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {

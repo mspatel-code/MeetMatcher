@@ -3,7 +3,7 @@
     android:id="@+id/user_layout"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/teal_200">
+    android:background="#2EE8D6">
 
     <ImageView
         android:id="@+id/status_online"
