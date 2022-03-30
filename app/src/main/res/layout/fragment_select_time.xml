@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#4DB6AC"
     tools:context=".fragments.SelectTime">
 
     <TextView
@@ -12,6 +13,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:text="Select Time(s)"
+        android:textColor="#000000"
         android:textSize="24sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -27,7 +29,9 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="16dp"
         android:layout_marginTop="20dp"
+        android:minHeight="48dp"
         android:text="Feb. 14 19:00 - 20:00"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectTimeTitle" />
 
@@ -35,7 +39,9 @@
         android:id="@+id/checkBox2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:text="Feb. 14 17:00 - 18:00"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/checkBox1"
         app:layout_constraintTop_toBottomOf="@+id/checkBox1" />
 
@@ -43,7 +49,9 @@
         android:id="@+id/checkBox3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:minHeight="48dp"
         android:text="Feb. 15 9:00 - 10:00"
+        android:textSize="16sp"
         app:layout_constraintStart_toStartOf="@+id/checkBox2"
         app:layout_constraintTop_toBottomOf="@+id/checkBox2" />
 
@@ -51,8 +59,8 @@
         android:id="@+id/selectTimeDone"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="128dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginTop="164dp"
+        android:layout_marginEnd="24dp"
         android:text="Done"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/selectTimeTitle" />

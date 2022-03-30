@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/teal_700"
+    android:background="@color/teal_300"
     tools:context=".fragments.HomeFragment">
 
     <Button
@@ -29,7 +29,7 @@
 
         android:paddingTop="20dp"
 
-        app:cardBackgroundColor="@color/teal_200"
+        app:cardBackgroundColor="@color/teal_700"
         app:cardCornerRadius="15dp"
         app:cardElevation="10dp"
         app:cardPreventCornerOverlap="true"
@@ -49,6 +49,7 @@
                 android:layout_height="31dp"
                 android:layout_margin="10dp"
                 android:text="My Teams"
+                android:textColor="@color/white"
                 android:textSize="20sp" />
 
             <ScrollView
