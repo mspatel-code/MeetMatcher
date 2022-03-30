@@ -50,10 +50,38 @@ class UserAdapter(myContext : Context,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user : User? = myUsers[position]
         holder.usernameText.text = user!!.getUsername()
-        //holder.usernameText.isChecked = user!!.checkSelected()
 
 
+        //holder.usernameText.isChecked =checkSelected(user.getUid().toString())
+        //Log.i("checked state", checkSelected(user.getUid().toString()).toString())
 
+
+        database.reference.child("Teams").child(myUid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot != null) {
+                        val HashMapOfAllThings = snapshot.value as HashMap<String, Any>
+
+                        //anyKey = team name
+                        for (anyKey in HashMapOfAllThings.keys) {
+                            val value = snapshot.child(anyKey).child(user.getUid().toString()).child("selected").value
+
+                            if (value.toString() == "true") {
+                                holder.usernameText.isChecked = true
+                                Log.i(user.getUsername().toString(), value.toString())
+                            } else {
+                                holder.usernameText.isChecked = false
+                            }
+
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
         //Using arrayList to check
 //        if (checkedList().contains(user)) {
 //            holder.usernameText.isChecked
@@ -77,7 +105,7 @@ class UserAdapter(myContext : Context,
 
             }
             else if (!holder.usernameText.isChecked) {
-                holder.itemView.setBackgroundColor(rgb(3, 218, 197))
+                holder.itemView.setBackgroundColor(rgb(48,236,212))
                 user.isSelected(false)
 
                 updateUser(user.getUsername().toString(),user.getUid().toString(), user.getStatus().toString(), false)
@@ -121,7 +149,12 @@ class UserAdapter(myContext : Context,
                 }
 
             })
+    }
 
+    fun checkSelected(uid: String) : Boolean {
+
+
+        return true
     }
 
     fun checkedList() :ArrayList<User> {
