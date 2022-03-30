@@ -71,7 +71,7 @@ class HomeFragment : Fragment() {
 
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.fragment_container, AddTeamFragment())
-            transaction?.disallowAddToBackStack()
+            transaction?.addToBackStack("Add Team")
             transaction?.commit()
         }
         binding.buttonTeamPage.setOnClickListener {

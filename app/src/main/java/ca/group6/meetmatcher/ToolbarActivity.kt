@@ -12,7 +12,7 @@ import ca.group6.meetmatcher.model.Meeting
 
 class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnEditAvailabilityButtonTapListener, OnFinishSelectTimeListener,
     SelectedCity, OnAddLocationButtonTapListener, OnAddLocationPlaceButtonTapListener,
-    OnPlaceDoneButtonListener {
+    OnPlaceDoneButtonListener, OnCancelMeetingButtonTapListener {
     private lateinit var binding: ActivityToolbarBinding
     private val homeFragment = HomeFragment()
     private val availabilityFragment = AvalFragment()
@@ -98,5 +98,11 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
             replaceFragment(teamPage,"Team Page")
             teamPage.updateMeetingPlace(places)
         }
+    }
+
+    override fun OnCancelMeetingButtonTapped() {
+        supportFragmentManager.popBackStack()
+        teamPage = TeamPage()
+        replaceFragment(teamPage, "Team Page")
     }
 }

@@ -20,6 +20,11 @@ interface OnMakeMeetingButtonTapListener
     fun OnMakeMeetingButtonTapped(times: ArrayList<Meeting>)
 }
 
+interface OnCancelMeetingButtonTapListener
+{
+    fun OnCancelMeetingButtonTapped()
+}
+
 interface OnEditAvailabilityButtonTapListener
 {
     fun OnEditAvailabilityButtonTapped()
@@ -39,6 +44,7 @@ class TeamPage : Fragment(), SelectedCity {
     private lateinit var meeting: Meeting
     private lateinit var meetings: ArrayList<Meeting>
     private lateinit var caller_makeMeeting: OnMakeMeetingButtonTapListener
+    private lateinit var caller_cancelMeeting: OnCancelMeetingButtonTapListener
     private lateinit var caller_editAvailability: OnEditAvailabilityButtonTapListener
     private lateinit var caller_addLocation: OnAddLocationButtonTapListener
     private lateinit var caller_addLocationPlace: OnAddLocationPlaceButtonTapListener
@@ -83,6 +89,9 @@ class TeamPage : Fragment(), SelectedCity {
         super.onAttach(context)
         if (context is OnMakeMeetingButtonTapListener) {
             caller_makeMeeting = context
+        }
+        if (context is OnCancelMeetingButtonTapListener) {
+            caller_cancelMeeting = context
         }
         if (context is OnEditAvailabilityButtonTapListener) {
             caller_editAvailability = context
@@ -166,6 +175,7 @@ class TeamPage : Fragment(), SelectedCity {
             binding.FABcancel.visibility = VISIBLE
             binding.FABcancel.setOnClickListener {
                 meetings[0].date = ""
+                caller_cancelMeeting.OnCancelMeetingButtonTapped()
             }
         }
     }
