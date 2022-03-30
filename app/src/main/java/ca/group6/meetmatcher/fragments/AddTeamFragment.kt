@@ -158,6 +158,7 @@ class AddTeamFragment : Fragment() {
             Log.i("writeTeamName", "Teamlist for loop")
             var teamMap = mapOf("username" to each.getUsername().toString(),
                                 "status" to each.getStatus().toString(),
+                                "selected" to each.checkSelected()
                                 )
             Log.i("writeTeamName", "team map")
 

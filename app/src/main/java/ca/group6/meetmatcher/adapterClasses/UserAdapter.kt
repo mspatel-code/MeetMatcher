@@ -12,8 +12,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.R
+import ca.group6.meetmatcher.fragments.AddTeamFragment
+import ca.group6.meetmatcher.fragments.HomeFragment
 import ca.group6.meetmatcher.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -26,6 +31,7 @@ class UserAdapter(myContext : Context,
     private val checkedUsers : ArrayList<User> = ArrayList()
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     val database = Firebase.database
+    private val myUid = HomeFragment.auth.currentUser!!.uid
 
 
     init {
@@ -44,7 +50,9 @@ class UserAdapter(myContext : Context,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user : User? = myUsers[position]
         holder.usernameText.text = user!!.getUsername()
-        holder.usernameText.isChecked = user!!.checkSelected()
+        //holder.usernameText.isChecked = user!!.checkSelected()
+
+
 
         //Using arrayList to check
 //        if (checkedList().contains(user)) {
@@ -60,8 +68,9 @@ class UserAdapter(myContext : Context,
             if (holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(20, 202, 184))
                 user.isSelected(true)
-                database.reference.child("Users").child(user.getUid().toString()).child("selected")
-                    .setValue(true)
+                updateUser(user.getUsername().toString(),user.getUid().toString(), user.getStatus().toString(),true)
+//                    .child("selected")
+//                    .setValue(true)
 
                 checkedUsers.add(user)
                 Log.i("onBindViewHolder", "added checkedUsers")
@@ -70,8 +79,11 @@ class UserAdapter(myContext : Context,
             else if (!holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(3, 218, 197))
                 user.isSelected(false)
-                database.reference.child("Users").child(user.getUid().toString()).child("selected")
-                    .setValue(false)
+
+                updateUser(user.getUsername().toString(),user.getUid().toString(), user.getStatus().toString(), false)
+//                database.reference.child("Teams").child(user.getUid().toString())
+//                    .child("selected")
+//                    .setValue(false)
 
                 if (checkedList().contains(user)) {
                     checkedUsers.remove(user)
@@ -80,8 +92,38 @@ class UserAdapter(myContext : Context,
 
         }
 
+    }
+
+    fun updateUser(username: String, uid : String, status: String, checked : Boolean) {
+        database.reference.child("Teams").child(myUid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot != null) {
+                        val HashMapOfAllThings = snapshot.value as HashMap<String, Any>
+
+                        for (anyKey in HashMapOfAllThings.keys) {
+                            val teamName = anyKey
+                            var teamMap = mapOf("username" to username,
+                                "status" to status,
+                                "selected" to checked)
+                            var childUpdate = HashMap<String, Any>()
+                            childUpdate["/Teams/$myUid/${teamName}/$uid"] = teamMap
+                            AddTeamFragment.database.reference.updateChildren(childUpdate)
+                            //AddTeamFragment.database.reference.updateChildren("\"/Teams/$myUid/$teamName/${status = true}\"")
+                        }
+                    } else {
+                        Log.i("null", "Can't retrieve team datasnapshot")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
 
     }
+
     fun checkedList() :ArrayList<User> {
         return checkedUsers
     }
