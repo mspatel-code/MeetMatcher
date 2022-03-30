@@ -8,9 +8,8 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.RadioButton
 import androidx.fragment.app.DialogFragment
-import ca.group6.meetmatcher.TeamPage
 import ca.group6.meetmatcher.databinding.ChooseLocationCityBinding
-import ca.group6.meetmatcher.model.Meeting
+//import com.google.android.libraries.places.api.net.PlacesClient
 
 interface SelectedCity {
     fun onSelectedCity(city: String);
@@ -21,7 +20,6 @@ class ChooseLocationCityDialog: DialogFragment() {
     private var _binding: ChooseLocationCityBinding? = null
     private val binding get() = _binding!!
     private lateinit var caller_selectedCity: SelectedCity
-
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -41,6 +39,7 @@ class ChooseLocationCityDialog: DialogFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
         val radioGroup = binding.radioGroupCities
         radioGroup.check(binding.radioButtonBurnaby.id)
 

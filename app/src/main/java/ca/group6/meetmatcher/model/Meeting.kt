@@ -6,9 +6,6 @@ import kotlinx.parcelize.Parcelize
 
 @Parcelize
 class Meeting(var date: String?, var time: String?, var location: String?): Parcelable {
-//    val date = inpDate
-//    val time = inpTime
-//    val location = inpLocation
 
     private constructor(parcel: Parcel) : this(
         date = parcel.readString(),
