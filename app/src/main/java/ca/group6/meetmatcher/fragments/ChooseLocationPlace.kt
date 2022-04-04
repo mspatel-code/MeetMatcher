@@ -16,6 +16,7 @@ import android.widget.RadioGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.BuildConfig
+import ca.group6.meetmatcher.BuildConfig.MAPS_API_KEY
 import ca.group6.meetmatcher.MapsActivity
 import ca.group6.meetmatcher.R
 import ca.group6.meetmatcher.databinding.FragmentChooseLocationPlaceBinding
@@ -28,7 +29,10 @@ import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FetchPlaceRequest
 import com.google.android.libraries.places.api.net.FetchPlaceResponse
 import com.google.android.libraries.places.api.net.PlacesClient
+import java.io.FileInputStream
 import java.lang.Exception
+import java.util.*
+import kotlin.collections.ArrayList
 
 //import com.google.android.libraries.places.api.net.FetchPlaceRequest
 //import com.google.android.libraries.places.api.net.PlacesClient
@@ -92,7 +96,7 @@ class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
         super.onViewCreated(view, savedInstanceState)
 
         if (!Places.isInitialized()) {
-            context?.let { Places.initialize(it, "AIzaSyARMmS2ABkK_2VVZSNr5siI0RHjYrU_Juo") }
+            context?.let { Places.initialize(it, MAPS_API_KEY) }
         }
         placesClient = Places.createClient(requireContext())
 
