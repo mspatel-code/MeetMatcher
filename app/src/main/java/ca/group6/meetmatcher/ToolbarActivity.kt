@@ -8,6 +8,7 @@ import ca.group6.meetmatcher.databinding.ActivityToolbarBinding
 import ca.group6.meetmatcher.dialogs.ChooseLocationCityDialog
 import ca.group6.meetmatcher.dialogs.SelectedCity
 import ca.group6.meetmatcher.fragments.*
+import ca.group6.meetmatcher.model.LocationPlace
 import ca.group6.meetmatcher.model.Meeting
 
 class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnEditAvailabilityButtonTapListener, OnFinishSelectTimeListener,
@@ -92,7 +93,7 @@ class ToolbarActivity : AppCompatActivity(), OnMakeMeetingButtonTapListener, OnE
         replaceFragment(chooseLocationPlace, "Pick Location")
     }
 
-    override fun OnPlaceDoneButtonTapped(places: ArrayList<String>, city: String) {
+    override fun OnPlaceDoneButtonTapped(places: ArrayList<LocationPlace>, city: String) {
         if (this::teamPage.isInitialized) {
             supportFragmentManager.popBackStack()
             replaceFragment(teamPage,"Team Page")

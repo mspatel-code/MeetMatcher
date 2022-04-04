@@ -18,12 +18,74 @@
     <string-array name="cafe_Van">
         <item>Aperture Cafe</item>
         <item>Coo Coo Coffee</item>
-        <item>Roots Cafe</item>
+        <item>Mum\'s The Word</item>
+        <item>Roots Café</item>
     </string-array>
+
+    <string-array name="cafe_Van_ID">
+        <item>ChIJDVzOUedzhlQRFR3BXQlHyYE</item>
+        <item>ChIJkxHGvdZzhlQRb7NcTKnmAis</item>
+        <item>ChIJxe8B78BxhlQRI_z8-jTPG0M</item>
+        <item>ChIJd7UdaGl0hlQRgFRqTD0ez94</item>
+    </string-array>
+
     <string-array name="library_Van">
-        <item>VPL Central Branch</item>
+        <item>VPL Central Library</item>
         <item>VPL Fraserview Branch</item>
-        <item>VPL Champlain Branch</item>
+        <item>VPL Mount Pleasant Branch</item>
+        <item>VPL Renfrew Branch</item>
+        <item>VPL Champlain Heights Branch</item>
+    </string-array>
+    <string-array name="lib_Van_ID">
+        <item>ChIJQ9pJmH5xhlQRe_nvreYL37k</item>
+        <item>ChIJzeiiYDB0hlQRBEz7FZR_cTY</item>
+        <item>ChIJgVbiS19xhlQRsIlkAZgyZgo</item>
+        <item>ChIJlUfD98d2hlQR9ljoqZ6DJ4g</item>
+        <item>ChIJZVY0TdV1hlQRPiqeQcAzGgo</item>
+    </string-array>
+
+    <string-array name="cafe_Richmond">
+        <item>Blenz Coffee</item>
+        <item>Leisure Tea &amp; Coffee</item>
+        <item>Waves Coffee House - Steveston</item>
+    </string-array>
+    <string-array name="cafe_Richmond_ID">
+        <item>ChIJCYWlva0KhlQRKG5ftX4YLP8</item>
+        <item>ChIJz-ES6C91hlQRmtuo5FGgM7M</item>
+        <item>ChIJV4SF-9jhhVQR8QA2i-c3hM8</item>
+    </string-array>
+    <string-array name="library_Richmond">
+        <item>RPL Brighouse Branch</item>
+        <item>RPL Cambie Branch</item>
+        <item>RPL Ironwood Branch</item>
+    </string-array>
+    <string-array name="library_Richmond_ID">
+        <item>ChIJ1czq6MkKhlQRKN-Sm7PwU_k</item>
+        <item>ChIJ08lGcw51hlQRnpbmuKTYAfE</item>
+        <item>ChIJk6ONxXTghVQRd4Av3tea0IE</item>
+    </string-array>
+
+    <string-array name="cafe_Burnaby">
+        <item>La Forêt</item>
+        <item>JJ Bean Coffee Roasters</item>
+        <item>Ki Cafe (Ki Tea House)</item>
+    </string-array>
+    <string-array name="cafe_Burnaby_ID">
+        <item>ChIJsxzBrFx2hlQRgcWfYg58Se4</item>
+        <item>ChIJXWeqtIlxhlQRIo5O_B3pCWo</item>
+        <item>ChIJsXGlT0R2hlQRH35dH1YxRiU</item>
+    </string-array>
+    <string-array name="library_Burn">
+        <item>BPL Bob Prittie Metrotown Branch</item>:0000
+        <item>BPL Tommy Douglas Library</item>
+        <item>BPL Cameron Branch</item>
+        <item>WAC Bennett Library</item>
+    </string-array>
+    <string-array name="library_Burn_ID">
+        <item>ChIJu0r6z-x2hlQR8MFjWyu90J8</item>
+        <item>ChIJqcsB8ct3hlQRqXJN1Gi9cow</item>
+        <item>ChIJN8QuuTB4hlQRi0lE87tukG4</item>
+        <item>ChIJO3Ez4b95hlQRRDVh_fwNqLY</item>
     </string-array>
 
     <string name="hello_blank_fragment">Hello blank fragment</string>
