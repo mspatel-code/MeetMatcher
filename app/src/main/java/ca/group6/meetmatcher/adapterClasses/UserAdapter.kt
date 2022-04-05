@@ -28,7 +28,6 @@ class UserAdapter(myContext : Context,
 
     private val myContext : Context
     private val myUsers : List<User>
-    private val checkedUsers : ArrayList<User> = ArrayList()
     var auth: FirebaseAuth = FirebaseAuth.getInstance()
     val database = Firebase.database
     private val myUid = HomeFragment.auth.currentUser!!.uid
@@ -59,19 +58,24 @@ class UserAdapter(myContext : Context,
         database.reference.child("Teams").child(myUid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot != null) {
-                        val HashMapOfAllThings = snapshot.value as HashMap<String, Any>
+                    if (snapshot.value != null) {
+                        val HashMapOfAllThings = snapshot.value as HashMap<String, Any?>
 
                         //anyKey = team name
                         for (anyKey in HashMapOfAllThings.keys) {
                             val value = snapshot.child(anyKey).child(user.getUid().toString()).child("selected").value
 
-                            if (value.toString() == "true") {
-                                holder.usernameText.isChecked = true
-                                Log.i(user.getUsername().toString(), value.toString())
+                            if (value != null) {
+                                if (value.toString() == "true") {
+                                    holder.usernameText.isChecked = true
+                                    Log.i(user.getUsername().toString(), value.toString())
+                                } else {
+                                    holder.usernameText.isChecked = false
+                                }
                             } else {
                                 holder.usernameText.isChecked = false
                             }
+
 
                         }
                     }
@@ -82,26 +86,13 @@ class UserAdapter(myContext : Context,
                 }
 
             })
-        //Using arrayList to check
-//        if (checkedList().contains(user)) {
-//            holder.usernameText.isChecked
-//        }
-//        else {
-//            !holder.usernameText.isChecked
-//        }
-
-        //list of users who's been checked, and check if current user is in that list
 
         holder.usernameText.setOnCheckedChangeListener { _, b ->
             if (holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(20, 202, 184))
                 user.isSelected(true)
                 updateUser(user.getUsername().toString(),user.getUid().toString(), user.getStatus().toString(),true)
-//                    .child("selected")
-//                    .setValue(true)
 
-                checkedUsers.add(user)
-                Log.i("onBindViewHolder", "added checkedUsers")
 
             }
             else if (!holder.usernameText.isChecked) {
@@ -109,13 +100,7 @@ class UserAdapter(myContext : Context,
                 user.isSelected(false)
 
                 updateUser(user.getUsername().toString(),user.getUid().toString(), user.getStatus().toString(), false)
-//                database.reference.child("Teams").child(user.getUid().toString())
-//                    .child("selected")
-//                    .setValue(false)
 
-                if (checkedList().contains(user)) {
-                    checkedUsers.remove(user)
-                }
             }
 
         }
@@ -135,9 +120,12 @@ class UserAdapter(myContext : Context,
                                 "status" to status,
                                 "selected" to checked)
                             var childUpdate = HashMap<String, Any>()
-                            childUpdate["/Teams/$myUid/${teamName}/$uid"] = teamMap
-                            AddTeamFragment.database.reference.updateChildren(childUpdate)
-                            //AddTeamFragment.database.reference.updateChildren("\"/Teams/$myUid/$teamName/${status = true}\"")
+
+                                childUpdate["/Teams/$myUid/${teamName}/$uid"] = teamMap
+                                AddTeamFragment.database.reference.updateChildren(childUpdate)
+                                //AddTeamFragment.database.reference.updateChildren("\"/Teams/$myUid/$teamName/${status = true}\"")
+
+
                         }
                     } else {
                         Log.i("null", "Can't retrieve team datasnapshot")
@@ -151,15 +139,6 @@ class UserAdapter(myContext : Context,
             })
     }
 
-    fun checkSelected(uid: String) : Boolean {
-
-
-        return true
-    }
-
-    fun checkedList() :ArrayList<User> {
-        return checkedUsers
-    }
 
         class ViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
             var usernameText : CheckBox
@@ -172,8 +151,4 @@ class UserAdapter(myContext : Context,
                 offlineStatus = itemview.findViewById(R.id.status_offline)
             }
         }
-
-
-
-
 }

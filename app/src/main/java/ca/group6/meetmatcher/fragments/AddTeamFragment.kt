@@ -28,7 +28,7 @@ class AddTeamFragment : Fragment() {
     private val binding get() = _binding!!
     private var userAdapter : UserAdapter? = null
     private var myUsers : List<User>? = null
-
+    var firebaseUserID = FirebaseAuth.getInstance().currentUser!!.uid
     private lateinit var recyclerView : RecyclerView
     private var enterMemberId : EditText? = null
 
@@ -70,13 +70,7 @@ class AddTeamFragment : Fragment() {
         Log.i("TAG", "before recyclerview adapter = userAdapter")
         recyclerView!!.adapter = userAdapter
         Log.i("TAG", "after adapter = useradapter")
-//        Log.i("TAG", "Layout manager")
-//        binding.memberList!!.layoutManager = LinearLayoutManager(context)
-//        Log.i("TAG", "Before useradapter")
-//        binding.memberList!!.adapter = UserAdapter(requireContext(),myUsers!!)
-//        Log.i("TAG", "after adapter = useradapter")
-//        binding.memberList!!.setHasFixedSize(true)
-//        Log.i("TAG", "list has fixed size")
+
         binding.memberList.visibility = View.GONE
 
 
@@ -105,38 +99,42 @@ class AddTeamFragment : Fragment() {
 
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        lateinit var teamName : String
+
+        binding.setTeamName.setOnClickListener{
+            teamName = binding.enterTeamName.text.toString()
+            if (teamName != null || teamName != "") {
+                binding.addTeamMember.visibility = View.VISIBLE
+                binding.enterMemberId.visibility = View.VISIBLE
+                binding.formTeam.visibility = View.VISIBLE
+            } else {
+                teamName = "My Team"
+            }
+            database.reference.child("Teams").child(firebaseUserID).child(teamName).setValue("")
+        }
+
         binding.formTeam.setOnClickListener {
-            writeTeamName()
+            writeTeamName(teamName)
 
             val transaction = activity?.supportFragmentManager?.beginTransaction()
             transaction?.replace(R.id.fragment_container, HomeFragment())
             transaction?.disallowAddToBackStack()
             transaction?.commit()
         }
+
     }
 
-    fun writeTeamName() {
 
-        var firebaseUserID = FirebaseAuth.getInstance().currentUser!!.uid
-        var teamName : String = binding.enterTeamName.text.toString()
+    fun writeTeamName(name : String) {
+
         var teamList : ArrayList<User> = ArrayList()
-        HomeFragment.myTeams.add(teamName)
+        HomeFragment.myTeams.add(name)
 
 
         Log.i("writeTeamName", "Before For loop")
         for (each in myUsers!!.indices) {
             Log.i("writeTeamName", "myUsers loop")
             var u = myUsers!!.get(each)
-
-//Add teams by comparing Arraylist of users with ArrayList of checked users
-//            for (i in userAdapter!!.checkedList().indices) {
-//                Log.i("writeTeamName", "checkedList loop")
-//                var checked = userAdapter!!.checkedList().get(i)
-//                Log.i("writeTeamName", "checkedList loop")
-//                if (u == checked) {
-//                    teamList.add(u)
-//                }
-//            }
 
 
             if (u.checkSelected()) {
@@ -149,6 +147,8 @@ class AddTeamFragment : Fragment() {
                 //remove user
                 if (!u.checkSelected() && teamList.contains(u)) {
                     teamList.remove(u)
+                    database.reference.child("Teams").child(name).child(u.getUid().toString()).removeValue()
+                    Log.i("remove", "Remove" + u.getUsername().toString())
                 }
 
             }
@@ -163,11 +163,16 @@ class AddTeamFragment : Fragment() {
             Log.i("writeTeamName", "team map")
 
             var childUpdate = HashMap<String, Any>()
-            Log.i("writeTeamName", "before childUpdate")
-            childUpdate["/Teams/$firebaseUserID/${teamName}/${each.getUid()}"] = teamMap
-            Log.i("writeTeamName", "before database reference")
+            Log.i("writeTeamName", "replacing team name")
+
+            childUpdate["/Teams/$firebaseUserID/$name/${each.getUid()}"] = teamMap
+
             database.reference.updateChildren(childUpdate)
-            Log.i("writeTeamName", "after database reference")
+
+
+
+
+
         }
 
 
