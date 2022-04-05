@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/light_blue"
     tools:context=".fragments.AvalFragment">
 
     <ScrollView
@@ -13,7 +14,7 @@
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:orientation="vertical">
 
             <CalendarView
                 android:id="@+id/calendarView"
@@ -27,6 +28,7 @@
                 android:id="@+id/add_event"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:background="@color/teal_700"
                 android:src="@drawable/ic_baseline_add_24" />
 
             <androidx.recyclerview.widget.RecyclerView
