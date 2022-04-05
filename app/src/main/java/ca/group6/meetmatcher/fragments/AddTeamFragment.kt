@@ -110,7 +110,13 @@ class AddTeamFragment : Fragment() {
             } else {
                 teamName = "My Team"
             }
-            database.reference.child("Teams").child(firebaseUserID).child(teamName).setValue("")
+
+//            var childUpdate = HashMap<String, Any>()
+//            Log.i("writeTeamName", "replacing team name")
+//
+//            childUpdate["/Teams/$firebaseUserID/$teamName"] = teamName
+//
+//            database.reference.updateChildren(childUpdate)
         }
 
         binding.formTeam.setOnClickListener {
