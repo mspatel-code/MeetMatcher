@@ -48,7 +48,7 @@
                 android:layout_width="109dp"
                 android:layout_height="31dp"
                 android:layout_margin="10dp"
-                android:text="My Teams"
+                android:text="My Team"
                 android:textColor="@color/black"
                 android:textSize="20sp" />
 
