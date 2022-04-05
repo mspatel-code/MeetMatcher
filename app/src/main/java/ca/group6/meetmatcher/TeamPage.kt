@@ -17,6 +17,7 @@ import ca.group6.meetmatcher.dialogs.SelectedCity
 import ca.group6.meetmatcher.model.LocationPlace
 import ca.group6.meetmatcher.model.Meeting
 import org.w3c.dom.Text
+import kotlin.random.Random
 
 interface OnMakeMeetingButtonTapListener
 {
@@ -200,12 +201,24 @@ class TeamPage : Fragment(), SelectedCity {
                 if (meetings[0].date == "") {
                     binding.buttonAddLocation.visibility = GONE
                 } else {
-                    binding.buttonAddLocation.visibility = VISIBLE
-                    binding.buttonAddLocation.setOnClickListener {
-                        if (binding.buttonAddLocation.text == getString(R.string.PickLocation)) {
-                            caller_addLocationPlace.OnAddLocationPlaceButtonTapped(city)
-                        } else {
-                            caller_addLocation.OnAddLocationButtonTapped()
+                    val randIndex = Random.nextInt(0, meetings.size)
+                    var startTime = meetings[randIndex].time!!.subSequence(0,2).toString()
+                    if (startTime[1] == ':') {
+                        startTime = startTime[0].toString()
+                    }
+                    if (startTime.toInt() >= 16) {
+                        meeting.location = getString(R.string.Remote)
+                        val location = meeting.location
+                        view?.findViewById<TextView>(R.id.cityChoice)?.text = location
+                        binding.buttonAddLocation.visibility = GONE
+                    } else {
+                        binding.buttonAddLocation.visibility = VISIBLE
+                        binding.buttonAddLocation.setOnClickListener {
+                            if (binding.buttonAddLocation.text == getString(R.string.PickLocation)) {
+                                caller_addLocationPlace.OnAddLocationPlaceButtonTapped(city)
+                            } else {
+                                caller_addLocation.OnAddLocationButtonTapped()
+                            }
                         }
                     }
                 }

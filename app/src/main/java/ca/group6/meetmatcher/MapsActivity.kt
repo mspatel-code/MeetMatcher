@@ -1,6 +1,5 @@
 package ca.group6.meetmatcher
 
-import android.hardware.Camera
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -14,8 +13,8 @@ import ca.group6.meetmatcher.databinding.ActivityMapsBinding
 
 class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
 
-    private lateinit var mMap: GoogleMap
     private lateinit var binding: ActivityMapsBinding
+    private lateinit var mMap: GoogleMap
     private lateinit var placeName: String
     private lateinit var placeLatLng: LatLng
 
