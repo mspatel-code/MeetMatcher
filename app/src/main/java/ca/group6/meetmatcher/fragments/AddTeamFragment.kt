@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.EditText
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.adapterClasses.UserAdapter
@@ -100,7 +101,7 @@ class AddTeamFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         lateinit var teamName : String
-
+        binding.root.rootView.findViewById<TextView>(R.id.toolbar_title).text = "Form Team"
         binding.setTeamName.setOnClickListener{
             teamName = binding.enterTeamName.text.toString()
 
