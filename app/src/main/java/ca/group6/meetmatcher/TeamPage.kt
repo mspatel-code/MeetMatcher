@@ -2,22 +2,30 @@ package ca.group6.meetmatcher
 
 import android.app.AlertDialog
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.View.*
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.TextView
 import androidx.fragment.app.Fragment
 import ca.group6.meetmatcher.databinding.FragmentTeamPageBinding
 import ca.group6.meetmatcher.dialogs.SelectedCity
+import ca.group6.meetmatcher.model.LocationPlace
 import ca.group6.meetmatcher.model.Meeting
 import org.w3c.dom.Text
 
 interface OnMakeMeetingButtonTapListener
 {
     fun OnMakeMeetingButtonTapped(times: ArrayList<Meeting>)
+}
+
+interface OnCancelMeetingButtonTapListener
+{
+    fun OnCancelMeetingButtonTapped()
 }
 
 interface OnEditAvailabilityButtonTapListener
@@ -39,6 +47,7 @@ class TeamPage : Fragment(), SelectedCity {
     private lateinit var meeting: Meeting
     private lateinit var meetings: ArrayList<Meeting>
     private lateinit var caller_makeMeeting: OnMakeMeetingButtonTapListener
+    private lateinit var caller_cancelMeeting: OnCancelMeetingButtonTapListener
     private lateinit var caller_editAvailability: OnEditAvailabilityButtonTapListener
     private lateinit var caller_addLocation: OnAddLocationButtonTapListener
     private lateinit var caller_addLocationPlace: OnAddLocationPlaceButtonTapListener
@@ -84,6 +93,9 @@ class TeamPage : Fragment(), SelectedCity {
         if (context is OnMakeMeetingButtonTapListener) {
             caller_makeMeeting = context
         }
+        if (context is OnCancelMeetingButtonTapListener) {
+            caller_cancelMeeting = context
+        }
         if (context is OnEditAvailabilityButtonTapListener) {
             caller_editAvailability = context
         }
@@ -114,11 +126,19 @@ class TeamPage : Fragment(), SelectedCity {
         }
     }
 
-    fun updateMeetingPlace(places: ArrayList<String>) {
-        var tempLocation = places[0]
-        meeting.location = tempLocation
-        val location = "$city: $tempLocation"
+    fun updateMeetingPlace(places: ArrayList<LocationPlace>) {
+        val tempLocation = places[0]
+        meeting.location = tempLocation.name
+        val location = "$city:\n${meeting.location}"
         view?.findViewById<TextView>(R.id.cityChoice)?.text = location
+        view?.findViewById<TextView>(R.id.cityChoice)?.setOnClickListener {
+            val intent = Intent(activity,MapsActivity::class.java)
+            intent.putExtra("placeName", tempLocation.name)
+            intent.putExtra("placeLat", tempLocation.latLng.latitude)
+            intent.putExtra("placeLong", tempLocation.latLng.longitude)
+            activity?.startActivity(intent)
+        }
+        view?.findViewById<Button>(R.id.button_addLocation)?.visibility = GONE
     }
 
     private fun displayMeetingDetails() {
@@ -166,6 +186,7 @@ class TeamPage : Fragment(), SelectedCity {
             binding.FABcancel.visibility = VISIBLE
             binding.FABcancel.setOnClickListener {
                 meetings[0].date = ""
+                caller_cancelMeeting.OnCancelMeetingButtonTapped()
             }
         }
     }

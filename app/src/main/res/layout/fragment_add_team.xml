@@ -26,12 +26,22 @@
             android:inputType="textPersonName"
             android:minHeight="48dp" />
 
+        <Button
+            android:id="@+id/set_team_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
+            android:backgroundTint="@color/teal_200"
+            android:text="Set Team Name"
+            android:textColor="@color/teal_700" />
+
         <TextView
             android:id="@+id/add_team_member"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
-            android:text="Add Team Member" />
+            android:text="Add Team Member"
+            android:visibility="invisible" />
 
         <EditText
             android:id="@+id/enter_member_id"
@@ -42,23 +52,26 @@
             android:ems="10"
             android:hint="Search Users Here"
             android:inputType="textPersonName"
-            android:minHeight="48dp" />
+            android:minHeight="48dp"
+            android:visibility="invisible" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/member_list"
             android:layout_width="300dp"
             android:layout_height="130dp"
             android:layout_marginTop="30dp"
-            android:backgroundTint="@color/teal_200" />
+            android:backgroundTint="@color/teal_200"
+            android:visibility="invisible" />
 
         <Button
             android:id="@+id/form_team"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="20dp"
             android:backgroundTint="@color/teal_200"
             android:text="Form Team"
-            android:layout_marginTop="20dp"
-            android:textColor="@color/teal_700" />
+            android:textColor="@color/teal_700"
+            android:visibility="invisible" />
 
 
 </LinearLayout>

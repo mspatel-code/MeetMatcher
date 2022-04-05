@@ -52,7 +52,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-auth-ktx:21.0.2'
     implementation 'com.google.firebase:firebase-database-ktx:20.0.4'
     implementation 'com.google.android.gms:play-services-maps:18.0.2'
-    //implementation 'com.google.maps.android:places-ktx:0.4.0'
+    implementation 'com.google.android.libraries.places:places:2.6.0'
     //implementation 'com.google.firebase:firebase-core:20.1.1'
     //implementation 'com.google.firebase:firebase-auth:21.0.2'
     //implementation 'com.google.firebase:firebase-storage-ktx:20.0.1'

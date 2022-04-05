@@ -37,9 +37,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center"
             android:layout_marginStart="20dp"
-            android:maxLines="1"
-            android:padding="6dp"
             android:text="Team Name"
+            android:padding="6dp"
             android:textColor="@color/black"
             android:textSize="19sp" />
 

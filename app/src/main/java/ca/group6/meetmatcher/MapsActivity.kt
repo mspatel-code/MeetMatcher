@@ -1,5 +1,6 @@
 package ca.group6.meetmatcher
 
+import android.hardware.Camera
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 
@@ -51,6 +52,7 @@ class MapsActivity : AppCompatActivity(), OnMapReadyCallback {
         // coo coo coffee 49.276140582185896, -123.123745
         //val location = LatLng(49.27574947559409, -123.12371080205423)
         mMap.addMarker(MarkerOptions().position(placeLatLng).title(placeName))
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(15.0f))
         mMap.moveCamera(CameraUpdateFactory.newLatLng(placeLatLng))
     }
 }

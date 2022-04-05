@@ -12,8 +12,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.R
+import ca.group6.meetmatcher.fragments.AddTeamFragment
+import ca.group6.meetmatcher.fragments.HomeFragment
 import ca.group6.meetmatcher.model.User
 import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.ValueEventListener
 import com.google.firebase.database.ktx.database
 import com.google.firebase.ktx.Firebase
 
@@ -23,9 +28,9 @@ class UserAdapter(myContext : Context,
 
     private val myContext : Context
     private val myUsers : List<User>
-    private val checkedUsers : ArrayList<User> = ArrayList()
-//    var auth: FirebaseAuth = FirebaseAuth.getInstance()
-//    val database = Firebase.database
+    var auth: FirebaseAuth = FirebaseAuth.getInstance()
+    val database = Firebase.database
+    private val myUid = HomeFragment.auth.currentUser!!.uid
 
 
     init {
@@ -44,44 +49,97 @@ class UserAdapter(myContext : Context,
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         val user : User? = myUsers[position]
         holder.usernameText.text = user!!.getUsername()
-        if (checkedList().contains(user)) {
-            holder.usernameText.isChecked
-        }
-        else {
-            !holder.usernameText.isChecked
-        }
 
-        //list of users who's been checked, and check if current user is in that list
+
+        //holder.usernameText.isChecked =checkSelected(user.getUid().toString())
+        //Log.i("checked state", checkSelected(user.getUid().toString()).toString())
+
+
+        database.reference.child("Teams").child(myUid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.value != null) {
+                        val HashMapOfAllThings = snapshot.value as HashMap<String, Any?>
+
+                        //anyKey = team name
+                        for (anyKey in HashMapOfAllThings.keys) {
+                            val value = snapshot.child(anyKey).child(user.getUid().toString()).child("selected").value
+
+                            if (value != null) {
+                                if (value.toString() == "true") {
+                                    holder.usernameText.isChecked = true
+                                    Log.i(user.getUsername().toString(), value.toString())
+                                } else {
+                                    holder.usernameText.isChecked = false
+                                }
+                            } else {
+                                holder.usernameText.isChecked = false
+                            }
+
+
+                        }
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
 
         holder.usernameText.setOnCheckedChangeListener { _, b ->
             if (holder.usernameText.isChecked) {
                 holder.itemView.setBackgroundColor(rgb(20, 202, 184))
                 user.isSelected(true)
-//                database.reference.child("Users").child(user.getUid().toString()).child("selected")
-//                    .setValue(true)
+                updateUser(user.getUsername().toString(),user.getUid().toString(), user.getStatus().toString(),true)
 
-                checkedUsers.add(user)
-                Log.i("onBindViewHolder", "added checkedUsers")
 
             }
             else if (!holder.usernameText.isChecked) {
-                holder.itemView.setBackgroundColor(rgb(3, 218, 197))
+                holder.itemView.setBackgroundColor(rgb(48,236,212))
                 user.isSelected(false)
-//                database.reference.child("Users").child(user.getUid().toString()).child("selected")
-//                    .setValue(false)
 
-                if (checkedList().contains(user)) {
-                    checkedUsers.remove(user)
-                }
+                updateUser(user.getUsername().toString(),user.getUid().toString(), user.getStatus().toString(), false)
+
             }
 
         }
 
+    }
 
+    fun updateUser(username: String, uid : String, status: String, checked : Boolean) {
+        database.reference.child("Teams").child(myUid)
+            .addListenerForSingleValueEvent(object : ValueEventListener {
+                override fun onDataChange(snapshot: DataSnapshot) {
+                    if (snapshot.value != null) {
+                        Log.i("updateUser", "snapshot value is not null")
+                        val HashMapOfAllThings = snapshot.value as HashMap<String, Any?>
+
+                        for (anyKey in HashMapOfAllThings.keys) {
+                            val teamName = anyKey
+                            var teamMap = mapOf("username" to username,
+                                "status" to status,
+                                "selected" to checked)
+                            var childUpdate = HashMap<String, Any?>()
+
+                                childUpdate["/Teams/$myUid/${teamName}/$uid"] = teamMap
+                                AddTeamFragment.database.reference.updateChildren(childUpdate)
+                                //AddTeamFragment.database.reference.updateChildren("\"/Teams/$myUid/$teamName/${status = true}\"")
+
+
+                        }
+                    } else {
+                        Log.i("null", "Can't retrieve team datasnapshot")
+                    }
+                }
+
+                override fun onCancelled(error: DatabaseError) {
+
+                }
+
+            })
     }
-    fun checkedList() :ArrayList<User> {
-        return checkedUsers
-    }
+
 
         class ViewHolder(itemview: View) : RecyclerView.ViewHolder(itemview) {
             var usernameText : CheckBox
@@ -94,8 +152,4 @@ class UserAdapter(myContext : Context,
                 offlineStatus = itemview.findViewById(R.id.status_offline)
             }
         }
-
-
-
-
 }
