@@ -103,6 +103,9 @@ class AddTeamFragment : Fragment() {
 
         binding.setTeamName.setOnClickListener{
             teamName = binding.enterTeamName.text.toString()
+
+
+
             if (teamName != null || teamName != "") {
                 binding.addTeamMember.visibility = View.VISIBLE
                 binding.enterMemberId.visibility = View.VISIBLE
@@ -111,12 +114,12 @@ class AddTeamFragment : Fragment() {
                 teamName = "My Team"
             }
 
-//            var childUpdate = HashMap<String, Any>()
-//            Log.i("writeTeamName", "replacing team name")
-//
-//            childUpdate["/Teams/$firebaseUserID/$teamName"] = teamName
-//
-//            database.reference.updateChildren(childUpdate)
+            var childUpdate = HashMap<String, Any>()
+            Log.i("writeTeamName", "replacing team name")
+
+            childUpdate["/Teams/$firebaseUserID/$teamName"] = teamName
+
+            database.reference.updateChildren(childUpdate)
         }
 
         binding.formTeam.setOnClickListener {
@@ -168,12 +171,7 @@ class AddTeamFragment : Fragment() {
                                 )
             Log.i("writeTeamName", "team map")
 
-            var childUpdate = HashMap<String, Any>()
-            Log.i("writeTeamName", "replacing team name")
 
-            childUpdate["/Teams/$firebaseUserID/$name/${each.getUid()}"] = teamMap
-
-            database.reference.updateChildren(childUpdate)
 
 
 

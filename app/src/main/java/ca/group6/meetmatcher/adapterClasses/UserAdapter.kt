@@ -111,15 +111,16 @@ class UserAdapter(myContext : Context,
         database.reference.child("Teams").child(myUid)
             .addListenerForSingleValueEvent(object : ValueEventListener {
                 override fun onDataChange(snapshot: DataSnapshot) {
-                    if (snapshot != null) {
-                        val HashMapOfAllThings = snapshot.value as HashMap<String, Any>
+                    if (snapshot.value != null) {
+                        Log.i("updateUser", "snapshot value is not null")
+                        val HashMapOfAllThings = snapshot.value as HashMap<String, Any?>
 
                         for (anyKey in HashMapOfAllThings.keys) {
                             val teamName = anyKey
                             var teamMap = mapOf("username" to username,
                                 "status" to status,
                                 "selected" to checked)
-                            var childUpdate = HashMap<String, Any>()
+                            var childUpdate = HashMap<String, Any?>()
 
                                 childUpdate["/Teams/$myUid/${teamName}/$uid"] = teamMap
                                 AddTeamFragment.database.reference.updateChildren(childUpdate)
