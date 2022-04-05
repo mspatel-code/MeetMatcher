@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/teal_200"
+            android:backgroundTint="@color/light_blue"
             android:text="Set Team Name"
             android:textColor="@color/teal_700" />
 
@@ -68,7 +68,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:backgroundTint="@color/teal_200"
+            android:backgroundTint="@color/light_blue"
             android:text="Form Team"
             android:textColor="@color/teal_700"
             android:visibility="invisible" />

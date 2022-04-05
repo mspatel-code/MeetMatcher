@@ -120,6 +120,7 @@ class AddTeamFragment : Fragment() {
             childUpdate["/Teams/$firebaseUserID/$teamName"] = teamName
 
             database.reference.updateChildren(childUpdate)
+            HomeFragment.memberList.remove("You do not have any team members.")
         }
 
         binding.formTeam.setOnClickListener {
