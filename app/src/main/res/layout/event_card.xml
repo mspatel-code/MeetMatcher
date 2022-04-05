@@ -19,6 +19,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="@string/init_time"
+            android:textSize="16sp"
             app:layout_constraintEnd_toStartOf="@+id/event_end_time"
             app:layout_constraintHorizontal_bias="0.1"
             app:layout_constraintStart_toStartOf="parent"
@@ -30,6 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_marginEnd="150dp"
             android:text="@string/init_time"
+            android:textSize="16sp"
             app:layout_constraintBottom_toBottomOf="@+id/event_start_time"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toTopOf="@+id/event_start_time" />
@@ -38,11 +40,28 @@
             android:id="@+id/event_detail"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="10dp"
             android:text=""
+            android:textSize="16sp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintStart_toStartOf="@+id/event_start_time"
+            app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Start Time"
+            app:layout_constraintStart_toStartOf="@+id/event_start_time"
             app:layout_constraintTop_toBottomOf="@+id/event_start_time" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="End Time"
+            app:layout_constraintStart_toStartOf="@+id/event_end_time"
+            app:layout_constraintTop_toBottomOf="@+id/event_end_time" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>
