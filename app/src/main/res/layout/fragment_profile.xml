@@ -4,12 +4,13 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/teal_300"
     tools:context=".fragments.ProfileFragment">
 
     <ImageButton
         android:id="@+id/imageButton"
-        android:layout_width="60dp"
-        android:layout_height="60dp"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
         android:backgroundTint="@color/teal_700"
         android:scaleType="fitEnd"
         android:src="@drawable/ic_baseline_person_24"
@@ -25,6 +26,8 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="XXXXXXX(user id)"
+        android:textColor="@color/black"
+        android:textSize="20sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -35,7 +38,7 @@
         android:id="@+id/change_password"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal_300"
+        android:backgroundTint="@color/light_blue"
         android:text="@string/change_password"
         android:textColor="#000000"
         app:layout_constraintEnd_toStartOf="@+id/imageButton"
@@ -48,7 +51,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="8dp"
-        android:backgroundTint="@color/teal_300"
+        android:backgroundTint="@color/light_blue"
         android:text="@string/change_nickname"
         android:textColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -63,6 +66,6 @@
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/change_nickname"/>
+        app:layout_constraintTop_toBottomOf="@+id/change_nickname" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
