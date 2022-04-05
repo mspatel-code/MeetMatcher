@@ -23,7 +23,11 @@ import ca.group6.meetmatcher.databinding.FragmentChooseLocationPlaceBinding
 import ca.group6.meetmatcher.databinding.RowLocationplaceBinding
 import ca.group6.meetmatcher.model.LocationPlace
 import com.google.android.gms.common.api.ApiException
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.libraries.places.api.Places
 import com.google.android.libraries.places.api.model.Place
 import com.google.android.libraries.places.api.net.FetchPlaceRequest
@@ -42,11 +46,16 @@ interface OnPlaceDoneButtonListener {
 }
 
 
-class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
+class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener, OnMapReadyCallback {
     private lateinit var caller_onPlaceDone: OnPlaceDoneButtonListener
 
     private var _binding: FragmentChooseLocationPlaceBinding? = null
     private val binding get() = _binding!!
+
+    private lateinit var mMap: GoogleMap
+    private lateinit var placeName: String
+    private lateinit var placeLatLng: LatLng
+
     private lateinit var placesClient: PlacesClient
     private var listCafe_Van: ArrayList<LocationPlace> = arrayListOf()
     private var listLib_Van: ArrayList<LocationPlace> = arrayListOf()
@@ -267,5 +276,16 @@ class ChooseLocationPlace : Fragment(), RadioGroup.OnCheckedChangeListener {
                 }
             }
         }
+    }
+
+    override fun onMapReady(googleMap: GoogleMap) {
+        mMap = googleMap
+
+        // Add a marker in Sydney and move the camera\
+        // coo coo coffee 49.276140582185896, -123.123745
+        //val location = LatLng(49.27574947559409, -123.12371080205423)
+        mMap.addMarker(MarkerOptions().position(placeLatLng).title(placeName))
+        mMap.moveCamera(CameraUpdateFactory.zoomTo(15.0f))
+        mMap.moveCamera(CameraUpdateFactory.newLatLng(placeLatLng))
     }
 }

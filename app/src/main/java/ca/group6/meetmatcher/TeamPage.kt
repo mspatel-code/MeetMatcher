@@ -71,8 +71,9 @@ class TeamPage : Fragment(), SelectedCity {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        val groupName = "A Team"
-        //val listTimes = arrayOf("Feb. 15 19:00 - 20:00", "Feb. 20 17:00 - 18:00", "Feb. 21 9:00 - 10:00")
+        val groupName  = "Team A"
+        binding.root.rootView.findViewById<TextView>(R.id.toolbar_title).text = groupName
+
         val meeting1 = Meeting("Feb. 15", "19:00 - 20:00", "")
         val meeting2 = Meeting("Feb. 20", "17:00 - 18:00", "")
         val meeting3 = Meeting("Feb. 21", "9:00 - 10:00", "")
