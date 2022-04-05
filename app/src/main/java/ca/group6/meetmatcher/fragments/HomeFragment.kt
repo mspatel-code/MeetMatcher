@@ -12,6 +12,7 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.annotation.NonNull
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import ca.group6.meetmatcher.R
@@ -37,6 +38,7 @@ class HomeFragment : Fragment() {
         var memberList = ArrayList<String>()
         var statusList = ArrayList<String>()
         public var myTeams : MutableList<String> = ArrayList()
+        private var authListener : FirebaseAuth.AuthStateListener? = null
         val database = Firebase.database
     }
 
@@ -48,6 +50,8 @@ class HomeFragment : Fragment() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         myTeams = ArrayList()
+
+
 
     }
 
@@ -124,7 +128,10 @@ class HomeFragment : Fragment() {
                                 //Log.i("Two", two["username"].toString())
                                 if (two["username"] != null) {
                                     memberList.add(two["username"].toString())
-                                    statusList.add(two["status"].toString())
+                                    var userStatus : String = database.reference.child("Users").child(two["status"].toString()).toString()
+                                    statusList.add(userStatus)
+                                    Log.i("User status", two["status"].toString())
+                                    //statusList.add(two["status"].toString())
                                     binding.myRv.adapter!!.notifyDataSetChanged()
                                 } else {
                                     memberList.add("You do not have any team members.")
@@ -181,6 +188,8 @@ class HomeFragment : Fragment() {
                 usernameText.setTextColor(Color.rgb(150, 150, 150))
 
             } else {
+                database.reference.child("User")
+
                 var currentStatus: String = statusList.get(position)
                 if (currentStatus == "offline") {
                     online.visibility = View.GONE
